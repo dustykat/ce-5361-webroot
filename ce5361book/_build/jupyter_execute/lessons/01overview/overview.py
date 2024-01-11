@@ -4,7 +4,7 @@
 # # 1. Introduction
 
 # :::{admonition} Course Website
-# [link to webster](http://54.243.252.9/ce-5361-webroot/)
+# [link to ce-5361-webroot](http://54.243.252.9/ce-5361-webroot/)
 # :::
 # 
 # This section displays the typical layout of the instructor notes.
@@ -18,9 +18,12 @@
 # 
 # Hydrology and Hydrologic Systems
 # 
-# 1. [Chow, V.T., Maidment, D.R., Mays, L.W., 1988, Applied Hydrology:  New York, McGraw-Hill. **pp. 1-12** ](https://3.137.111.182/ce-3354-webbook/3-Readings/CMM1988/Applied%20Hydrology%20VT%20Chow%201988.pdf) 
+# 1. [Chow, V.T., Maidment, D.R., Mays, L.W., 1988, Applied Hydrology:  New York, McGraw-Hill. **pp. 1-12** ](http://54.243.252.9/ce-5361-webroot/3-Readings/01CMM1988/Applied%20Hydrology%20VT%20Chow%201988.pdf) 
 # 
-# 2. Brutsaert,  W.  2005.  Hydrology  :   An  Introduction  (8th  printing),  Cambridge  University Press. NewYork.
+# 2. [Brutsaert,  W.  2005.  Hydrology  :   An  Introduction  (8th  printing),  Cambridge  University Press. NewYork.](http://54.243.252.9/ce-5361-webroot/3-Readings/00HydrologyAnIntroduction/1096-1.pdf)
+# 
+# 3. [Kilgore, R.,Atayee, A. T., Curtis, D., Harris, J.,  Herrmann, G. R., Thompson D. B., 2023. Highway Hydrology:
+# Evolving Methods, Tools, and Data. Publication No. FHWA-HIF-23-050. FHWA Hydraulic Engineering Circular No. 19 ](http://54.243.252.9/ce-5361-webroot/3-Readings/1HighwayHydrologyEmergingTools/highway-hydrology-hif23050.pdf)
 # 
 # 3. [Dooge, J.C.I. 1973. Linear Theory of Hydrologic Systems. ARS Technical Bulletin No. 1468.US Department of Agriculture, Washington, D.C. **pp. 1-40**](https://3.137.111.182/ce-3354-webbook/3-Readings/LS1973/linear-systems-hydrology-dooge.pdf) 
 # 
