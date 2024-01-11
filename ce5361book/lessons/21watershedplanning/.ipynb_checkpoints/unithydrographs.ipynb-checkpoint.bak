@@ -1,0 +1,103 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Unit Hydrographs - II (Synthesis)\n",
+    "\n",
+    "Synthesis does not use rainfall-runoff data.\n",
+    "\n",
+    "- Uses measurements on the watershed to postulate parameters of a parametric unit hydrograph.\n",
+    "\n",
+    "## Parametric Unit Hydrographs (in HEC-HMS)\n",
+    "\n",
+    "HEC-HMS has several different UH models available (eg. NRCS DUH, Clark, etc.).\n",
+    "These models are described by “parameters” \n",
+    "- NRCS (Tp or Tc)\n",
+    "- Clark (Tc, R)\n",
+    "Selection of the parameters selects the shape of the UH and the time base (or time to peak).\n",
+    "The analyst can also enter an empirical (user specified) unit hydrograph.\n",
+    "\n",
+    "Useful parametric models along with their parameters include:\n",
+    "\n",
+    "- NRCS DUH : Tlag (Timing only)\n",
+    "- Clark : Tc, and R (Timing and a storage-delay)\n",
+    "- Snyder : Tlag, Cp (Timing and a peak rate factor)\n",
+    "- Gamma : (User-Specified) Tc, K (Timing and a shape factor)\n",
+    "\n",
+    ":::{note}\n",
+    "Aalysis uses data (rainfall and runoff observations) to develop unit hydrograph models. Choices include:\n",
+    "\n",
+    "Follow FHWA methods \n",
+    "- Essentially back-substitution or OLS\n",
+    "\n",
+    "Use HEC-HMS and parametric UH, adjust values of parameters to fit observed runoff\n",
+    "- Less tedious than back-substitution or OLS\n",
+    "\n",
+    "Use HEC-HMS and a user supplied UH, adjust values of UH ordinates (and re-scale to maintain a unit response) to fit observed runoff\n",
+    "- Less tedious than back-substitution or OLS\n",
+    ":::\n",
+    "\n",
+    "## Example\n",
+    "\n",
+    "Work the example(s) below:\n",
+    "\n",
+    "[Cleveland, T. G. (2017) *Surface Water Hydrology Notes (Unit-Hydrographs in HEC-HMS) to accompany CE-3354*, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering. Go to Slide 32](http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture14.pdf)\n",
+    "\n",
+    "A fully provisioned Windows Implementation of HEC-HMS is located at:\n",
+    "\n",
+    "- server_name: **kittyinthewindow.ddns.net**\n",
+    "- user_name: **texas-skew**\n",
+    "- passwd: **peakfq73$hare**\n",
+    "\n",
+    "Users must access using Remote Desktop Protocol (Built into Windows, Apple Store has a free Mac application).\n",
+    "\n",
+    "Example powerpoint [DES-606-EX6](http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson10/Example6.ppt)\n",
+    "\n",
+    "Data Files for Examples:\n",
+    "\n",
+    "1. [Example7.xls (Same as in Notes Above)](http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson10/Example7.xls)\n",
+    "1. [Precipitation data for Ash Creek 1972 5 October Storm (Elapsed time)](http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson10/RAIN-19721005-RR.xls)\n",
+    "2. [Runoff data for Ash Creek 1972 5 October Storm (Elapsed time)](http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson10/FLOW-19721005-RR.xls)\n",
+    "3. [Initial Abstraction - Constant Loss Worksheets](http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson10/InitialAbstractionConstantLossModel.xls)\n",
+    "4. [Ash Creek 1978 21 May Storm](http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson10/STA08057320_HECHMSFORMAT_1978-0521.xls)\n",
+    "\n",
+    "## References\n",
+    "\n",
+    "1. Gupta pp 343-372\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

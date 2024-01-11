@@ -1,0 +1,960 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CE 3354 Engineering Hydrology Fall 2022 Exam 2 &#8212; Surface Water Hydrology</title>
+    
+  <link href="../../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+    <script src="../../../../_static/jquery.js"></script>
+    <script src="../../../../_static/underscore.js"></script>
+    <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/togglebutton.js"></script>
+    <script src="../../../../_static/clipboard.min.js"></script>
+    <script src="../../../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../../../_static/hydrology2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Surface Water Hydrology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../../intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../00syllabus/ce-5361-syllabus-2024-1.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../01overview/overview.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../02hydrocycle/hydrocycle.html">
+   2. Hydrologic Cycle
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../03watersheds/watersheds.html">
+   3. Watersheds
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../03watersheds/delineationbyhand.html">
+     Delineation (by Hand)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../03watersheds/delineationbyDEM.html">
+     Delineation (Homebrew DEM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../03watersheds/delineationbyGIS.html">
+     Delineation (using GIS)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../exams.html">
+   Exams
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../EX1/EX1.html">
+     <font color="darkblue">
+      Surface Water Hydrology Exam 1
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../EX1/src_sol/EX1-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 1
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../05data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../06precipitation/precipitation.html">
+   Precipitation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../06precipitation/pointprecipitation.html">
+     Precipitation Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../06precipitation/arealrainfall.html">
+     Precipitation over an Area
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../08infiltration/infiltration.html">
+   Infiltration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../08infiltration/infiltrationmodels.html">
+     Infiltration Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../11streamflow/streamflow.html">
+   Streamflow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../11streamflow/streamflowdata.html">
+     Streamflow Data Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../12morphology/morphology.html">
+   River Morphology and Channel Dynamics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../../lesson06/lesson06.html">
+   Hydrologic Process Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lesson06/rationalmethod.html">
+     Rational Equation (Rainfall-Runoff) Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lesson06/linearreservoir.html">
+     Linear Reservoir Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lesson06/CNmethod.html">
+     NRCS CN model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../../lesson06/nonlinreservoir.html">
+     Nonlinear Reservoir Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson06.1/HMSintro.html">
+   HEC-HMS Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson07/lesson07.html">
+   Evaporation Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson08.1/lesson081.html">
+   On-Watershed Storage Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson09/lesson09.html">
+   Unit Hydrographs - I (Analysis)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson11/lesson11.html">
+   Hydrograph Routing - I
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson12/lesson12.html">
+   Hydrograph Routing - II
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson13/lesson13.html">
+   Reservoir-Storage Routing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../lesson14/lesson14.html">
+   Reservoir Outlet Works
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../21watershedplanning/watershedplanning.html">
+   Watershed Planning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../../workshops/workshop3.html">
+   Workshop #3
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../../../_sources/lessons/99Exams/EX2/src-sol/EX2-WS.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flessons/99Exams/EX2/src-sol/EX2-WS.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lessons/99Exams/EX2/src-sol/EX2-WS.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#purpose">
+   Purpose :
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-1-time-of-concentration">
+   Problem 1 Time of Concentration
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-2-time-of-concentration-for-hardin-creek-watershed-s">
+   Problem 2 Time of Concentration for Hardin Creek Watershed(s)
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-3-loss-models">
+   Problem 3. Loss Models
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#problem-4-evapotranspiration-models">
+   Problem 4. Evapotranspiration Models
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <p><strong>Download</strong> (right-click, save target as …) this page as a Jupyterlab notebook from: <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/4-Exams/EX2/EX2.ipynb">EX-2</a></p>
+<hr class="docutils" />
+<div class="tex2jax_ignore mathjax_ignore section" id="font-color-darkblue-ce-3354-engineering-hydrology-br-fall-2022-exam-2-font">
+<h1><font color=darkblue>CE 3354 Engineering Hydrology <br> Fall 2022 Exam 2 </font><a class="headerlink" href="#font-color-darkblue-ce-3354-engineering-hydrology-br-fall-2022-exam-2-font" title="Permalink to this headline">¶</a></h1>
+<p><strong>LAST NAME, FIRST NAME</strong></p>
+<p><strong>R00000000</strong></p>
+<hr class="docutils" />
+<div class="section" id="purpose">
+<h2>Purpose :<a class="headerlink" href="#purpose" title="Permalink to this headline">¶</a></h2>
+<p>Demonstrate ability to apply hydrologic and problem solving principles with respect to hydrologic abstractions, specific loss models, and hydrograph timing parameters.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="problem-1-time-of-concentration">
+<h2>Problem 1 Time of Concentration<a class="headerlink" href="#problem-1-time-of-concentration" title="Permalink to this headline">¶</a></h2>
+<p>Figure 1 is a watershed.</p>
+<p><img alt="" src="../../../../_images/figure11.png" /></p>
+<p>The forest portion has a flow path length of 360 feet, at an average slope of 0.01 (1%) until it reaches the residential portion whose path length is 430 feet, at an average slope of 0.005 (0.5%).</p>
+<p>Estimate the time of concentration using the <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/NRCS-Upland.xls">NRCS-Upland</a> method.</p>
+<p><strong>Solution</strong></p>
+<p>Apply NRCS method</p>
+<ul class="simple">
+<li><p>Forest portion <br> <img alt="" src="../../../../_images/upland2.png" /></p></li>
+<li><p>Resedential portion <br> <img alt="" src="../../../../_images/upland1.png" /></p></li>
+</ul>
+<p>Then compute times as sum of the two parts.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solution here</span>
+<span class="n">Lforest</span> <span class="o">=</span> <span class="mi">360</span>
+<span class="n">Lresid</span> <span class="o">=</span> <span class="mi">430</span>
+<span class="n">Vforest</span> <span class="o">=</span> <span class="mf">0.25</span>
+<span class="n">Vresid</span> <span class="o">=</span> <span class="mf">1.423</span>
+<span class="n">Tforest</span> <span class="o">=</span> <span class="n">Lforest</span><span class="o">/</span><span class="n">Vforest</span>
+<span class="n">Tresid</span> <span class="o">=</span> <span class="n">Lresid</span><span class="o">/</span><span class="n">Vresid</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">round</span><span class="p">((</span><span class="n">Tforest</span><span class="o">+</span><span class="n">Tresid</span><span class="p">)</span><span class="o">/</span><span class="mi">60</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="s2">&quot;minutes&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>29.0 minutes
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="problem-2-time-of-concentration-for-hardin-creek-watershed-s">
+<h2>Problem 2 Time of Concentration for Hardin Creek Watershed(s)<a class="headerlink" href="#problem-2-time-of-concentration-for-hardin-creek-watershed-s" title="Permalink to this headline">¶</a></h2>
+<p>Figure 2 below is the Hardin Creek study area, already delineated with three sub-basins identified.</p>
+<p><img alt="" src="../../../../_images/basinmaphere1.png" /></p>
+<p>Estimate the time of concentration using the <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/NRCS-Upland.xls">NRCS-Upland</a> method for the Harden Creek watersheds (each sub-basin to reservoir riser pipe, and the portion downstream of the reservoirs directly to the study point of interest).</p>
+<p><strong>Solution</strong></p>
+<p>Summarize your results in the table below:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Sub-Basin</p></th>
+<th class="text-align:right head"><p>Area (sq. mi.)</p></th>
+<th class="text-align:right head"><p>Time of Concentration (minutes)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>North Basin</p></td>
+<td class="text-align:right"><p>3.83</p></td>
+<td class="text-align:right"><p>311</p></td>
+</tr>
+<tr class="row-odd"><td><p>West Basin</p></td>
+<td class="text-align:right"><p>6.04</p></td>
+<td class="text-align:right"><p>478</p></td>
+</tr>
+<tr class="row-even"><td><p>Eden Basin</p></td>
+<td class="text-align:right"><p>6.95</p></td>
+<td class="text-align:right"><p>285</p></td>
+</tr>
+</tbody>
+</table>
+<p>Use NRCS Upland to get travel times (assume is is the Tc)</p>
+<ul class="simple">
+<li><p>North Catchment to reservoir outlet <br><img alt="" src="../../../../_images/north.png" /></p></li>
+<li><p>West Catchment to reservoir outlet <br><img alt="" src="../../../../_images/west.png" /></p></li>
+<li><p>Eden Catchment to US87 outlet <br><img alt="" src="../../../../_images/eden.png" /></p></li>
+<li><p>Stream from North Reservoir outlet to US87<br><img alt="" src="../../../../_images/north287.png" /></p></li>
+<li><p>Stream from West Reservoir outlet to US87<br><img alt="" src="../../../../_images/west287.png" /></p></li>
+</ul>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="text-align:right head"><p>Distance to outlet (miles)</p></th>
+<th class="text-align:right head"><p>Slope</p></th>
+<th class="text-align:right head"><p>NRCS Travel time(minutes)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>North Catchment to Reservoir Outlet</p></td>
+<td class="text-align:right"><p>2.74</p></td>
+<td class="text-align:right"><p>0.006</p></td>
+<td class="text-align:right"><p>311</p></td>
+</tr>
+<tr class="row-odd"><td><p>West Catchment to Reservoir Outlet</p></td>
+<td class="text-align:right"><p>3.44</p></td>
+<td class="text-align:right"><p>0.004</p></td>
+<td class="text-align:right"><p>478</p></td>
+</tr>
+<tr class="row-even"><td><p>Eden Catchment to US 87 Crossing</p></td>
+<td class="text-align:right"><p>3.69</p></td>
+<td class="text-align:right"><p>0.005</p></td>
+<td class="text-align:right"><p>285</p></td>
+</tr>
+<tr class="row-odd"><td><p>West Reservoir Outlet to US 87 Crossing</p></td>
+<td class="text-align:right"><p>3.62</p></td>
+<td class="text-align:right"><p>0.0045</p></td>
+<td class="text-align:right"><p>316</p></td>
+</tr>
+<tr class="row-even"><td><p>North Reservoir Outlet to US 87 Crossing</p></td>
+<td class="text-align:right"><p>2.99</p></td>
+<td class="text-align:right"><p>0.0055</p></td>
+<td class="text-align:right"><p>236</p></td>
+</tr>
+</tbody>
+</table>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solution here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="problem-3-loss-models">
+<h2>Problem 3. Loss Models<a class="headerlink" href="#problem-3-loss-models" title="Permalink to this headline">¶</a></h2>
+<p>A tabulation of an observed storm and associated runoff for the drainage area are listed below.  The runoff was measured at the culvert system and indicated by the blue circle on the map.</p>
+<figure align="center">
+<!--<img src="./topoMap.png" width="500" > -->
+<img src="http://54.243.252.9/ce-3354-webroot/4-Exams/EX1/topoMap.png" width="700" >
+<figcaption>Figure 3. Topographic Map of a portion of the Earth. Elevations and linear distances are in
+f eet. North (by convention) is up. </figcaption>
+</figure>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p>Time (hrs)</p></th>
+<th class="text-align:right head"><p>Accumulated Rain (inches)</p></th>
+<th class="text-align:right head"><p>Observed Discharge (cfs)</p></th>
+<th class="text-align:right head"><p>Incremental Volume (ft<span class="math notranslate nohighlight">\(^3\)</span>)</p></th>
+<th class="text-align:right head"><p>Cumulative Volume (ft<span class="math notranslate nohighlight">\(^3\)</span>)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>0</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>2</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>3</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>4</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>5</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>6</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>7</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>8</p></td>
+<td class="text-align:right"><p>0.101</p></td>
+<td class="text-align:right"><p>1.40</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>9</p></td>
+<td class="text-align:right"><p>0.106</p></td>
+<td class="text-align:right"><p>0.31</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>10</p></td>
+<td class="text-align:right"><p>0.111</p></td>
+<td class="text-align:right"><p>0.31</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>11</p></td>
+<td class="text-align:right"><p>0.115</p></td>
+<td class="text-align:right"><p>0.31</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>12</p></td>
+<td class="text-align:right"><p>0.120</p></td>
+<td class="text-align:right"><p>0.31</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>13</p></td>
+<td class="text-align:right"><p>0.120</p></td>
+<td class="text-align:right"><p>0.40</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>14</p></td>
+<td class="text-align:right"><p>0.150</p></td>
+<td class="text-align:right"><p>0.40</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>15</p></td>
+<td class="text-align:right"><p>0.750</p></td>
+<td class="text-align:right"><p>24.66</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>16</p></td>
+<td class="text-align:right"><p>2.750</p></td>
+<td class="text-align:right"><p>588.23</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>17</p></td>
+<td class="text-align:right"><p>2.940</p></td>
+<td class="text-align:right"><p>808.70</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>18</p></td>
+<td class="text-align:right"><p>3.030</p></td>
+<td class="text-align:right"><p>154.28</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>19</p></td>
+<td class="text-align:right"><p>3.030</p></td>
+<td class="text-align:right"><p>94.68</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>20</p></td>
+<td class="text-align:right"><p>3.030</p></td>
+<td class="text-align:right"><p>27.56</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>21</p></td>
+<td class="text-align:right"><p>3.090</p></td>
+<td class="text-align:right"><p>36.13</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>22</p></td>
+<td class="text-align:right"><p>3.210</p></td>
+<td class="text-align:right"><p>19.65</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>23</p></td>
+<td class="text-align:right"><p>3.300</p></td>
+<td class="text-align:right"><p>7.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>24</p></td>
+<td class="text-align:right"><p>3.300</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p></p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Determine</p>
+<ul class="simple">
+<li><p>The loss from the raw precipitation input to the watershed.</p></li>
+<li><p>An appropriate CN for the watershed supported by the tabulated data.</p></li>
+<li><p>The maximum retention S for the watershed supported by the tabulated data.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solution here</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span>
+<span class="mi">1</span><span class="p">,</span>
+<span class="mi">2</span><span class="p">,</span>
+<span class="mi">3</span><span class="p">,</span>
+<span class="mi">4</span><span class="p">,</span>
+<span class="mi">5</span><span class="p">,</span>
+<span class="mi">6</span><span class="p">,</span>
+<span class="mi">7</span><span class="p">,</span>
+<span class="mi">8</span><span class="p">,</span>
+<span class="mi">9</span><span class="p">,</span>
+<span class="mi">10</span><span class="p">,</span>
+<span class="mi">11</span><span class="p">,</span>
+<span class="mi">12</span><span class="p">,</span>
+<span class="mi">13</span><span class="p">,</span>
+<span class="mi">14</span><span class="p">,</span>
+<span class="mi">15</span><span class="p">,</span>
+<span class="mi">16</span><span class="p">,</span>
+<span class="mi">17</span><span class="p">,</span>
+<span class="mi">18</span><span class="p">,</span>
+<span class="mi">19</span><span class="p">,</span>
+<span class="mi">20</span><span class="p">,</span>
+<span class="mi">21</span><span class="p">,</span>
+<span class="mi">22</span><span class="p">,</span>
+<span class="mi">23</span><span class="p">,</span>
+<span class="mi">24</span>
+<span class="p">]</span>
+<span class="n">acc_rain</span> <span class="o">=</span><span class="p">[</span> <span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mf">0.101</span><span class="p">,</span>
+<span class="mf">0.106</span><span class="p">,</span>
+<span class="mf">0.111</span><span class="p">,</span>
+<span class="mf">0.115</span><span class="p">,</span>
+<span class="mf">0.12</span><span class="p">,</span>
+<span class="mf">0.12</span><span class="p">,</span>
+<span class="mf">0.15</span><span class="p">,</span>
+<span class="mf">0.75</span><span class="p">,</span>
+<span class="mf">2.75</span><span class="p">,</span>
+<span class="mf">2.94</span><span class="p">,</span>
+<span class="mf">3.03</span><span class="p">,</span>
+<span class="mf">3.03</span><span class="p">,</span>
+<span class="mf">3.03</span><span class="p">,</span>
+<span class="mf">3.09</span><span class="p">,</span>
+<span class="mf">3.21</span><span class="p">,</span>
+<span class="mf">3.3</span><span class="p">,</span>
+<span class="mf">3.3</span>
+<span class="p">]</span>
+<span class="n">inc_disc</span> <span class="o">=</span><span class="p">[</span> <span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mi">0</span><span class="p">,</span>
+<span class="mf">1.4</span><span class="p">,</span>
+<span class="mf">0.31</span><span class="p">,</span>
+<span class="mf">0.31</span><span class="p">,</span>
+<span class="mf">0.31</span><span class="p">,</span>
+<span class="mf">0.31</span><span class="p">,</span>
+<span class="mf">0.4</span><span class="p">,</span>
+<span class="mf">0.4</span><span class="p">,</span>
+<span class="mf">24.66</span><span class="p">,</span>
+<span class="mf">588.23</span><span class="p">,</span>
+<span class="mf">808.7</span><span class="p">,</span>
+<span class="mf">154.28</span><span class="p">,</span>
+<span class="mf">94.68</span><span class="p">,</span>
+<span class="mf">27.56</span><span class="p">,</span>
+<span class="mf">36.13</span><span class="p">,</span>
+<span class="mf">19.65</span><span class="p">,</span>
+<span class="mi">7</span><span class="p">,</span>
+<span class="mi">0</span>
+<span class="p">]</span>
+
+<span class="n">acc_disc</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inc_disc</span><span class="p">))]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">inc_disc</span><span class="p">)):</span>
+    <span class="n">acc_disc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">inc_disc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">inc_disc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">*</span><span class="mi">3600</span> <span class="o">+</span> <span class="n">acc_disc</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">Area</span> <span class="o">=</span> <span class="mi">88711200</span> <span class="c1">#ft^2 From Exam 1 or redo the calculations</span>
+<span class="n">P</span> <span class="o">=</span> <span class="n">acc_rain</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">acc_rain</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">Q</span> <span class="o">=</span> <span class="mi">12</span><span class="o">*</span><span class="p">(</span><span class="n">acc_disc</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">acc_disc</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="n">Area</span><span class="p">)</span> <span class="c1"># wtaershed inches</span>
+<span class="n">Loss</span> <span class="o">=</span> <span class="n">P</span> <span class="o">-</span> <span class="n">Q</span>
+
+
+
+<span class="c1">#trial and error to find S that agrees with observations</span>
+
+<span class="n">S</span> <span class="o">=</span> <span class="mf">4.4</span>  <span class="c1"># trial and error this value</span>
+<span class="n">Qscs</span> <span class="o">=</span> <span class="p">(</span><span class="n">P</span><span class="o">-</span><span class="mf">0.2</span><span class="o">*</span><span class="n">S</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="o">+</span><span class="mf">0.8</span><span class="o">*</span><span class="n">S</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Q_error &quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">Qscs</span><span class="o">-</span><span class="n">Q</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># now recover CN and report results</span>
+
+<span class="n">CN</span> <span class="o">=</span> <span class="mi">1000</span><span class="o">/</span><span class="p">(</span><span class="n">S</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Loss &quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">Loss</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="s2">&quot; watershed inches&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;CN based on tabulated values &quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">CN</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum Retention S &quot;</span><span class="p">,</span><span class="nb">round</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Q_error  -0.0 
+
+Loss  2.441  watershed inches
+CN based on tabulated values  69.0
+Maximum Retention S  4.4
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="problem-4-evapotranspiration-models">
+<h2>Problem 4. Evapotranspiration Models<a class="headerlink" href="#problem-4-evapotranspiration-models" title="Permalink to this headline">¶</a></h2>
+<p>Estimate the monthly evapotranspiration depths for the Corpus Christi (Nueces County) area using the <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/Thornwaithe.xls">Thornwaithe</a> method.</p>
+<p>Repeat the process using the <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/BlaneyCriddle.xlsx">Blaney-Criddle</a> method for the same geographic area.</p>
+<p>Compare the results to the values reported at <a class="reference external" href="https://waterdatafortexas.org/lake-evaporation-rainfall">https://waterdatafortexas.org/lake-evaporation-rainfall</a>.  Corpus Christi is in Cell 911 and Cell 1010 in the map shown at this website, choose either cell for your comparison.</p>
+<p><strong>Solution</strong></p>
+<ul class="simple">
+<li><p>Need Temperature information <br>
+<img alt="" src="../../../../_images/corpusT.png" /></p></li>
+<li><p>Need location information <br>
+<img alt="" src="../../../../_images/latlon.png" /></p></li>
+<li><p>Apply Thornwaithe <br>
+<img alt="" src="../../../../_images/thorn.png" /></p></li>
+<li><p>Apply Blaney-Criddle <br>
+<img alt="" src="../../../../_images/blaney.png" /></p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># solution here</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons/99Exams/EX2/src-sol"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Theodore G. Cleveland, Ph.D., P.E., M.ASCE, F.EWRI<br/>
+        
+            &copy; Copyright 2024.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

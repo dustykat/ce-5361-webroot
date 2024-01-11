@@ -1,0 +1,106 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+chapters:
+- file: lessons/00syllabus/ce-5361-syllabus-2024-1
+- file: lessons/01overview/overview # Course Overview and Objectives
+- file: lessons/02hydrocycle/hydrocycle # Hydrologic Cycle
+- file: lessons/03watersheds/watersheds # Watersheds
+  sections:
+  - file: lessons/03watersheds/delineationbyhand # Watersheds
+  - file: lessons/03watersheds/delineationbyDEM # Watersheds
+  - file: lessons/03watersheds/delineationbyGIS # Watersheds
+- file: lessons/04precipitation/precipitation # precipitation
+  sections:
+  - file: lessons/04precipitation/pointprecipitation # probability estyimation modeling
+  - file: lessons/04precipitation/arealrainfall # arf and radar
+###############################################################
+- file: lessons/05.0abstractions/abstractions # abstractions
+  sections:
+  - file: lessons/05.1infiltration/infiltration # infiltration
+  - file: lessons/05.2evaporation/evaporation # evapotranspiration 
+  - file: lessons/05.3interception/interception # interception 
+
+###############################################################
+- file: lessons/06streamflow/streamflow # streamflow
+  sections:
+  - file: lessons/06streamflow/streamflowdata
+
+- file: lessons/07runoffmechanisms/runoffmechanisms # streamflow
+################################################################
+- file: lessons/08hydrographs/hydrographs # hydrologic routing
+  sections:
+  - file: lessons/08hydrographs/1.baseflow
+  - file: lessons/08hydrographs/2.unithydrographs
+################################################################
+- file: lessons/10data/data # precipitation
+################################################################
+- file: lessons/11.0hydrologicrouting/hydrologicrouting # hydrologic routing
+  sections:
+  - file: lessons/11.1pulsrouting/pulsrouting # level-pool routing
+  - file: lessons/11.2reservoirrouting/reservoirrouting # level-pool routing
+  - file: lessons/11.3outletworks/outletworks # level-pool routing
+
+##################################################################
+
+- file: lessons/12.0rainfallrunoff/rainfallrunoff
+  sections:
+  - file: lessons/12.0rainfallrunoff/rationalmethod # rational runoff
+  - file: lessons/12.0rainfallrunoff/linearreservoir # linear reservoir
+  - file: lessons/12.0rainfallrunoff/CNmethod # CN method
+  - file: lessons/12.0rainfallrunoff/nonlinreservoir # non-linear reservoir
+
+- file: lessons/13hechms/HMSintro # intro to HMS
+
+- file: lessons/14swmm/swmm-intro # intro to SWMM
+
+- file: lessons/12morphology/morphology # River Morphology and Channel Dynamics   
+
+- file: lessons/99Exams/exams
+  sections:
+  - file: lessons/99Exams/EX1/EX1
+  - file: lessons/99Exams/EX1/src_sol/EX1-WS
+  - file: lessons/99Exams/EX2/EX2
+  - file: lessons/99Exams/EX2/src_sol/EX2-WS
+  - file: lessons/99Exams/EX3/EX3
+  - file: lessons/99Exams/EX3/src_sol/EX3-WS
+
+
+  
+
+
+#- file: lessons/lesson07/lesson07 # evaporation
+
+#- file: lessons/lesson08/lesson08 # infiltration
+
+#- file: lessons/lesson08.1/lesson081 # canopy and depression storage
+
+- file: lessons/lesson09/lesson09 # unit hydrographs - analysis
+
+#- file: lessons/lesson10/lesson10 # unit hydrographs - synthesis
+
+- file: lessons/lesson11/lesson11 # hydrograph routing - 1
+
+- file: lessons/lesson12/lesson12 # hydrograph routing - 2
+
+- file: lessons/lesson13/lesson13 # level pool reservoir routing
+
+- file: lessons/lesson14/lesson14 # reservoir outlet works
+
+- file: lessons/21watershedplanning/watershedplanning # reservoir outlet works
+
+#- file: lessons/groundwater/groundwater1 # groundwater
+
+#- file: lessons/groundwater/groundwater2 # groundwater
+
+#- file: lessons/groundwater/groundwater3 # groundwater
+
+#- file: lessons/groundwater/groundwater4 # groundwater
+
+#- file: lessons/groundwater/groundwater5 # groundwater
+
+- file: lessons/workshops/workshop3 # groundwater
+#- file: markdown
+#- file: notebooks

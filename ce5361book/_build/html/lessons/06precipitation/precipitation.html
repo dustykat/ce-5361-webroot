@@ -1,0 +1,713 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precipitation &#8212; Surface Water Hydrology</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Precipitation Modeling" href="pointprecipitation.html" />
+    <link rel="prev" title="Data" href="../05data/data.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/hydrology2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Surface Water Hydrology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Surface Water Hydrology
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00syllabus/ce-5361-syllabus-2024-1.html">
+   CE 5361 Surface Water Hydrology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01overview/overview.html">
+   Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02fundamentals/fundamentals.html">
+   Fundamentals of Hydrology
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../03hydrocycle/hydrocycle.html">
+   Hydrological Cycle and Budgets
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04watersheds/watersheds.html">
+   Watersheds
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04watersheds/delineationbyhand.html">
+     Delineation (by Hand)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04watersheds/delineationbyDEM.html">
+     Delineation (Homebrew DEM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04watersheds/delineationbyGIS.html">
+     Delineation (using GIS)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Precipitation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="pointprecipitation.html">
+     Precipitation Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="arealrainfall.html">
+     Precipitation over an Area
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08infiltration/infiltration.html">
+   Infiltration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08infiltration/infiltrationmodels.html">
+     Infiltration Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11streamflow/streamflow.html">
+   Streamflow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11streamflow/streamflowdata.html">
+     Streamflow Data Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12morphology/morphology.html">
+   River Morphology and Channel Dynamics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lesson06/lesson06.html">
+   Hydrologic Process Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/rationalmethod.html">
+     Rational Equation (Rainfall-Runoff) Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/linearreservoir.html">
+     Linear Reservoir Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/CNmethod.html">
+     NRCS CN model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/nonlinreservoir.html">
+     Nonlinear Reservoir Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson06.1/HMSintro.html">
+   HEC-HMS Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson07/lesson07.html">
+   Evaporation Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson08.1/lesson081.html">
+   On-Watershed Storage Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson09/lesson09.html">
+   Unit Hydrographs - I (Analysis)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson11/lesson11.html">
+   Hydrograph Routing - I
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson12/lesson12.html">
+   Hydrograph Routing - II
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson13/lesson13.html">
+   Reservoir-Storage Routing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson14/lesson14.html">
+   Reservoir Outlet Works
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../21watershedplanning/watershedplanning.html">
+   Watershed Planning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../workshops/workshop3.html">
+   Workshop #3
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lessons/06precipitation/precipitation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flessons/06precipitation/precipitation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lessons/06precipitation/precipitation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#readings">
+   Readings
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#videos">
+   Videos
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outline">
+   Outline
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#description">
+   Description
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#forms-of-precipitation">
+   Forms of Precipitation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#types-of-precipitation-by-origin">
+     Types of Precipitation (by Origin)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#convective-storms">
+     Convective Storms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#orographic-storms">
+     Orographic Storms
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cyclonic-storms">
+     Cyclonic Storms
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#precipitation-variables-of-interest">
+   Precipitation Variables of Interest
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#depth-duration-frequency">
+   Depth-Duration-Frequency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#intensity-duration-frequency">
+   Intensity-Duration-Frequency
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="precipitation">
+<h1>Precipitation<a class="headerlink" href="#precipitation" title="Permalink to this headline">¶</a></h1>
+<p>Precipitation is the water which falls from the atmosphere in either liquid or solid form.</p>
+<div class="admonition-course-website admonition">
+<p class="admonition-title">Course Website</p>
+<p><a class="reference external" href="http://54.243.252.9/">link to webster</a></p>
+</div>
+<div class="section" id="readings">
+<h2>Readings<a class="headerlink" href="#readings" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/CMM1988/">Chow, V.T., Maidment,D.M., and Mays, L.W. (1998) Applied Hydrology, McGraw Hill, (Read pages 26 to 31; 416 to 423)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/FHWAHighwayHydrology/FHWA-NHI-02-001.pdf">McCuen, R.H., Johnson, P.A., and Ragan, R.M. (2002) Highway Hydrology. HDS-2 (2ed) FHWA-NHI-02-001 (Read pages 3-1 to 3-5; 4-86 to 4-89; 5-1 to 5-8; 5-16 to 5-17)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/TXDOT-HYDM-2014/txdot-hdm-2014.pdf">Texas Hydraulic Design Manual (2014-1) Texas Department of Transportation. (2014) Hydraulic Design Manual (Read pages 4-1 to 4-5; 4-31 to 4-35)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/LS1973/linear-systems-hydrology-dooge.pdf">Linear Theory of Hydrologic Systems Dooge, J.C. I. (1973) Linear Theory of Hydrologic Systems. USDA ARS Technical Bulletin No. 1468. (Read pages 127 to 147)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson04/precipitation-notes.pdf">Cleveland, T. G. (2015) <em>Engineering Hydrology Notes to Accompany CE 3354 (Hand-written)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture05.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Discrete Data Analysis; Risk Based Design; Regression Equations)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture06.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Probability Estimation Modeling)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture08.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Point Precipitation; Design Storms)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/TRB-2008-Paper/TRB_2008_IntensityDesign_Rev2.pdf">Cleveland, T.G., and Thompson, D.B., 2008. ``Rainfall Intensity in Design.’’ 87-th Annual Transportation Research Board Meeting, January 14-18, Washington, D.C.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/EmpiricalHyetographs/sir2004-5075.pdf">Williams-Sether, T., Asquith, W.H., Thompson, D.B., Cleveland, T.G., and X. Fang. 2004. ``Empirical, Dimensionless, Cumulative-Rainfall Hyetographs for Texas.’’ U.S.Geological Survey Scientific Investigations Report 2004-5075, 138p. </a></p></li>
+<li><p><a class="reference external" href="https://www.fhwa.dot.gov/engineering/hydraulics/pubs/hec/hec19.pdf">hec19</a></p></li>
+<li><p><a class="reference external" href="https://www.rmets.org/metmatters/rain-sleet-or-snow">McCabe, K. (2022) “Rain, sleet or snow?” Royal Meterological Society</a></p></li>
+</ol>
+</div>
+<div class="section" id="videos">
+<h2>Videos<a class="headerlink" href="#videos" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p>What is precipitation</p></li>
+<li><p>Point precipitation</p></li>
+<li><p>Probability estimation Modeling</p></li>
+<li><p>Design Storms</p></li>
+<li><p>Areal precipitation</p></li>
+<li><p>ARF approach</p></li>
+<li><p>Radar rainfall</p></li>
+</ol>
+</div>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h2>
+<p>Precipitation is the water which falls from the atmosphere in either liquid or solid form. It results from the condensation of moisture in the atmosphere due to cooling of a parcel of air. The most common cause of cooling is dynamic or adiabatic lifting of the air. Adiabatic lifting means that a
+given parcel of air is caused to rise with resultant cooling and possible condensation into very small cloud droplets. If these droplets coalesce and be-
+come of sufficient size to overcome the air resistance, precipitation in some form results.</p>
+<p>Surface water hydrology really begins before the precipitate hits the ground.  The form of precipitate is important (rain, sleet, hail, or snow).  For example it takes about 10 inches of snow to produce the same water as 1 inch of rain.  Other factors of importance are the size of the area over which the precipitation falls, the intensity of the precipitation, and its duration.</p>
+<p><img alt="" src="../../_images/hc-precip.png" /></p>
+<p>Once the precipitation hits the ground several things can happen.  It can evaporate immediately, especially if the surface is hot, and relatively impervious.  If the surface is dry and/or porous, the precipitate may infiltrate into the ground or may just wet the surface.   The process of just wetting leaves and blades of grass is called interception.  Some of the infiltrated water is returned to the atmosphere by transpiration by plants.  Collectively the return to the atmosphere is called evapotranspiration.  The precipitate may be trapped in small depressions (puddles).  It may remain in these puddles until it evaporates or until the depressions fill and overflow.  Finally it may run off directly to the nearest stream or lake to become surface water.  The four “processes” (evapotranspiration, infiltration, interception, and depression storage) that reduce the amount of precipitation available for direct runoff are collectively called abstractions.  In drainage engineering, the loss model is how we account for these processes.</p>
+</div>
+<div class="section" id="forms-of-precipitation">
+<h2>Forms of Precipitation<a class="headerlink" href="#forms-of-precipitation" title="Permalink to this headline">¶</a></h2>
+<p>Precipitation occurs in various forms. Rain is precipitation that is in the liquid state when it reaches the earth.
+<img alt="" src="../../_images/rainfall.png" /><br>
+Snow is frozen water in a crystalline state, while hail is frozen water in a ‘massive’ state. <br>
+<img alt="" src="../../_images/snowfall.png" /><br>
+Sleet is melted snow which is an intermixture of rain and snow. Of course, precipitation that falls to earth in the frozen state cannot become part of the runoff process until thawing and melting occur. Much of the precipitation that falls in mountainous areas and in the northerly latitudes falls in frozen form and is stored as snowpack or ice until warmer temperatures prevail.</p>
+<p><a class="reference external" href="https://youtu.be/cYjOEQhA_RI">Rain, Sleet, or Snow (YouTube Video)</a></p>
+<div class="section" id="types-of-precipitation-by-origin">
+<h3>Types of Precipitation (by Origin)<a class="headerlink" href="#types-of-precipitation-by-origin" title="Permalink to this headline">¶</a></h3>
+<p>Precipitation can be classified by the origin of the lifting motion which
+causes the preci pi ta ti on. Each type is characterized by different spatial
+and temporal rainfall regimens. There are three major types of storms which
+can be classified as follows:</p>
+<ol class="simple">
+<li><p><strong>Convective Storms.</strong>  Convective storms are atmospheric disturbances characterized by strong upward movement of air. They occur when warm, moist air rises, cools, and condenses, forming clouds and often leading to precipitation. <!--The two primary types of convective storms are thunderstorms and tornadoes. Thunderstorms are typically composed of cumulonimbus clouds and are accompanied by lightning, thunder, heavy rain, and sometimes hail. They form when warm, moist air rises rapidly, creating instability in the atmosphere. Tornadoes, on the other hand, are rapidly rotating columns of air that extend from a thunderstorm to the ground. They form within severe thunderstorms and can cause significant damage due to their strong winds.--></p></li>
+<li><p><strong>Orographic Storms.</strong>  Orographic storms, also known as orographic precipitation or orographic lifting, occur when air is forced to rise over elevated terrain, such as mountains or hills. As the air moves upward, it cools and condenses, leading to cloud formation and precipitation. <!-- This process happens on the windward side of the mountain, where moist air is lifted and cooled, often resulting in increased rainfall or snowfall.The lifting of air over the terrain causes the moisture in the air to condense and form clouds. As the air continues to rise, it cools further, leading to more significant precipitation on the windward side of the mountain. The leeward side, or the "rain shadow" side, tends to experience drier conditions as the air descends and warms, having already released much of its moisture on the windward side.--></p></li>
+<li><p><strong>Cyclonic Storms.</strong>  Cyclonic storms, also known as cyclones or hurricanes (depending on the region), are powerful low-pressure systems characterized by rotating winds and organized thunderstorms. These storms typically form over warm ocean waters, where moist air rises and creates an area of low pressure.  As the warm air rises, it cools and condenses, forming clouds and releasing heat energy that fuels the storm’s development. <!--The Earth's rotation causes the system to spin, creating a circular pattern of winds. In the Northern Hemisphere, cyclonic storms rotate counterclockwise, while in the Southern Hemisphere, they rotate clockwise.  Cyclonic storms go through various stages of development, starting as tropical disturbances and progressing into tropical depressions, tropical storms, and finally, reaching hurricane or typhoon status, depending on their location. They are categorized by their sustained wind speeds, with hurricanes or typhoons reaching higher wind velocities.  These storms can cause extensive damage due to their strong winds, heavy rainfall, storm surges, and potential for flooding. Proper forecasting and preparedness are crucial in regions prone to cyclonic storms to mitigate their impact on communities and infrastructure.--></p></li>
+</ol>
+</div>
+<div class="section" id="convective-storms">
+<h3>Convective Storms<a class="headerlink" href="#convective-storms" title="Permalink to this headline">¶</a></h3>
+<p>Precipitation from convective storms results as warm moist air rises from
+lower elevations into cooler overlying air as shown below.</p>
+<p><img alt="" src="../../_images/convectivestorm.png" /></p>
+<p>The characteristic form of convective precipitation is the summer thunderstorm. The surface of the earth is warmed considerably by mid-to late afternoon of a summer day, the surface imparting its heat to the adjacent air. The warmed air begins rising through the overlying air, and if proper moisture content conditions are met (condensation level), large quantities of moisture will be condensed from the rapidly rising, rapidly cooling air. The rapid condensation may often result in huge quantities of rain from a single thunderstorm spawned by convective action, and very large rainfall rates are quite common beneath slowly moving thunderstorms.</p>
+</div>
+<div class="section" id="orographic-storms">
+<h3>Orographic Storms<a class="headerlink" href="#orographic-storms" title="Permalink to this headline">¶</a></h3>
+<p>Orographic precipitation results as air is forced to rise over a fixed position geographic feature such as a range of mountains. The characteristic precipitation patterns of the Pacific coastal states are the result of significant orographic influences. Mountain slopes that face the wind (windward) are much wetter than the opposite (leeward) slopes. In the Cascade Range in Washington and Oregon, the west-facing slopes may receive upwards of 100 inches (254 cm) of precipitation annually, while the east facing slopes, only a few miles away over the crest of the mountains, receive on the order of 20 inches (51 an) of precipitation annually.</p>
+<p><img alt="" src="../../_images/orographicstorm.png" /></p>
+</div>
+<div class="section" id="cyclonic-storms">
+<h3>Cyclonic Storms<a class="headerlink" href="#cyclonic-storms" title="Permalink to this headline">¶</a></h3>
+<p>Cyclonic precipitation is caused by the rising or lifting of air as it converges on an area of low pressure. Air moves from areas of higher pressure
+toward areas of lower pressure. In the middle latitudes, cyclonic storms generally move from west to east and have both cold and warm air associated with them. These mid-latitude cyclones are sometimes called extra-tropical cyclones or continental storms. Continental storms occur at the boundaries of air of significantly different temperatures. A disturbance in the boundary between the two air parcels can grow, appearing as a wave as it travels from west to east along the boundary. Generally, on a weather map, the cyclonic storm will appear as shown in below with two boundaries or fronts developed.</p>
+<p><img alt="" src="../../_images/frontalstorm.png" /></p>
+<p>One has warm air being pushed into an area of cool air, while the other has cool air pushed into an area of warmer air. This type of air movement is called a front; where warm air is the aggressor it is a warm front, and where cold air is the aggressor it is a cold front. The precipitation associated with a cold front is usually heavy and covers a relatively small area, whereas the precipitation associated with a warm front is more passive, smaller in quantity, but covers a much larger area, as pictured below.</p>
+<p><img alt="" src="../../_images/midlatstorm.png" /></p>
+<p>Tornadoes and other <strong>violent</strong> weather phenomena are associated with cold fronts.</p>
+</div>
+</div>
+<div class="section" id="precipitation-variables-of-interest">
+<h2>Precipitation Variables of Interest<a class="headerlink" href="#precipitation-variables-of-interest" title="Permalink to this headline">¶</a></h2>
+<p>There are several variables of interest:</p>
+<ol class="simple">
+<li><p>Intensity: how hard it rains (a rate)</p></li>
+<li><p>Duration: how long it rains at any given intensity (a time)</p></li>
+<li><p>Frequency: how often it rains at any given intensity and duration (a probability)</p></li>
+<li><p>Spatial Distribution: the rainfall depth over an area (a surface/volume)</p></li>
+<li><p>Temporal Distribution: the time series of rainfall depth over an area (or point).  The point feature is called a <em>hyetograph</em>.</p></li>
+</ol>
+<p>Rainfall probabilities are expressed as a combination of frequency (probability), depth, and duration. The inclusion of depth and duration reflects that different “storms” can produce the same total depth, but deliver that depth over much different times</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A slow gentle rain for a long time versus a hard rain for a short time can have the same total depth, but vastly different hydrologic impact</p>
+</div>
+</div>
+<div class="section" id="depth-duration-frequency">
+<h2>Depth-Duration-Frequency<a class="headerlink" href="#depth-duration-frequency" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Depth of rainfall is the accumulated depth (in a gage) over some time interval.</p></li>
+<li><p>Duration is that time interval.</p></li>
+<li><p>Frequency is the probability (like AEP) of observing the depth over the given duration.</p></li>
+</ul>
+<p><img alt="" src="../../_images/DDFcurve.png" /></p>
+<p>An alternate to DDF is to present the magnitude as an intensity (a rate). The intensity is the ratio of an accumulated depth to some averaging time, usually the duration.</p>
+<div class="math notranslate nohighlight">
+\[ i_{avg}=\frac{D}{T_C}\]</div>
+<p>where <span class="math notranslate nohighlight">\(D\)</span> is the depth, and <span class="math notranslate nohighlight">\(T_C\)</span> is the averaging time</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Intensity is NOT the instantaneous rainfall rate.</p>
+<blockquote>
+<div><p>The symbol <span class="math notranslate nohighlight">\(T_C\)</span> represents the <a class="reference external" href="https://en.wikipedia.org/wiki/Time_of_concentration">time of concentration</a> for a watershed, <strong>if</strong> the averaging time happens to coincide with the time needed for water to flow from the most remote point in a watershed to the watershed outlet; otherwise its just an arbitrary averaging time.</p>
+</div></blockquote>
+</div>
+<p>Intensity is related to depth and duration.</p>
+<p><img alt="" src="../../_images/intensityExample.png" /></p>
+<p>The intensity is the ratio of depth to a particular duration.  For example, if the duration or averaging time is 12 hours and the accumulated depth for 12 hours is 70 mm (about 3 inches), then the average rate is 70mm/12hours = 5.8 mm/hour.  This average rate, if applied over 12 hours will produce the depth of 70mm.</p>
+<p>Conversion from Depth-Duration to Intensity-Duration is obtained by the ratio of depth to duration</p>
+<div class="math notranslate nohighlight">
+\[ i_{avg}=\frac{D}{T_C}\]</div>
+<p>Conversion from Intensity-Duration to Depth-Duration is obtained by multiplication</p>
+</div>
+<div class="section" id="intensity-duration-frequency">
+<h2>Intensity-Duration-Frequency<a class="headerlink" href="#intensity-duration-frequency" title="Permalink to this headline">¶</a></h2>
+<p>The family of curves that depicts the relationship between the intensity, duration, and frequency of precipitation at a point is a fundamental part of the rational equation method for storm water drainage design.</p>
+<p><img alt="" src="../../_images/IDFcurves.png" /></p>
+<p>Conversion from Depth-Duration to Intensity-Duration is obtained by the ratio of depth to duration</p>
+<div class="math notranslate nohighlight">
+\[ i_{avg}=\frac{D}{T_C}\]</div>
+<p>Conversion from Intensity-Duration to Depth-Duration is obtained by multiplication</p>
+<div class="math notranslate nohighlight">
+\[ D = i_{avg}*{T_C}\]</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/CMM1988/">Chow, V.T., Maidment,D.M., and Mays, L.W. (1998) Applied Hydrology, McGraw Hill, (Read pages 26 to 31; 416 to 423)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/FHWAHighwayHydrology/FHWA-NHI-02-001.pdf">McCuen, R.H., Johnson, P.A., and Ragan, R.M. (2002) Highway Hydrology. HDS-2 (2ed) FHWA-NHI-02-001 (Read pages 3-1 to 3-5; 4-86 to 4-89; 5-1 to 5-8; 5-16 to 5-17)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/TXDOT-HYDM-2014/txdot-hdm-2014.pdf">Texas Hydraulic Design Manual (2014-1) Texas Department of Transportation. (2014) Hydraulic Design Manual (Read pages 4-1 to 4-5; 4-31 to 4-35)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/LS1973/linear-systems-hydrology-dooge.pdf">Linear Theory of Hydrologic Systems Dooge, J.C. I. (1973) Linear Theory of Hydrologic Systems. USDA ARS Technical Bulletin No. 1468. (Read pages 127 to 147)</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson04/precipitation-notes.pdf">Cleveland, T. G. (2015) <em>Engineering Hydrology Notes to Accompany CE 3354 (Hand-written)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture05.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Discrete Data Analysis; Risk Based Design; Regression Equations)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture06.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Probability Estimation Modeling)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture08.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Point Precipitation; Design Storms)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/TRB-2008-Paper/TRB_2008_IntensityDesign_Rev2.pdf">Cleveland, T.G., and Thompson, D.B., 2008. ``Rainfall Intensity in Design.’’ 87-th Annual Transportation Research Board Meeting, January 14-18, Washington, D.C.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/EmpiricalHyetographs/sir2004-5075.pdf">Williams-Sether, T., Asquith, W.H., Thompson, D.B., Cleveland, T.G., and X. Fang. 2004. ``Empirical, Dimensionless, Cumulative-Rainfall Hyetographs for Texas.’’ U.S.Geological Survey Scientific Investigations Report 2004-5075, 138p. </a></p></li>
+<li><p><a class="reference external" href="https://www.fhwa.dot.gov/engineering/hydraulics/pubs/hec/hec19.pdf">hec19</a></p></li>
+<li><p><a class="reference external" href="https://www.rmets.org/metmatters/rain-sleet-or-snow">McCabe, K. (2022) “Rain, sleet or snow?” Royal Meterological Society</a></p></li>
+</ol>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons/06precipitation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../05data/data.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Data</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="pointprecipitation.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Precipitation Modeling</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Theodore G. Cleveland, Ph.D., P.E., M.ASCE, F.EWRI<br/>
+        
+            &copy; Copyright 2024.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

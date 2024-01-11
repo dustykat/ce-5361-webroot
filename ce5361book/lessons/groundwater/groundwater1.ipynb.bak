@@ -1,0 +1,72 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Groundwater Hydrology - I\n",
+    "\n",
+    "## Aquifers\n",
+    "\n",
+    "- Store water (water bearing formations)\n",
+    "- Transmit water (in economically useful quantities)\n",
+    "- Confined\n",
+    "- Unconfined\n",
+    "\n",
+    "## Material Properties\n",
+    "\n",
+    "- Porosity\n",
+    "- Storativity\n",
+    "- Transmissivity, permeability, hydraulic conductivity\n",
+    "\n",
+    "## Equation(s) of Motion\n",
+    "\n",
+    "- Darcy's Law\n",
+    "\n",
+    "Go through slides 1-15 below:\n",
+    "\n",
+    "1. [Cleveland, T. G. (2017) *Engineering Hydrology Notes (Groundwater - I) to accompany CE-3354*, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.](http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture21.pdf)\n",
+    "\n",
+    "## References\n",
+    "\n",
+    "1. Gupta pp. 127-132\n",
+    "\n",
+    "2. [Groundwater - Excerpt from Viessman](http://54.243.252.9/ce-3354-webroot/3-Readings/Groundwater-Viessman/GroundwaterHydrology.pdf)\n",
+    "3. [Groundwater - Excerpt from Ferris](http://54.243.252.9/ce-3354-webroot/3-Readings/Groundwater-Wisler&Brater/Groundwater-Wisler.pdf)\n",
+    "4. [Basic Groundwater Hydrology - USGS WSP 2020](http://54.243.252.9/ce-3354-webroot/3-Readings/USGS-WSP2020-GroundwaterHydrology/usgs-wsp-2020.pdf)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": []
+  },
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

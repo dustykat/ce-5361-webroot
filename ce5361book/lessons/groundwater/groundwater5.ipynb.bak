@@ -1,0 +1,62 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# Constituient Transport\n",
+    "\n",
+    "## Topics\n",
+    "\n",
+    "- Subsurface Contaminant Hydrology\n",
+    "  - Advection-Dispersion Equation\n",
+    "  - Selected Analytical Solutions\n",
+    "  - Capture Zones\n",
+    "\n",
+    "## Presentation\n",
+    "\n",
+    "Go through presentation below:\n",
+    "\n",
+    "1. [Cleveland, T. G. (2017) *Engineering Hydrology Notes (Contaminant Transport and Numerical Modeling) to accompany CE-3354*, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.](http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture24.pdf)\n",
+    "\n",
+    "## Scripts/Spreadsheets\n",
+    "\n",
+    "Direct links to a couple of on-line models\n",
+    "\n",
+    "- [1D Finite Length Injection Pulse](http://54.243.252.9/)\n",
+    "- [2D Constant Injection into Regional Flow Field](http://54.243.252.9/)\n",
+    "\n",
+    "## References\n",
+    "\n",
+    "1. Gupta pp. 221-238\n",
+    "\n",
+    "2. [Basic Groundwater Hydrology - USGS WSP 2020](http://54.243.252.9/ce-3354-webroot/3-Readings/USGS-WSP2020-GroundwaterHydrology/usgs-wsp-2020.pdf)\n",
+    "3. [Capture Zone Type Curves - Javandel and Tsang (1986)](http://54.243.252.9/ce-3354-webroot/3-Readings/CaptureZones/Capture.PDF)\n",
+    "\n",
+    "\n",
+    "\n"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.8.10"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 4
+}

@@ -1,0 +1,1039 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Precipitation Modeling &#8212; Surface Water Hydrology</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Precipitation over an Area" href="arealrainfall.html" />
+    <link rel="prev" title="Precipitation" href="precipitation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/hydrology2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Surface Water Hydrology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00syllabus/ce-5361-syllabus-2024-1.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01overview/overview.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02hydrocycle/hydrocycle.html">
+   2. Hydrologic Cycle
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03watersheds/watersheds.html">
+   3. Watersheds
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyhand.html">
+     Delineation (by Hand)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyDEM.html">
+     Delineation (Homebrew DEM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyGIS.html">
+     Delineation (using GIS)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="precipitation.html">
+   Precipitation
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Precipitation Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="arealrainfall.html">
+     Precipitation over an Area
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05abstractions/abstractions.html">
+   5. Hydrologic Abstractions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08infiltration/infiltration.html">
+   Infiltration
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08infiltration/infiltrationmodels.html">
+     Infiltration Models
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11streamflow/streamflow.html">
+   Streamflow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11streamflow/streamflowdata.html">
+     Streamflow Data Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12morphology/morphology.html">
+   River Morphology and Channel Dynamics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../99Exams/exams.html">
+   24. Exams
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX1/EX1.html">
+     <font color="darkblue">
+      Exam 1
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX1/src_sol/EX1-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 1
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX2/EX2.html">
+     <font color="darkblue">
+      Exam 2
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX2/src_sol/EX2-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 2
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX3/EX3.html">
+     <font color="darkblue">
+      Exam 3
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX3/src_sol/EX3-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 3
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lesson06/lesson06.html">
+   Hydrologic Process Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/rationalmethod.html">
+     Rational Equation (Rainfall-Runoff) Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/linearreservoir.html">
+     Linear Reservoir Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/CNmethod.html">
+     NRCS CN model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/nonlinreservoir.html">
+     Nonlinear Reservoir Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson06.1/HMSintro.html">
+   HEC-HMS Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson07/lesson07.html">
+   Evaporation Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson08.1/lesson081.html">
+   On-Watershed Storage Models
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson09/lesson09.html">
+   Unit Hydrographs - I (Analysis)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson11/lesson11.html">
+   Hydrograph Routing - I
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson12/lesson12.html">
+   Hydrograph Routing - II
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson13/lesson13.html">
+   Reservoir-Storage Routing
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson14/lesson14.html">
+   Reservoir Outlet Works
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../21watershedplanning/watershedplanning.html">
+   Watershed Planning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../workshops/workshop3.html">
+   Workshop #3
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lessons/04precipitation/pointprecipitation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flessons/04precipitation/pointprecipitation.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lessons/04precipitation/pointprecipitation.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Precipitation Modeling
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#risk-based-design-concepts">
+     Risk-Based Design Concepts
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#probability-estimation-modeling">
+       Probability Estimation Modeling
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h4 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#frequency-analysis">
+         Frequency Analysis
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#design-storms">
+   Design Storms
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rainfall-distributions">
+     Rainfall Distributions
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#nrcs-scs-rainfall-type-curves">
+     NRCS (SCS) Rainfall Type Curves
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#texas-empirical-hyetograph-based-design-storms">
+     Texas Empirical Hyetograph-Based Design Storms
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="precipitation-modeling">
+<h1>Precipitation Modeling<a class="headerlink" href="#precipitation-modeling" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p>Risk Based Design Concepts</p></li>
+<li><p>Probability Estimation Modeling</p></li>
+<li><p>Design Storms</p></li>
+</ul>
+<div class="section" id="risk-based-design-concepts">
+<h2>Risk-Based Design Concepts<a class="headerlink" href="#risk-based-design-concepts" title="Permalink to this headline">¶</a></h2>
+<p>Risk-based design concepts involve incorporating considerations of potential risks and uncertainties into the design process to create more resilient and effective drainage systems. This approach recognizes that uncertainties, such as extreme weather events or changes in land use, can impact the performance of a design.</p>
+<p>Key aspects include:</p>
+<p><strong>Risk Assessment</strong><br>
+Engineers conduct a thorough risk assessment to identify potential hazards and vulnerabilities associated with drainage systems. This includes considering factors such as heavy rainfall, urbanization, climate change, and topographical characteristics.</p>
+<p><strong>Probabilistic Design</strong><br>
+In contrast to deterministic design approaches, risk-based design incorporates probabilistic methods. Engineers analyze the probability of different events occurring and design the drainage system to manage the associated risks. This might involve considering the likelihood of certain rainfall intensities or the probability of exceeding design capacities.</p>
+<p><strong>Performance-Based Criteria</strong><br>
+Design criteria are based on the desired performance of the system under various risk scenarios. This ensures that the system can adequately handle different levels of stress and remain functional even in extreme conditions.</p>
+<p><strong>Adaptability and Resilience</strong><br>
+Systems are designed to be adaptable and resilient to changing conditions. This includes the ability to accommodate increased runoff due to urban development, changing precipitation patterns, or other unforeseen factors. Flexible designs can better withstand uncertainties.</p>
+<p><strong>Multi-Hazard Approach</strong><br>
+Risk-based design considers multiple hazards that could impact drainage systems. For example, it might address both flood risk and the potential for erosion or sedimentation. This comprehensive approach helps create more robust and versatile drainage solutions.</p>
+<p><strong>Cost-Benefit Analysis</strong><br>
+Engineers perform cost-benefit analyses to evaluate the economic implications of different design options. This involves weighing the costs of construction and maintenance against the potential damages and losses that could occur in the event of system failure.</p>
+<p><strong>Public Safety and Environmental Impact</strong><br>
+Risk-based design prioritizes public safety and minimizes the environmental impact of drainage systems. This involves considering the consequences of system failure and designing solutions that protect communities and ecosystems.</p>
+<div class="section" id="probability-estimation-modeling">
+<h3>Probability Estimation Modeling<a class="headerlink" href="#probability-estimation-modeling" title="Permalink to this headline">¶</a></h3>
+<p>Probability estimation modeling refers to the use of probability distributions to model or explain behavior in observed data. Once a distribution is selected, then the concept of risk (probability) can be explored for events (rainfalls, discharges, concentrations, etc.) of varying magnitudes. Generally two important “extremes” are important in engineering; relatively uncommon events (floods, plant explosions, etc.) and very common events (routine discharges, etc.). The concepts of analysis are the same, but the distribution models are very different. In fact, there is very little literature on the examination of very common events, yet this area is crucial in environmental engineering, and to a lesser extent in typical civil engineering applications.</p>
+<div class="section" id="frequency-analysis">
+<h4>Frequency Analysis<a class="headerlink" href="#frequency-analysis" title="Permalink to this headline">¶</a></h4>
+<p>Frequency analysis is a type of probability estimation model that typically attempts to relate the behavior of some variable over some recurring time intervals. The time interval is assumed to be large enough so that the concept of “frequency” makes sense. If the time intervals are short, we are often dealing with a time-series that is handled using different tools. Underlying the idea of “long enough” is the concept of independence, that is the values of the variable are statistically independent, otherwise the variables are said to be serial (or auto) correlated.</p>
+<p><strong>Concept of T-year event</strong><br>
+Extreme values (annual maximum or annual minimum) on some periodic time basis (usually one year) vary in magnitude (value) in an apparently random fashion. The T-year event concept is a way of expressing the probability of observing an event of some specified magnitude or smaller (larger) in one sampling period (one year). The formal definition is: The T-year event is an event of magnitude (value) over a long time-averaging period, whose average arrival time between events of such magnitude is T-years.</p>
+<p>This definition is not very useful because it is often <strong>misinterpreted</strong> as an event of such magnitude occurring ON THE AVERAGE every T years. The operational definition (one that makes more sense) is that a T-year event is an event magnitude whose probability of occurrence in a single sampling interval is <span class="math notranslate nohighlight">\(\frac{1}{T}\)</span> (FEMA sometimes calls this the (<span class="math notranslate nohighlight">\(\frac{1}{T}\)</span>) chance event, and this is the correct way to state the probability). The concept can be extended to other sampling intervals, but almost never is in the regulatory world.</p>
+<p>The concept assumes that the extreme values observed in sequential events are independent (serial correlation is nearly zero). Obviously if the sampling interval is short (daily) we expect strong serial correlation and the T-day event is an absurd statement. Typically we also assume that the process is stationary over the number of sampling intervals of record. This assumption is usually not realistic in a philosophical sense (it implies nothing changes with time), but in practice it is not bad because hydrologic processes are natural integrators and tend to smooth out
+minor changes. Over time, or where dramatic changes occur, we do expect changes in the statistics, and these can be detected by various hypothesis tests on censored data. Also, most textbooks, underemphasize the causal relationship between rainfall and runoff. A lot of the frequency methods are developed to explain behavior of extreme flows and implicitly assume that the extreme flow is caused by the extreme precipitation event. There is often little evidence (except in friggin’ hurricanes) of such cause because precipitation is a distributed (spatially and temporally) variable as compared to discharge at a single location on a watershed.</p>
+<p><strong>Notation</strong><br>
+Typically something like:
+<span class="math notranslate nohighlight">\(P[ x &gt; X ] = y\)</span></p>
+<p>Most probability notations are similar to the above statement. We read them as “The probability that the random variable <span class="math notranslate nohighlight">\(x\)</span> will assume a value greater than <span class="math notranslate nohighlight">\(X\)</span> is equal to y”</p>
+<p>The part of the expression “ x &gt; X ” is the “event” so when you read probability texts they talk about universes and events but use above notation. It can look confusing at first, but with some familiarity you get used to the notation.</p>
+<p><strong>Risk/Loss</strong><br>
+The probability in a single sampling interval is useful in its own sense, but we are often interested in the probability of occurrence (failure?) over many sampling periods. If the individual sampling interval events are IID (independent, identically distributed) then we satisfy the requirements of a Bernoulli process.</p>
+<p><strong>Bernoulli process</strong><br>
+As a simple example, assume the probability that we will observe a cumulative daily rainfall depth equal to or greater than that of TS Allison is 0.10 (Ten percent).</p>
+<p>What is the chance we would observe one or more TS Allison’s in a three-year sequence?</p>
+<p>For such a small problem we can enumerate all possible outcomes.
+There are eight configurations we need to consider:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Year1</p></th>
+<th class="head"><p>Year2</p></th>
+<th class="head"><p>Year3</p></th>
+<th class="head"><p>Probability</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>No TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>(.9)(.9)(.9)=0.729</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>No TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>(.9)(.9)(.1)=0.081</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>No TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>(.9)(.1)(.9)=0.081</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>(.1)(.9)(.9)=0.081</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>No TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>(.9)(.1)(.1)=0.009</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>(.1)(.1)(.9)=0.009</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>TSA</p></td>
+<td><p>No TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>(.1)(.9)(.1)=0.009</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>TSA</p></td>
+<td><p>(.1)(.1)(.1)=0.001</p></td>
+</tr>
+</tbody>
+</table>
+<p>So if we are concerned with one storm in the next three years the probability of that outcome is 0.243 (outcomes 2,3,4; probabilities of mutually exclusive events add).</p>
+<p>The probability of three “good” years is 0.729. The probability of the “good” outcomes decreases as the sampling intervals are increased. So over the next 10 years, the chance of NO STORM is <span class="math notranslate nohighlight">\(0.9^{10} = 0.348\)</span>.
+Over the next 20 years, the chance of NO STORM is <span class="math notranslate nohighlight">\(0.9^{20} = 0.121\)</span>. Over the next 50 years, the chance of NO STORM is <span class="math notranslate nohighlight">\(0.9^{50} = 0.005\)</span> (almost assured of a storm in the next 50 years). To pick the chances of <span class="math notranslate nohighlight">\(k\)</span> storms in <span class="math notranslate nohighlight">\(n\)</span> sampling intervals we use the binomial distribution.<br></p>
+<p><span class="math notranslate nohighlight">\(P[k-\text{events},n-\text{samples},p_T]=\frac{n!}{(n-k)!k!}p^k_T(1-p_T)^{n-k}\)</span></p>
+<p>This distribution enumerates all outcomes assuming unordered sampling without replacement.</p>
+<p>There are several other common kinds of counting:</p>
+<ol class="simple">
+<li><p>ordered with replacement (order matters), samples are replaced</p></li>
+<li><p>unordered with replacement</p></li>
+<li><p>ordered without replacement</p></li>
+</ol>
+<p>Once we have probabilities we can evaluate risk. Insurance companies use these principles to determine your premiums.</p>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/ProbabilityEstimationModeling/cive6361_week_006_A.pdf">Probability Estimation Modeling - I</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/ProbabilityEstimationModeling/cive6361_week_006_B.pdf">Probability Estimation Modeling - II</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/DesignRainfallEssay/DesignRainfall.pdf">Design Rainfall</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/USGS-Texas-DDF-Theory/wri98-4044.pdf">DDF-Texas</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/USGS-Texas-DDF-Atlas/sir2004-5041.pdf">Texas DDF Atlas</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/toolbox/hydrology/TexasDDFAtlas/TexasDDFAtlas.html">Texas DDF Atlas on-line</a></p></li>
+<li><p><a class="reference external" href="https://hdsc.nws.noaa.gov/hdsc/pfds/">NOAA PFDS</a></p></li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="design-storms">
+<h1>Design Storms<a class="headerlink" href="#design-storms" title="Permalink to this headline">¶</a></h1>
+<p>A design storm is a theoretical or hypothetical weather event used by engineers, urban planners, and hydrologists as a standard to simulate and predict the potential impact of extreme weather conditions on a particular area. It is employed in the design and planning of various structures and systems to ensure they can withstand or manage the expected stresses caused by intense rainfall or other weather-related factors.</p>
+<p>The characteristics of a design storm typically include:</p>
+<ul class="simple">
+<li><p>Intensity: The rate of rainfall or snowfall during the storm, often measured in inches per hour or millimeters per hour.</p></li>
+<li><p>Duration: The period over which the intense rainfall or weather event persists, often measured in hours.</p></li>
+<li><p>Frequency: Often associated with a particular return period (e.g., 10-year storm, 50-year storm, 100-year storm), representing the average time interval between occurrences of storms of similar magnitude.</p></li>
+</ul>
+<p>For instance, a 100-year design storm doesn’t mean it occurs once every century; rather, it indicates that there’s a 1% chance of this intensity of storm happening in any given year.</p>
+<p>Design storms are used in various engineering and urban planning scenarios, such as:</p>
+<ul class="simple">
+<li><p>Hydraulic Design: Designing stormwater drainage systems, sewers, culverts, and other structures to handle anticipated water flow during extreme weather events.</p></li>
+<li><p>Floodplain Management: Assessing the potential impact of flooding and creating regulations for construction in flood-prone areas.</p></li>
+<li><p>Infrastructure Design: Designing bridges, dams, and other structures to withstand the forces exerted by extreme weather conditions.</p></li>
+</ul>
+<p>These storms are not exact events that have occurred in the past; rather, they’re created based on statistical analyses of historical weather data to provide a standard for planning and design purposes. They assist in creating structures and systems that can manage the potential stress of extreme weather events, ensuring safety and functionality within the built environment.</p>
+<p>Design storms are statistical models of such temporal behavior and are used in hydrologic models when hydrographs need to be generated</p>
+<div class="section" id="rainfall-distributions">
+<h2>Rainfall Distributions<a class="headerlink" href="#rainfall-distributions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Rainfall distributions represent temporal patterns of a storm.</p></li>
+<li><p>A rainfall distribution is also called a hyetograph.</p></li>
+<li><p>Rainfall distributions are used when we need to estimate an entire hydrograph.</p></li>
+</ul>
+<div class="admonition-discrete-data-analysis admonition">
+<p class="admonition-title">Discrete Data Analysis</p>
+<p>The Figure below is a representation of some continuous process.  To extract values by measurements only occurs at discrete points in time. These samples are reconstructed in a variety of ways to restore the original representation.</p>
+<figure align="center">
+<!--<img src="./data_repr.png" width="400" > -->
+<img src="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson04/data_repr.png" width="400"> <figcaption>Figure XX. Data representations </figcaption>
+</figure>
+<p>Real data are always some kind of discrete sample</p>
+<ul class="simple">
+<li><p>The “pulse” type is typical – and is called incremental data.</p></li>
+<li><p>For instance, incremental rainfall would be the catch over some time interval (<span class="math notranslate nohighlight">\(\Delta t\)</span> in the figure)</p></li>
+<li><p>An alternative way to represent the data is with a cumulative representation (which is the running sum of the incremental data)</p></li>
+</ul>
+<p>Figure XX below depicts the relationship between incremental and cumulative representations. Each “block” represents the amount of rainfall for the time interval</p>
+<ul class="simple">
+<li><p>The collection of blocks is called “incremental” rainfall (red)</p></li>
+<li><p>The running sum of the blocks is the cumulative distribution (blue)</p></li>
+</ul>
+<p>A particular blocck is indicated with a height of about one, and time duration also one.  If for instance the block represents a depth the implication is that after one hour (from time 4 to 5 in the drawing) the depth added to some location is one unit.</p>
+<figure align="center">
+<!--<img src="./incr-cum-repr.png" width="400" > -->
+<img src="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson04/incr-cum-repr.png" width="400"> <figcaption>Figure XX. Data representations </figcaption>
+</figure>
+<p>If these are watershed inches, then the drawing sugests that from hour zero to one, zero inches of precipitation occur, from hour one to two, about 1/4 inch; from hour 2 to 3, about 0.4 inch; from hour 3 to 4, about 0.7 inch; and hour 4 to 5; 1 inch; and so on.  If we tabulated the information we would have</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p>Time</p></th>
+<th class="text-align:right head"><p>Incremental Depth (Red)</p></th>
+<th class="text-align:right head"><p>Accumulated Depth (Blue)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>0</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:right"><p>0.25</p></td>
+<td class="text-align:right"><p>0.00</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>2</p></td>
+<td class="text-align:right"><p>0.40</p></td>
+<td class="text-align:right"><p>0.25</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>3</p></td>
+<td class="text-align:right"><p>0.70</p></td>
+<td class="text-align:right"><p>0.65</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>4</p></td>
+<td class="text-align:right"><p>1.00</p></td>
+<td class="text-align:right"><p>1.35</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>5</p></td>
+<td class="text-align:right"><p>0.50</p></td>
+<td class="text-align:right"><p>2.35</p></td>
+</tr>
+</tbody>
+</table>
+<p>Accumulating (running sum) the incremental is called “aggregation” (or just plain numerical integration); Differencing the cumulative is called “disaggregation.” For practical application its often handy to zero pad the leading and trailing edges so don’t have to worry too about forward/backward differencing issues.</p>
+<p><strong>Computational Thinking (ENGR-1330) - Accumulation</strong></p>
+<p>Consider the need to accumulate data such as:</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:right head"><p>Time (hours)</p></th>
+<th class="text-align:right head"><p>Incremental Depth (inches)</p></th>
+<th class="text-align:right head"><p>Accumulated Depth (inches)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:right"><p>0</p></td>
+<td class="text-align:right"><p>0.121</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>1</p></td>
+<td class="text-align:right"><p>0.121</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>2</p></td>
+<td class="text-align:right"><p>0.132</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>3</p></td>
+<td class="text-align:right"><p>0.154</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>4</p></td>
+<td class="text-align:right"><p>0.165</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>5</p></td>
+<td class="text-align:right"><p>0.187</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>6</p></td>
+<td class="text-align:right"><p>0.198</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>7</p></td>
+<td class="text-align:right"><p>0.242</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>8</p></td>
+<td class="text-align:right"><p>0.297</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>9</p></td>
+<td class="text-align:right"><p>0.374</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>10</p></td>
+<td class="text-align:right"><p>0.594</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>11</p></td>
+<td class="text-align:right"><p>4.708</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>12</p></td>
+<td class="text-align:right"><p>1.199</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>13</p></td>
+<td class="text-align:right"><p>0.528</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>14</p></td>
+<td class="text-align:right"><p>0.374</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>15</p></td>
+<td class="text-align:right"><p>0.286</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>16</p></td>
+<td class="text-align:right"><p>0.253</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>17</p></td>
+<td class="text-align:right"><p>0.209</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>18</p></td>
+<td class="text-align:right"><p>0.176</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>19</p></td>
+<td class="text-align:right"><p>0.154</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>20</p></td>
+<td class="text-align:right"><p>0.132</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>21</p></td>
+<td class="text-align:right"><p>0.132</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>22</p></td>
+<td class="text-align:right"><p>0.132</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:right"><p>23</p></td>
+<td class="text-align:right"><p>0.132</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+<tr class="row-even"><td class="text-align:right"><p>24</p></td>
+<td class="text-align:right"><p>0.000</p></td>
+<td class="text-align:right"><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>Our goal is to complete the last column, in this case its relatively straight forward because the time spacing is uniform.  The approach is to perform numerical integration using rectangular panels looking backward in time.</p>
+<div class="math notranslate nohighlight">
+\[acc_{i}=inc_{i-1}+acc_{i-1}\]</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">time</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">13</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">17</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">19</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">21</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">24</span><span class="p">]</span>
+<span class="n">increment</span><span class="o">=</span><span class="p">[</span><span class="mf">0.121</span><span class="p">,</span><span class="mf">0.121</span><span class="p">,</span><span class="mf">0.132</span><span class="p">,</span><span class="mf">0.154</span><span class="p">,</span><span class="mf">0.165</span><span class="p">,</span><span class="mf">0.187</span><span class="p">,</span><span class="mf">0.198</span><span class="p">,</span><span class="mf">0.242</span><span class="p">,</span><span class="mf">0.297</span><span class="p">,</span><span class="mf">0.374</span><span class="p">,</span><span class="mf">0.594</span><span class="p">,</span><span class="mf">4.708</span><span class="p">,</span><span class="mf">1.199</span><span class="p">,</span><span class="mf">0.528</span><span class="p">,</span><span class="mf">0.374</span><span class="p">,</span><span class="mf">0.286</span><span class="p">,</span><span class="mf">0.253</span><span class="p">,</span><span class="mf">0.209</span><span class="p">,</span><span class="mf">0.176</span><span class="p">,</span><span class="mf">0.154</span><span class="p">,</span><span class="mf">0.132</span><span class="p">,</span><span class="mf">0.132</span><span class="p">,</span><span class="mf">0.132</span><span class="p">,</span><span class="mf">0.132</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">accumulate</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">))]</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">time</span><span class="p">)):</span>
+    <span class="n">accumulate</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">accumulate</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">increment</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># the python plotting library</span>
+<span class="n">plottitle</span> <span class="o">=</span><span class="s1">&#39;Precipitation for Somewhere USA &#39;</span> 
+<span class="n">mydata</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># build a square drawing canvass from figure class</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">increment</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps&#39;</span><span class="p">)</span> <span class="c1"># step plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span> <span class="n">accumulate</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span><span class="n">drawstyle</span><span class="o">=</span><span class="s1">&#39;steps&#39;</span><span class="p">)</span> <span class="c1"># step plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (hours)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Depth (inches)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Incremental Depth&#39;</span><span class="p">,</span><span class="s1">&#39;Accumulated Depth&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">plottitle</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pointprecipitation_13_0.png" src="../../_images/pointprecipitation_13_0.png" />
+</div>
+</div>
+<p>Distributions are created from historical storms and analyzed to generate statistical models of rainfall – these models are called design storms. Design storm distributions are typically represented as dimensionless hyetographs</p>
+<p>Some examples include:</p>
+<ul class="simple">
+<li><p>NRCS Type Storms (24 hour, 6 hour)</p></li>
+<li><p>Empirical Texas Hyetographs (TxHYETO-2015)</p></li>
+</ul>
+</div>
+<div class="section" id="nrcs-scs-rainfall-type-curves">
+<h2>NRCS (SCS) Rainfall Type Curves<a class="headerlink" href="#nrcs-scs-rainfall-type-curves" title="Permalink to this headline">¶</a></h2>
+<p>SCS(1973) analyzed DDF curves to develop dimensionless rainfall temporal patterns called type curves for four different regions in the US. SCS type curves are in the form of percentage mass (cumulative) curves based on 24-hr rainfall of the desired frequency. Intended for use with the SCS Curve Number runoff generation model!</p>
+<p>Location selects the type curve</p>
+<p><img alt="" src="../../_images/scsLocation.png" /></p>
+<p>The 24-hour precipitation depth of desired frequency is specified (NOAA Atlas 14), then the SCS type curve is rescaled (multiplied by the known number) to get the time distribution.</p>
+<p><img alt="" src="../../_images/TCforRescale.png" /></p>
+<p>A tabular representation is</p>
+<p><img alt="" src="../../_images/TCtabular.png" /></p>
+<p>A simple script to dimensionalize is listed below (along with the plotting script)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># SCS Type Curves</span>
+
+<span class="n">hour</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mf">8.5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mf">9.75</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">10.5</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mf">11.5</span><span class="p">,</span><span class="mf">11.75</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mf">12.5</span><span class="p">,</span><span class="mf">13.0</span><span class="p">,</span><span class="mf">13.6</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">24</span><span class="p">]</span>
+<span class="n">type1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.035</span><span class="p">,</span><span class="mf">0.076</span><span class="p">,</span><span class="mf">0.125</span><span class="p">,</span><span class="mf">0.156</span><span class="p">,</span><span class="mf">0.194</span><span class="p">,</span><span class="mf">0.219</span><span class="p">,</span><span class="mf">0.254</span><span class="p">,</span><span class="mf">0.303</span><span class="p">,</span><span class="mf">0.362</span><span class="p">,</span><span class="mf">0.515</span><span class="p">,</span><span class="mf">0.583</span><span class="p">,</span><span class="mf">0.624</span><span class="p">,</span><span class="mf">0.654</span><span class="p">,</span><span class="mf">0.669</span><span class="p">,</span><span class="mf">0.682</span><span class="p">,</span><span class="mf">0.706</span><span class="p">,</span><span class="mf">0.727</span><span class="p">,</span><span class="mf">0.748</span><span class="p">,</span><span class="mf">0.767</span><span class="p">,</span><span class="mf">0.83</span><span class="p">,</span><span class="mf">0.926</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">type1A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.116</span><span class="p">,</span><span class="mf">0.206</span><span class="p">,</span><span class="mf">0.268</span><span class="p">,</span><span class="mf">0.425</span><span class="p">,</span><span class="mf">0.48</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">0.55</span><span class="p">,</span><span class="mf">0.564</span><span class="p">,</span><span class="mf">0.577</span><span class="p">,</span><span class="mf">0.601</span><span class="p">,</span><span class="mf">0.624</span><span class="p">,</span><span class="mf">0.645</span><span class="p">,</span><span class="mf">0.655</span><span class="p">,</span><span class="mf">0.664</span><span class="p">,</span><span class="mf">0.683</span><span class="p">,</span><span class="mf">0.701</span><span class="p">,</span><span class="mf">0.719</span><span class="p">,</span><span class="mf">0.736</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.906</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">type2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.022</span><span class="p">,</span><span class="mf">0.048</span><span class="p">,</span><span class="mf">0.08</span><span class="p">,</span><span class="mf">0.098</span><span class="p">,</span><span class="mf">0.12</span><span class="p">,</span><span class="mf">0.133</span><span class="p">,</span><span class="mf">0.147</span><span class="p">,</span><span class="mf">0.163</span><span class="p">,</span><span class="mf">0.172</span><span class="p">,</span><span class="mf">0.181</span><span class="p">,</span><span class="mf">0.204</span><span class="p">,</span><span class="mf">0.235</span><span class="p">,</span><span class="mf">0.283</span><span class="p">,</span><span class="mf">0.357</span><span class="p">,</span><span class="mf">0.663</span><span class="p">,</span><span class="mf">0.735</span><span class="p">,</span><span class="mf">0.772</span><span class="p">,</span><span class="mf">0.799</span><span class="p">,</span><span class="mf">0.82</span><span class="p">,</span><span class="mf">0.88</span><span class="p">,</span><span class="mf">0.952</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">type3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.043</span><span class="p">,</span><span class="mf">0.072</span><span class="p">,</span><span class="mf">0.089</span><span class="p">,</span><span class="mf">0.115</span><span class="p">,</span><span class="mf">0.13</span><span class="p">,</span><span class="mf">0.148</span><span class="p">,</span><span class="mf">0.167</span><span class="p">,</span><span class="mf">0.178</span><span class="p">,</span><span class="mf">0.189</span><span class="p">,</span><span class="mf">0.216</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.298</span><span class="p">,</span><span class="mf">0.339</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.702</span><span class="p">,</span><span class="mf">0.751</span><span class="p">,</span><span class="mf">0.785</span><span class="p">,</span><span class="mf">0.811</span><span class="p">,</span><span class="mf">0.886</span><span class="p">,</span><span class="mf">0.957</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="n">t24</span>  <span class="o">=</span><span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hour</span><span class="p">)):</span>
+    <span class="n">t24</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hour</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="mf">24.0</span><span class="p">)</span>
+
+<span class="c1"># dimensionalize</span>
+
+<span class="n">Ptotal</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">T1D</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hour</span><span class="p">))]</span>
+<span class="n">T1AD</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hour</span><span class="p">))]</span>
+<span class="n">T2D</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hour</span><span class="p">))]</span>
+<span class="n">T3D</span> <span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hour</span><span class="p">))]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">hour</span><span class="p">)):</span>
+    <span class="n">T1D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">Ptotal</span><span class="o">*</span><span class="n">type1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">T1AD</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">Ptotal</span><span class="o">*</span><span class="n">type1A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">T2D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">Ptotal</span><span class="o">*</span><span class="n">type2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">T3D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">Ptotal</span><span class="o">*</span><span class="n">type3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="c1">#plot</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># the python plotting library</span>
+<span class="n">plottitle</span> <span class="o">=</span><span class="s1">&#39;SCS Rainfall Type Curves for Total Depth =&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">Ptotal</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39; inches&#39;</span>
+<span class="n">mydata</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span> <span class="c1"># build a square drawing canvass from figure class</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="n">T1D</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span> <span class="c1"># step plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="n">T1AD</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;cyan&#39;</span><span class="p">)</span> <span class="c1"># step plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="n">T2D</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">)</span> <span class="c1"># step plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="n">T3D</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span> <span class="c1"># step plot</span>
+<span class="c1">#plt.plot(time, accumulate, c=&#39;blue&#39;,drawstyle=&#39;steps&#39;) # step plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Time (hours)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Depth (inches)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="s1">&#39;Type 1&#39;</span><span class="p">,</span><span class="s1">&#39;Type 1A&#39;</span><span class="p">,</span><span class="s1">&#39;Type 2&#39;</span><span class="p">,</span><span class="s1">&#39;Type 3&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">plottitle</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/pointprecipitation_16_0.png" src="../../_images/pointprecipitation_16_0.png" />
+</div>
+</div>
+<p>A variant for 6-hour durations is</p>
+<p><img alt="" src="../../_images/SCS6hr.png" /></p>
+<p>Using the type curves is straightforward</p>
+<ol class="simple">
+<li><p>Use NOAA Atlas 14, TP-40, or other defendable source to set total depth, P for the 24 hour storm (or 6 hour storm)</p></li>
+<li><p>Pick appropriate SCS type curve (location).</p></li>
+<li><p>Multiply (rescale) the type curve with P to get the design mass curve.</p></li>
+</ol>
+<p>If you need incremental values, differencing the rescaled mass curve can be used to develop the design hyetograph.</p>
+</div>
+<div class="section" id="texas-empirical-hyetograph-based-design-storms">
+<h2>Texas Empirical Hyetograph-Based Design Storms<a class="headerlink" href="#texas-empirical-hyetograph-based-design-storms" title="Permalink to this headline">¶</a></h2>
+<p>Alternative to SCS Type Curves for use in Texas are the <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/EmpiricalHyetographs/sir2004-5075.pdf">Texas Empirical Hyetographs</a></p>
+<ul class="simple">
+<li><p>Based on Texas data.</p></li>
+<li><p>Reflects “front loading” observed in many real storms.</p></li>
+<li><p>Rescales both time and depth.</p></li>
+</ul>
+<p><img alt="" src="../../_images/texashyetograph.png" /></p>
+<p>The authors suggest use of the 50th percentile curve (median storm).</p>
+<p>::{note}
+The 90th percentile is appropriate for high consequence of failure targets (hospitals, sewage treatment plants, water treatment plants, nuclear power plants, thermal power plants, airports,…)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="o">-</span> <span class="n">Multiply</span> <span class="n">the</span> <span class="n">time</span> <span class="n">axis</span> <span class="n">by</span> <span class="n">the</span> <span class="n">storm</span> <span class="n">duration</span><span class="o">.</span>
+<span class="o">-</span> <span class="n">Multiply</span> <span class="n">the</span> <span class="n">depth</span> <span class="n">axis</span> <span class="n">by</span> <span class="n">the</span> <span class="n">storm</span> <span class="n">depth</span><span class="o">.</span>
+<span class="o">-</span> <span class="n">Result</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">design</span> <span class="n">storm</span> <span class="k">for</span> <span class="n">given</span> <span class="n">duration</span> <span class="ow">and</span> <span class="n">AEP</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons/04precipitation"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="precipitation.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Precipitation</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="arealrainfall.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Precipitation over an Area</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Theodore G. Cleveland, Ph.D., P.E., M.ASCE, F.EWRI<br/>
+        
+            &copy; Copyright 2024.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

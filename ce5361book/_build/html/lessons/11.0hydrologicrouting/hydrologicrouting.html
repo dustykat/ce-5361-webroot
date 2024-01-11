@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>11. Hydrologic Routing &#8212; Surface Water Hydrology</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="11.1 Channel Routing" href="../11.1pulsrouting/pulsrouting.html" />
+    <link rel="prev" title="Streamflow Data Modeling" href="../06streamflow/streamflowdata.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/hydrology2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Surface Water Hydrology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00syllabus/ce-5361-syllabus-2024-1.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01overview/overview.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02hydrocycle/hydrocycle.html">
+   2. Hydrologic Cycle
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03watersheds/watersheds.html">
+   3. Watersheds
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyhand.html">
+     Delineation (by Hand)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyDEM.html">
+     Delineation (Homebrew DEM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyGIS.html">
+     Delineation (using GIS)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04precipitation/precipitation.html">
+   4. Precipitation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04precipitation/pointprecipitation.html">
+     Precipitation Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04precipitation/arealrainfall.html">
+     Precipitation over an Area
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.0abstractions/abstractions.html">
+   5. Hydrologic Abstractions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.1infiltration/infiltration.html">
+     5.1 Infiltration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.2evaporation/evaporation.html">
+     5.2 Evaporatranspiration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.3interception/interception.html">
+     5.3 Interception/Depression Storage
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06streamflow/streamflow.html">
+   6. Streamflow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06streamflow/streamflowdata.html">
+     Streamflow Data Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   11. Hydrologic Routing
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.1pulsrouting/pulsrouting.html">
+     11.1 Channel Routing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.2reservoirrouting/reservoirrouting.html">
+     11.2 Level Pool Routing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.3outletworks/outletworks.html">
+     11.3 Outlet Control(s)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../05data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12morphology/morphology.html">
+   River Morphology and Channel Dynamics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../99Exams/exams.html">
+   24. Exams
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX1/EX1.html">
+     <font color="darkblue">
+      Exam 1
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX1/src_sol/EX1-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 1
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX2/EX2.html">
+     <font color="darkblue">
+      Exam 2
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX2/src_sol/EX2-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 2
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX3/EX3.html">
+     <font color="darkblue">
+      Exam 3
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX3/src_sol/EX3-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 3
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../lesson06/lesson06.html">
+   Hydrologic Process Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/rationalmethod.html">
+     Rational Equation (Rainfall-Runoff) Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/linearreservoir.html">
+     Linear Reservoir Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/CNmethod.html">
+     NRCS CN model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../lesson06/nonlinreservoir.html">
+     Nonlinear Reservoir Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson06.1/HMSintro.html">
+   HEC-HMS Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../21watershedplanning/watershedplanning.html">
+   Watershed Planning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../workshops/workshop3.html">
+   Workshop #3
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lessons/11.0hydrologicrouting/hydrologicrouting.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flessons/11.0hydrologicrouting/hydrologicrouting.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lessons/11.0hydrologicrouting/hydrologicrouting.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#routing-hydrologic-and-hydraulic">
+   Routing-Hydrologic and Hydraulic
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Hydrologic Routing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#level-pool-routing">
+     Level Pool Routing
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reservoir-concepts">
+   Reservoir Concepts
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reservoir-storage">
+   Reservoir Storage
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hec-hms-constructs">
+   HEC-HMS Constructs
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#routing-channel-and-reservoir">
+   Routing-channel and reservoir
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#hec-hms-files">
+   HEC-HMS Files
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="hydrologic-routing">
+<h1>11. Hydrologic Routing<a class="headerlink" href="#hydrologic-routing" title="Permalink to this headline">¶</a></h1>
+<p>Routing simulates movement of a discharge signal (flood wave) through reaches</p>
+<ul class="simple">
+<li><p>Accounts for storage in the reach and flow resistance.</p></li>
+<li><p>Allows modeling of a basin comprised of interconnected sub-basins</p></li>
+<li><p>Hydraulic routing – uses continuity and momentum (St. Venant Equations)</p></li>
+<li><p>Hydrologic routing – uses continuity equation</p></li>
+</ul>
+<p>[insert some images]</p>
+<div class="section" id="routing-hydrologic-and-hydraulic">
+<h2>Routing-Hydrologic and Hydraulic<a class="headerlink" href="#routing-hydrologic-and-hydraulic" title="Permalink to this headline">¶</a></h2>
+<p>Problem:</p>
+<ul class="simple">
+<li><p>you have a hydrograph at one location (I)</p></li>
+<li><p>you have reach characteristics (S = f(I,O))</p></li>
+</ul>
+<p>Need:</p>
+<ul class="simple">
+<li><p>a hydrograph at different location (O)</p></li>
+</ul>
+<p>This is a “routing” situation. The “reach” can be a stream, river, reservoir or some similar feature</p>
+<p><img alt="" src="../../_images/routingsketch.png" /></p>
+<p><img alt="" src="../../_images/barheights.png" /></p>
+<p>The bar heights (volumes in storage, entering, and leaving the hydrologic reach) are quantified in a routing table - like a bank account that relates revenue, expenses, and account balance.</p>
+</div>
+<div class="section" id="id1">
+<h2>Hydrologic Routing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Hydrologic routing techniques use the equation of continuity and some linear or curvilinear relation between storage and discharge within the river.</p>
+<p>Methods include:</p>
+<ul class="simple">
+<li><p>Lag Routing (no attenuation). Useful to get connectivity correct</p></li>
+<li><p>Modified Puls (level pool routing). Useful for reservoirs</p></li>
+<li><p>Muskingum-Cunge (almost a hydraulic model). Useful to approximate stream/river behavior without true “hydraulics” considerations</p></li>
+</ul>
+<div class="section" id="level-pool-routing">
+<h3>Level Pool Routing<a class="headerlink" href="#level-pool-routing" title="Permalink to this headline">¶</a></h3>
+<p>Technique to approximate the outflow hydrograph passing through a reservoir with the pool (water surface) always level.</p>
+<ul class="simple">
+<li><p>Uses a reach (reservoir) mass balance equation</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ Q_{in} − Q_{out} = \frac{\Delta S}{\Delta t}\]</div>
+<ul class="simple">
+<li><p>and a storage-outflow relationship.</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ Q_{out} = f(S)\]</div>
+<p>Variable names are typically changed:</p>
+<p><span class="math notranslate nohighlight">\(Q_{in} =&gt; I_t\)</span> and <span class="math notranslate nohighlight">\(Q_{out} =&gt; O_t\)</span></p>
+<p>So the reach mass balance is</p>
+<div class="math notranslate nohighlight">
+\[ \bar I − \bar O = \frac{\Delta S}{\Delta t}\]</div>
+<p>The time averaged values are taken at the beginning and end of the time interval, and the first-order difference quotient is used to approximate the rate of change in storage.</p>
+<p>The reach mass balance is then</p>
+<div class="math notranslate nohighlight">
+\[\frac{I_t - I_{t-\Delta t}}{2} - \frac{O_t - O_{t-\Delta t}}{2} = \frac{S_t - S_{t-\Delta t}}{\Delta t}  \]</div>
+<p><img alt="" src="../../_images/levelpool1.png" /></p>
+<p>Then some of that algebra stuff ….</p>
+<p><img alt="" src="../../_images/levelpool2.png" /></p>
+<p>More algebra stuff ….</p>
+<p><img alt="" src="../../_images/levelpool3.png" /></p>
+<p>Some more algebra still and recognize need to deal with two unknowns …</p>
+<p><img alt="" src="../../_images/levelpoolF.png" /></p>
+<p>The storage-outflow function leverages hydraulics where possible. For example flow through holes (orifice flow), over spillways and weirs, and simplified culvert flow situations.</p>
+<p><img alt="" src="../../_images/storageoutflow.png" /></p>
+<p><img alt="" src="../../_images/weirflow.png" /></p>
+<p><img alt="" src="../../_images/holyflow.png" /></p>
+<p>Use outlet-works hydraulics, and depth-area-storage to build a storage-outflow function</p>
+<div class="math notranslate nohighlight">
+\[O = f(S)\]</div>
+<p>Once we have that function, then build an auxiliary function (tabulation) called the storage-indication curve (function)</p>
+<div class="math notranslate nohighlight">
+\[ O = g(\frac{2S}{\Delta t} +O) \]</div>
+<p>here <span class="math notranslate nohighlight">\(g\)</span> is some function.</p>
+<p>Once have the storage-indication curve then can use the reach mass balance to estimate the numerical value of :</p>
+<div class="math notranslate nohighlight">
+\[\frac{2S_t}{\Delta t} +O_t\]</div>
+<p>Then use the storage-indication curve to find the value of outflow, subtract that from the result above, and now have both the end-of-interval outflow and storage.</p>
+<p>Example – Similar to CMM 8.2.1 pg 247-252; but</p>
+<ul class="simple">
+<li><p>Show how the storage-indication curve derived using hydraulics</p></li>
+<li><p>Illustrate use of spreadsheet programming needed to make the actual computations</p></li>
+</ul>
+<p><img alt="" src="../../_images/detentionbasin.png" /></p>
+<p>Tasks:</p>
+<ul class="simple">
+<li><p>Build a depth-storage table</p></li>
+<li><p>Build a depth-outflow table</p>
+<ul>
+<li><p>From 0 -5 feet deep use Manning’s equation in a circular conduit</p></li>
+<li><p>From 5+ to 12 feet deep use Orifice equation (neglecting frictional losses)</p></li>
+</ul>
+</li>
+<li><p>Save a depth-storage-outflow table for use in storage-indication curve</p></li>
+<li><p>Build the routing table (apply the reach mass balance)</p></li>
+</ul>
+<p>For depth-outflow here is a <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson11/CircularChannelMannings-US.xls">Manning’s calculator.</a></p>
+<p><img alt="" src="../../_images/mannings.png" /></p>
+<p>Here is an <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson11/OrificeDichargeCalculatorUSCustomary.xlsx">orifice calculator.</a></p>
+<p><img alt="" src="../../_images/orifice.png" /></p>
+<p>Use these and basin geometry to build depth-storage outflow table.</p>
+<p><img alt="" src="../../_images/depth-storage-outflow.png" /></p>
+<p>Copy the depth-storage-outflow to the routing table (we are going to build) – we need it as a tabulation so we can use INDEX and MATCH to get values from the table for interpolation (Eq. at bottom CMM pg 249)</p>
+<p><img alt="" src="../../_images/interpolation.png" /></p>
+<p><img alt="" src="../../_images/routingtable1.png" /></p>
+<p><img alt="" src="../../_images/routingtable2.png" /></p>
+<p><img alt="" src="../../_images/routingtable3.png" /></p>
+<p><img alt="" src="../../_images/routingtable4.png" /></p>
+<p><img alt="" src="../../_images/routingtable5.png" /></p>
+<p>The full spreadsheet, with the interpolation function as an Excel 94 macro sheet (you could code in place, will have a few more columns) is on server as <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson11/RoutingExample.xls">Routing Example.</a></p>
+<ul class="simple">
+<li><p>Such computations are a lot easier to perform in HEC-HMS because it handles (1) building the routing table and (2) selecting a decent time step</p></li>
+<li><p>Can also use level pool routing for a stream reach (next meeting).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="reservoir-concepts">
+<h2>Reservoir Concepts<a class="headerlink" href="#reservoir-concepts" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Reservoir</p>
+<ul>
+<li><p>A pond, lake, or basin, either natural or artificial, for the storage, regulation, and control of water.</p></li>
+</ul>
+</li>
+<li><p>Regulated reservoir</p>
+<ul>
+<li><p>Outflow controlled by moveable gates and valves.</p></li>
+<li><p>Head, and valve settings determine outflow.</p></li>
+</ul>
+</li>
+<li><p>Unregulated reservoir.</p>
+<ul>
+<li><p>Outflow controlled by fixed weirs and orifices.</p></li>
+<li><p>Head and constructed weir height determine outflow.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="reservoir-storage">
+<h2>Reservoir Storage<a class="headerlink" href="#reservoir-storage" title="Permalink to this headline">¶</a></h2>
+<p>Storage Representations≈</p>
+<ul class="simple">
+<li><p>Storage vs. Discharge</p></li>
+<li><p>Storage vs. Elevation</p></li>
+<li><p>Surface Area vs. Elevation</p></li>
+</ul>
+<p><img alt="" src="../../_images/ReservoirConcepts.png" /></p>
+<p>Discharge Representations</p>
+<ul class="simple">
+<li><p>Spillways, Weirs</p></li>
+<li><p>Orifices, Sluice gates</p></li>
+<li><p>Pumps</p></li>
+<li><p>Dam Breach</p></li>
+</ul>
+</div>
+<div class="section" id="hec-hms-constructs">
+<h2>HEC-HMS Constructs<a class="headerlink" href="#hec-hms-constructs" title="Permalink to this headline">¶</a></h2>
+<p><img alt="" src="../../_images/hms-reservoir-element.png" /></p>
+<p><img alt="" src="../../_images/hec-res1.png" />
+<img alt="" src="../../_images/hec-res2.png" />
+<img alt="" src="../../_images/hec-res3.png" />
+<img alt="" src="../../_images/hec-res4.png" />
+<img alt="" src="../../_images/hec-res5.png" />
+<img alt="" src="../../_images/hec-res6.png" />
+<img alt="" src="../../_images/hec-res7.png" />
+<img alt="" src="../../_images/hec-res8.png" />
+<img alt="" src="../../_images/hec-res9.png" /></p>
+</div>
+<div class="section" id="routing-channel-and-reservoir">
+<h2>Routing-channel and reservoir<a class="headerlink" href="#routing-channel-and-reservoir" title="Permalink to this headline">¶</a></h2>
+<p>Reservoir routing</p>
+<ul class="simple">
+<li><p>Account for storage in a reservoir</p></li>
+<li><p>Unique storage-discharge relationship</p></li>
+</ul>
+<p>Channel routing</p>
+<ul class="simple">
+<li><p>Account for storage in channel as well as travel time</p></li>
+<li><p>Storage-discharge relation in channel is non-unique</p></li>
+<li><p>Can treat channel as a series of reservoirs to mitigate looped effect.</p></li>
+</ul>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture17.pdf">Cleveland, T. G. (2017) <em>Surface Water Hydrology Notes (Hydrograph Routing) to accompany CE-3354</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+</ol>
+</div>
+<div class="section" id="hec-hms-files">
+<h2>HEC-HMS Files<a class="headerlink" href="#hec-hms-files" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson11/MyReservoirModel.zip">MyReservoirModel.zip (zip file of en entire HMS project)</a></p></li>
+</ol>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons/11.0hydrologicrouting"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="../06streamflow/streamflowdata.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Streamflow Data Modeling</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="../11.1pulsrouting/pulsrouting.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">11.1 Channel Routing</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Theodore G. Cleveland, Ph.D., P.E., M.ASCE, F.EWRI<br/>
+        
+            &copy; Copyright 2024.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>

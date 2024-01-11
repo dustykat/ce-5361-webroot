@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>12.1 Rational Model &#8212; Surface Water Hydrology</title>
+    
+  <link href="../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="12.2 Linear Reservoir Model" href="linearreservoir.html" />
+    <link rel="prev" title="12. Rainfall-Runoff Modeling" href="rainfallrunoff.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/hydrology2.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Surface Water Hydrology</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   Preface
+  </a>
+ </li>
+</ul>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../00syllabus/ce-5361-syllabus-2024-1.html">
+   Syllabus
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../01overview/overview.html">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../02hydrocycle/hydrocycle.html">
+   2. Hydrologic Cycle
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../03watersheds/watersheds.html">
+   3. Watersheds
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyhand.html">
+     Delineation (by Hand)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyDEM.html">
+     Delineation (Homebrew DEM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03watersheds/delineationbyGIS.html">
+     Delineation (using GIS)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../04precipitation/precipitation.html">
+   4. Precipitation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04precipitation/pointprecipitation.html">
+     Precipitation Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../04precipitation/arealrainfall.html">
+     Precipitation over an Area
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../05.0abstractions/abstractions.html">
+   5. Hydrologic Abstractions
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.1infiltration/infiltration.html">
+     5.1 Infiltration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.2evaporation/evaporation.html">
+     5.2 Evaporatranspiration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.3interception/interception.html">
+     5.3 Interception/Depression Storage
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../06streamflow/streamflow.html">
+   6. Streamflow
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06streamflow/streamflowdata.html">
+     Streamflow Data Modeling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11.0hydrologicrouting/hydrologicrouting.html">
+   11. Hydrologic Routing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.1pulsrouting/pulsrouting.html">
+     11.1 Channel Routing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.2reservoirrouting/reservoirrouting.html">
+     11.2 Level Pool Routing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.3outletworks/outletworks.html">
+     11.3 Outlet Control(s)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10data/data.html">
+   Data
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="rainfallrunoff.html">
+   12. Rainfall-Runoff Modeling
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     12.1 Rational Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="linearreservoir.html">
+     12.2 Linear Reservoir Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CNmethod.html">
+     12.3 NRCS CN model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="nonlinreservoir.html">
+     12.4 Nonlinear Reservoir Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../12morphology/morphology.html">
+   River Morphology and Channel Dynamics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../99Exams/exams.html">
+   24. Exams
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX1/EX1.html">
+     <font color="darkblue">
+      Exam 1
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX1/src_sol/EX1-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 1
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX2/EX2.html">
+     <font color="darkblue">
+      Exam 2
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX2/src_sol/EX2-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 2
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX3/EX3.html">
+     <font color="darkblue">
+      Exam 3
+     </font>
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../99Exams/EX3/src_sol/EX3-WS.html">
+     <font color="darkblue">
+      Solution Sketch Exam 3
+     </font>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../lesson06.1/HMSintro.html">
+   HEC-HMS Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../21watershedplanning/watershedplanning.html">
+   Watershed Planning
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../workshops/workshop3.html">
+   Workshop #3
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/lessons/12.0rainfallrunoff/rationalmethod.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/executablebooks/jupyter-book"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        <a class="issues-button"
+            href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flessons/12.0rainfallrunoff/rationalmethod.html&body=Your%20issue%20content%20here."><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
+        
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/lessons/12.0rainfallrunoff/rationalmethod.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-rational-equation-a-simplistic-method-for-small-areas">
+   The Rational Equation – A simplistic method for small areas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#time-of-concentration">
+     Time of Concentration
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#modified-rational-method">
+   Modified Rational Method
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#modified-rational-method-hydrograph-generator">
+     Modified Rational Method Hydrograph Generator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#references">
+   References
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="rational-model">
+<h1>12.1 Rational Model<a class="headerlink" href="#rational-model" title="Permalink to this headline">¶</a></h1>
+<p>A well known rainfall-runoff model is the Rational Equation model but it has limited applicability.  An extension is the Modified Rational Model.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The limited appliciability is not problematic, and is intended to convey that you would use the model for situations where it is explicitly appropriate and recognize that outside its limits you are engaging in glorified guessing.</p>
+</div>
+<p>A slightly more general rainfall-runoff model is the linear reservoir, but it also has limited applicability.
+The rainfall-runoff model with a non-linear reservoir is considered more universally applicable, but still it holds only for catchments whose surface area is limited by the condition that the rainfall can be considered more or less uniformly distributed over the area - outside of these limitations one generally will employ some kind of distributed response model.</p>
+<p>The maximum applicable size of the watershed (for applying the various models) then depends on the rainfall characteristics of the region. When the study area is too large, it can be divided into sub-catchments and the various runoff hydrographs may be combined using flood routing techniques.</p>
+<p>Rainfall-runoff models need some kind of calibration before they can be used.</p>
+<div class="section" id="the-rational-equation-a-simplistic-method-for-small-areas">
+<h2>The Rational Equation – A simplistic method for small areas<a class="headerlink" href="#the-rational-equation-a-simplistic-method-for-small-areas" title="Permalink to this headline">¶</a></h2>
+<p>The rational method likely is the applied method used most often by hydraulic and drainage engineers to estimate design discharges for small watersheds. These design discharges are used to size a variety of drainage structures for small undeveloped and developed watersheds throughout the United States.</p>
+<p>The rational method (Kuichling 1889) computes the peak discharge, Qp (in <span class="math notranslate nohighlight">\(\frac{m^3}{s}\)</span> in SI units or <span class="math notranslate nohighlight">\(\frac{ft^3}{s}\)</span> in English units), using:</p>
+<div class="math notranslate nohighlight">
+\[ Qp = m_0 CIA\]</div>
+<p>where <br><span class="math notranslate nohighlight">\(C\)</span> = runoff coefficient (dimensionless), <br><span class="math notranslate nohighlight">\(I\)</span> = rainfall intensity
+(<span class="math notranslate nohighlight">\(mm/h\)</span> or <span class="math notranslate nohighlight">\(in/h\)</span>) over a critical period of storm time (typically taken as the time of concentration, <span class="math notranslate nohighlight">\(T_ C\)</span>),<br><span class="math notranslate nohighlight">\(A\)</span> = drainage area (hectares or acres), and <br><span class="math notranslate nohighlight">\(m_0\)</span> = dimensional correction factor (<span class="math notranslate nohighlight">\(\frac{1}{360} = 0.00278\)</span> in SI units; <span class="math notranslate nohighlight">\(1.008\)</span> in English units).</p>
+<p>From inspection of the equation, it is evident that <span class="math notranslate nohighlight">\(C\)</span> is an expression of rate proportionality between rainfall intensity and peak discharge (flow rate). The theoretical range of values for <span class="math notranslate nohighlight">\(C\)</span> is between 0 and 1. The typical whole watershed <span class="math notranslate nohighlight">\(C\)</span> values (that is, C values representing the integrated effects of various surfaces in the watershed and other watershed properties) are listed for different general land-use conditions in various design manuals and textbooks.</p>
+<p>An on-line <span class="math notranslate nohighlight">\(Q_p\)</span> calculator has links to one such table.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/toolbox/hydrology/RationalUS/RationalUS.html">Rational Equation Model US Customary</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/toolbox/hydrology/RationalSI/RationalSI.html">Rational Equation Model SI</a></p></li>
+</ul>
+<p>The <a class="reference external" href="http://onlinemanuals.txdot.gov/txdotmanuals/hyd/rational_method.htm">Texas Hydraulic Design Manual</a> contains a useful discussion on appliciability and use of the Rational Method in drainage design.</p>
+<div class="section" id="time-of-concentration">
+<h3>Time of Concentration<a class="headerlink" href="#time-of-concentration" title="Permalink to this headline">¶</a></h3>
+<p>The time of concentration is the crucial element of the Rational Equation (notably actually absent in an explicit sense from the equation).</p>
+<ul class="simple">
+<li><p>The value of <span class="math notranslate nohighlight">\(T_C\)</span> is important in rational method for estimating rainfall intensity.</p></li>
+<li><p>It is also used in many other hydrologic models to quantify the watershed response time.</p></li>
+</ul>
+<p>Time of concentration <span class="math notranslate nohighlight">\(T_C\)</span> is the time required for an entire watershed to contribute to runoff at the point of interest for hydraulic design. It is calculated as the time for runoff to flow from the most hydraulically remote point of the drainage area to the point under investigation.</p>
+<p>Travel time and <span class="math notranslate nohighlight">\(T_C\)</span> are functions of length and velocity for a particular watercourse.</p>
+<ul class="simple">
+<li><p>A long but steep flow path with a high velocity may actually have a shorter travel time than a short but relatively flat flow path.</p></li>
+<li><p>There may be multiple paths to consider in determining the longest travel time.</p></li>
+<li><p>The designer must identify the flow path along which the longest travel time is likely to occur.</p></li>
+</ul>
+<p>Various Methods to Estimate <span class="math notranslate nohighlight">\(T_C\)</span> include:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/CMM1988/">CMM pp. 500-501</a> has several formulas.</p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/FHWAHighwayHydrology/FHWA-NHI-02-001.pdf">HDS-2 pp. 2-21 to 2-31</a> has formulas and examples.</p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/LS1973/linear-systems-hydrology-dooge.pdf">LS pp. 196-198</a> has several formulas.</p></li>
+</ul>
+<p>Some simple useful methods are examined in</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture09.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Rational Equation, HEC-HMS)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+</ul>
+<p>The tools referenced in the above document are located below:</p>
+<ul class="simple">
+<li><p>NRCS Upland (uses the graph pg 720 of Gupta). <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/NRCS-Upland.xls">NRCS-Upland.xls</a>; <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/NRCS-Upland.xlsx">NRCS-Upland.xlsx</a></p></li>
+<li><p>Kerby-Kirpich <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/KerbyKirpich-US.xls">Kerby-Kirpich.xls</a>;<a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/KerbyKirpich-US.xlsx">Kerby-Kirpich.xlsx</a></p></li>
+<li><p>NRCS Velocity <a class="reference external" href="http://54.243.252.9/ce-3354-webroot/5-Spreadsheets/TXDOT-TIME-OF-CONCENTRATION-NRCS.xlsx">TXDOT-TIME-OF-CONCENTRATION-NRCS.xlsx</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="modified-rational-method">
+<h2>Modified Rational Method<a class="headerlink" href="#modified-rational-method" title="Permalink to this headline">¶</a></h2>
+<p>The modified rational method (MRM) is a method to parameterize simple runoff hydrographs. The
+MRM produces a runoff hydrograph (and volume) while the original rational method produces
+only the peak design discharge. The rational method was originally developed for estimating
+peak discharge for sizing drainage structures, such as storm drains and culverts. The MRM,
+which has found widespread use in engineering practices since the 1970s, is typically used to size
+detention/retention facilities for a specified recurrence interval and allowable outflow rate.</p>
+<blockquote>
+<div><p>The MRM was developed (Poertner, 1974) with the intent of using the rational method for hydraulic
+structures involving storage on small watersheds. The term “modified rational method analysis”
+refers to “a procedure for manipulating the basic rational method techniques to reflect the fact that
+storms with durations greater than the normal time of concentration for a basin will result in a
+larger volume of runoff even though the peak discharge is reduced” (Poertner, 1974, p. 54).
+Under
+this concept, the basic hydrograph is a triangle (below) generated by a rainfall duration D
+equal to the time of concentration Tc, and with a base equal to 2Tc.
+<img alt="" src="../../_images/mrm-triangle.png" /><br>
+The MRM is based largely on the same assumptions used in the conventional rational method and
+is a conceptual extension of the rational method for development of runoff hydrographs (Viessman
+and Lewis, 2003). For the MRM a stormwater runoff hydrograph from a design storm intensity is
+approximated as either a triangular or trapezoidal hydrograph (depending on the relation between
+storm duration and time of concentration) with the peak (or plateau) discharge less than or equal
+to CiA, where C, i, and A have their conventional meaning.</p>
+</div></blockquote>
+<div class="section" id="modified-rational-method-hydrograph-generator">
+<h3>Modified Rational Method Hydrograph Generator<a class="headerlink" href="#modified-rational-method-hydrograph-generator" title="Permalink to this headline">¶</a></h3>
+<p>This script performs discrete convolution to generate a direct runoff hydrograph from a hyetograph for a drainage area using the modified rational method unit-hydrograph approach (cite).</p>
+<p>The direct runoff hydrograph is computed using a convolution integral:</p>
+<div class="math notranslate nohighlight">
+\[ Q(t) = \int_{0}^{\tau}{p(t)u(t-\tau)d\tau} \]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(p(t)\)</span> is the excess rainfall hyetograph</p></li>
+<li><p><span class="math notranslate nohighlight">\(u(t)\)</span> is the drainage area response kernel (a unit hydrograph)</p></li>
+<li><p><span class="math notranslate nohighlight">\(Q(t)\)</span> is the direct runoff hydrograph</p></li>
+</ul>
+<p>The response kernel for the modified rational method is</p>
+<div class="math notranslate nohighlight">
+\[ u(t) = \frac{A}{T_c}~\text{for}~t \le T_c\]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A\)</span> is the contributing drainage area</p></li>
+<li><p><span class="math notranslate nohighlight">\(T_c\)</span> is the time of concentration</p></li>
+</ul>
+<p>The excess rainfall hyetograph is obtained from the precipitation input signal as</p>
+<div class="math notranslate nohighlight">
+\[ p(t)=C \times P(t) \]</div>
+<p>where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(C\)</span> is the rational equation runoff coefficient</p></li>
+<li><p><span class="math notranslate nohighlight">\(P(t)\)</span> is a rainfall hyetograph (design storm)</p></li>
+</ul>
+<p>The example script below illustrates the calculations for an NRCS Type 2 design storm, the other design storms are included and a simple change in storm type in the <code class="docutils literal notranslate"><span class="pre">interp1d(minutes,</span> <span class="pre">type2,</span> <span class="pre">kind='linear')</span></code> function call (i.e. change type2 to another type in the program). Alternatively the analyst could supply any hyetograph they choose, but would have to fuss a bit with the array lengths.</p>
+<p>The script has several prototype functions:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">Convolve</span></code> is the discrete convolution integrator <br>
+<code class="docutils literal notranslate"><span class="pre">kernel</span></code> is the <span class="math notranslate nohighlight">\(u(t)\)</span> kernel function above <br>
+<code class="docutils literal notranslate"><span class="pre">ModRat</span></code> is the function that actually computes the time-shifted response kernel, scales inputs and outputs to produce dimensional outputs</p>
+</div></blockquote>
+<p>After these prototype functions is a block that generates an input excess rainfall hyetograph. The next block is the input block, the actual function call to <code class="docutils literal notranslate"><span class="pre">ModRat</span></code>, some mass balance summary calculations.
+Finally the plotting section prepares graphical output, reports the inputs, summary values in the chart title, and then charts the input hyetograph (an excess hyetograph, losses are already removed), and the direct runoff hydrograph.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">###### INPUT BLOCK ############################################</span>
+<span class="n">PT</span> <span class="o">=</span> <span class="mf">4.7</span> <span class="c1"># Total storm depth in inches         #####INPUT VALUE</span>
+<span class="n">area</span><span class="o">=</span> <span class="mf">103.9</span> <span class="c1"># Drainage area in acres           #####INPUT VALUE</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">0.85</span> <span class="c1"># Runoff coefficient                  #####INPUT VALUE</span>
+<span class="n">Tc</span> <span class="o">=</span> <span class="mf">140.0</span> <span class="c1"># Time of concentration in minutes   #####INPUT VALUE</span>
+<span class="n">hyetType</span> <span class="o">=</span> <span class="s1">&#39;user&#39;</span>                              <span class="c1">#####INPUT VALUE</span>
+<span class="c1"># Design storm options are: &#39;type1&#39;,&#39;type1A&#39;,&#39;type2&#39;,&#39;type3&#39;,&#39;user&#39;</span>
+<span class="c1"># Manually insert user hyetograph below if hyetType = &#39;user&#39;</span>
+<span class="n">usertime</span> <span class="o">=</span>  <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mf">8.0000</span><span class="p">,</span><span class="mf">9.0000</span><span class="p">,</span><span class="mf">9.3333</span><span class="p">,</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">24.0</span><span class="p">,</span><span class="mf">48.0</span><span class="p">]</span> <span class="c1">#### INPUT VALUES IF ABOVE = &quot;user&quot;</span>
+<span class="n">userdepth</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.4285</span><span class="p">,</span><span class="mf">0.8571</span><span class="p">,</span><span class="mf">1.0000</span><span class="p">,</span><span class="mf">1.00</span><span class="p">,</span><span class="mf">1.00</span><span class="p">,</span><span class="mf">1.00</span><span class="p">]</span> <span class="c1">#### List lengths must be same</span>
+<span class="c1">###############################################################</span>
+<span class="c1"># Convolution Engine</span>
+<span class="c1">#############################################</span>
+<span class="k">def</span> <span class="nf">Convolve</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="n">excitation</span><span class="p">,</span> <span class="n">kernel</span><span class="p">):</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">duration</span><span class="p">)]</span> <span class="c1"># populate response vector with zeros</span>
+  <span class="c1"># response = direct runoff hydrograph (unscaled)</span>
+  <span class="c1"># excitation = input rate in length per time</span>
+  <span class="c1"># kernel = unit response</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">duration</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">duration</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">response</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="n">excitation</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">kernel</span><span class="p">[(</span><span class="n">j</span><span class="o">-</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">response</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+<span class="c1">#############################################</span>
+<span class="c1"># Kernel Engine</span>
+<span class="c1">#############################################</span>
+<span class="k">def</span> <span class="nf">kernel</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">area</span><span class="p">,</span><span class="n">tc</span><span class="p">):</span>
+<span class="c1"># area = drainage area (in acres)</span>
+<span class="c1"># tc = time of concentration (in minutes)</span>
+    <span class="k">if</span> <span class="n">time</span> <span class="o">&gt;</span> <span class="n">tc</span><span class="p">:</span>
+        <span class="n">kernel</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">kernel</span><span class="o">=</span><span class="n">area</span><span class="o">/</span><span class="n">tc</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
+
+<span class="c1">##############################################</span>
+<span class="c1"># Modified Rational Convolution </span>
+<span class="c1">#############################################</span>
+<span class="k">def</span> <span class="nf">ModRat</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="n">runoff_coefficient</span><span class="p">,</span><span class="n">precipitation</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">Tc</span><span class="p">):</span>
+    <span class="n">excess</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">precipitation</span><span class="p">))]</span>
+    <span class="n">flow</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">precipitation</span><span class="p">))]</span>
+<span class="c1"># Generate Excess Rainfall</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">precipitation</span><span class="p">)):</span>
+        <span class="n">excess</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">runoff_coefficient</span><span class="o">*</span><span class="n">precipitation</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="c1"># Generate Unitgraph for Rational Method</span>
+<span class="c1">#  unitgraph&lt;-(sapply(time,kernel,area,Tc))/sum(sapply(time,kernel,area,Tc));</span>
+    <span class="n">unitgraph</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">precipitation</span><span class="p">))]</span> <span class="c1"># start with zeroes</span>
+    <span class="n">accumulator</span><span class="o">=</span><span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">precipitation</span><span class="p">)):</span>
+        <span class="n">unitgraph</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">kernel</span><span class="p">(</span><span class="n">time</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">area</span><span class="p">,</span><span class="n">Tc</span><span class="p">)</span>
+        <span class="n">accumulator</span><span class="o">=</span><span class="n">accumulator</span><span class="o">+</span><span class="n">unitgraph</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="c1"># now rescale each by the accumulator</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">precipitation</span><span class="p">)):</span>
+        <span class="n">unitgraph</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">unitgraph</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">accumulator</span>
+<span class="c1"># Apply discrete convolution     </span>
+    <span class="n">flow</span><span class="o">=</span><span class="n">Convolve</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">excess</span><span class="p">),</span><span class="n">excess</span><span class="p">,</span><span class="n">unitgraph</span><span class="p">)</span>
+    <span class="n">flow</span> <span class="o">=</span> <span class="p">[</span><span class="n">area</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">flow</span><span class="p">]</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">flow</span><span class="p">)</span>
+
+<span class="c1">###############################################</span>
+<span class="c1"># Hyetograph Engine</span>
+<span class="c1">###############################################</span>
+<span class="c1"># SCS Type Curves</span>
+<span class="n">hour</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mf">8.5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mf">9.5</span><span class="p">,</span><span class="mf">9.75</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mf">10.5</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mf">11.5</span><span class="p">,</span><span class="mf">11.75</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mf">12.5</span><span class="p">,</span><span class="mf">13.0</span><span class="p">,</span><span class="mf">13.6</span><span class="p">,</span><span class="mi">14</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">48</span><span class="p">]</span>
+<span class="n">minutes</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">60</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">hour</span><span class="p">]</span>
+<span class="n">type1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.035</span><span class="p">,</span><span class="mf">0.076</span><span class="p">,</span><span class="mf">0.125</span><span class="p">,</span><span class="mf">0.156</span><span class="p">,</span><span class="mf">0.194</span><span class="p">,</span><span class="mf">0.219</span><span class="p">,</span><span class="mf">0.254</span><span class="p">,</span><span class="mf">0.303</span><span class="p">,</span><span class="mf">0.362</span><span class="p">,</span><span class="mf">0.515</span><span class="p">,</span><span class="mf">0.583</span><span class="p">,</span><span class="mf">0.624</span><span class="p">,</span><span class="mf">0.654</span><span class="p">,</span><span class="mf">0.669</span><span class="p">,</span><span class="mf">0.682</span><span class="p">,</span><span class="mf">0.706</span><span class="p">,</span><span class="mf">0.727</span><span class="p">,</span><span class="mf">0.748</span><span class="p">,</span><span class="mf">0.767</span><span class="p">,</span><span class="mf">0.83</span><span class="p">,</span><span class="mf">0.926</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">type1A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mf">0.116</span><span class="p">,</span><span class="mf">0.206</span><span class="p">,</span><span class="mf">0.268</span><span class="p">,</span><span class="mf">0.425</span><span class="p">,</span><span class="mf">0.48</span><span class="p">,</span><span class="mf">0.52</span><span class="p">,</span><span class="mf">0.55</span><span class="p">,</span><span class="mf">0.564</span><span class="p">,</span><span class="mf">0.577</span><span class="p">,</span><span class="mf">0.601</span><span class="p">,</span><span class="mf">0.624</span><span class="p">,</span><span class="mf">0.645</span><span class="p">,</span><span class="mf">0.655</span><span class="p">,</span><span class="mf">0.664</span><span class="p">,</span><span class="mf">0.683</span><span class="p">,</span><span class="mf">0.701</span><span class="p">,</span><span class="mf">0.719</span><span class="p">,</span><span class="mf">0.736</span><span class="p">,</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.906</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">type2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.022</span><span class="p">,</span><span class="mf">0.048</span><span class="p">,</span><span class="mf">0.08</span><span class="p">,</span><span class="mf">0.098</span><span class="p">,</span><span class="mf">0.12</span><span class="p">,</span><span class="mf">0.133</span><span class="p">,</span><span class="mf">0.147</span><span class="p">,</span><span class="mf">0.163</span><span class="p">,</span><span class="mf">0.172</span><span class="p">,</span><span class="mf">0.181</span><span class="p">,</span><span class="mf">0.204</span><span class="p">,</span><span class="mf">0.235</span><span class="p">,</span><span class="mf">0.283</span><span class="p">,</span><span class="mf">0.357</span><span class="p">,</span><span class="mf">0.663</span><span class="p">,</span><span class="mf">0.735</span><span class="p">,</span><span class="mf">0.772</span><span class="p">,</span><span class="mf">0.799</span><span class="p">,</span><span class="mf">0.82</span><span class="p">,</span><span class="mf">0.88</span><span class="p">,</span><span class="mf">0.952</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">type3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.02</span><span class="p">,</span><span class="mf">0.043</span><span class="p">,</span><span class="mf">0.072</span><span class="p">,</span><span class="mf">0.089</span><span class="p">,</span><span class="mf">0.115</span><span class="p">,</span><span class="mf">0.13</span><span class="p">,</span><span class="mf">0.148</span><span class="p">,</span><span class="mf">0.167</span><span class="p">,</span><span class="mf">0.178</span><span class="p">,</span><span class="mf">0.189</span><span class="p">,</span><span class="mf">0.216</span><span class="p">,</span><span class="mf">0.25</span><span class="p">,</span><span class="mf">0.298</span><span class="p">,</span><span class="mf">0.339</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mf">0.702</span><span class="p">,</span><span class="mf">0.751</span><span class="p">,</span><span class="mf">0.785</span><span class="p">,</span><span class="mf">0.811</span><span class="p">,</span><span class="mf">0.886</span><span class="p">,</span><span class="mf">0.957</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">interp1d</span>
+<span class="k">if</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type1&#39;</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">minutes</span><span class="p">,</span> <span class="n">type1</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>  <span class="c1">#Design storm options are: &#39;type1&#39;,&#39;type1A&#39;,&#39;type2&#39;,&#39;type3&#39; </span>
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type1A&#39;</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">minutes</span><span class="p">,</span> <span class="n">type1A</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>  <span class="c1">#Design storm options are: &#39;type1&#39;,&#39;type1A&#39;,&#39;type2&#39;,&#39;type3&#39; </span>
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type2&#39;</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">minutes</span><span class="p">,</span> <span class="n">type2</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>  <span class="c1">#Design storm options are: &#39;type1&#39;,&#39;type1A&#39;,&#39;type2&#39;,&#39;type3&#39; </span>
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type3&#39;</span><span class="p">:</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">minutes</span><span class="p">,</span> <span class="n">type3</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>  <span class="c1">#Design storm options are: &#39;type1&#39;,&#39;type1A&#39;,&#39;type2&#39;,&#39;type3&#39; </span>
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;user&#39;</span><span class="p">:</span>
+    <span class="n">minutes</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="mi">60</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">usertime</span><span class="p">]</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">interp1d</span><span class="p">(</span><span class="n">minutes</span><span class="p">,</span> <span class="n">userdepth</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">)</span>  <span class="c1">#Design storm options are: &#39;type1&#39;,&#39;type1A&#39;,&#39;type2&#39;,&#39;type3&#39; </span>
+<span class="c1">#</span>
+<span class="n">t24</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2881</span><span class="p">)]</span> <span class="c1"># time in minutes</span>
+<span class="n">d24</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">t24</span><span class="p">)</span> <span class="c1"># cumulative proportional depths - difference to get rates</span>
+<span class="n">d24</span> <span class="o">=</span><span class="p">[</span><span class="n">PT</span><span class="o">*</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">d24</span><span class="p">]</span> <span class="c1"># scale to total depth</span>
+<span class="n">r24</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">d24</span><span class="p">))]</span> <span class="c1"># create destination</span>
+<span class="n">r24</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">d24</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">d24</span><span class="p">)):</span>
+    <span class="n">r24</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">d24</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">d24</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># this will be inches/minute</span>
+    <span class="n">r24</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">r24</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="mi">60</span> <span class="c1"># inches per hour</span>
+
+<span class="c1">#############################################</span>
+<span class="c1"># Build direct runoff hydrograph</span>
+<span class="c1">#############################################</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">ModRat</span><span class="p">(</span><span class="n">area</span><span class="p">,</span><span class="n">C</span><span class="p">,</span><span class="n">r24</span><span class="p">,</span><span class="n">t24</span><span class="p">,</span><span class="n">Tc</span><span class="p">)</span> 
+<span class="c1">## Compute summary values</span>
+<span class="n">peakQ</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="c1">## Mass balances</span>
+<span class="n">totalQ</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">*</span><span class="mi">60</span><span class="o">/</span><span class="mi">43560</span> <span class="c1"># area under red curve == volume of discharge</span>
+<span class="n">totalR</span> <span class="o">=</span> <span class="n">C</span><span class="o">*</span><span class="n">d24</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">12</span><span class="p">)</span><span class="o">*</span><span class="n">area</span>
+<span class="c1">#adjust = totalR/totalQ</span>
+<span class="c1">#totalQ=totalQ*adjust</span>
+<span class="n">massE</span> <span class="o">=</span> <span class="p">(</span><span class="n">totalR</span><span class="o">-</span><span class="n">totalQ</span><span class="p">)</span><span class="o">/</span><span class="n">totalR</span>
+
+<span class="c1">#############################################</span>
+<span class="c1"># Graphics engine</span>
+<span class="c1">#############################################</span>
+<span class="n">xlow</span> <span class="o">=</span> <span class="o">-</span><span class="mi">0</span>
+<span class="n">xhigh</span> <span class="o">=</span> <span class="mi">2880</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> <span class="c1"># the python plotting library</span>
+<span class="c1"># Plot script adapted from </span>
+<span class="n">plottitle</span> <span class="o">=</span><span class="s1">&#39;Direct Runoff Hydrograph by Modified Rational Method Discrete Convolution</span><span class="se">\n</span><span class="s1"> </span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="k">if</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type1&#39;</span><span class="p">:</span>
+    <span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Hyetograph Type: &#39;</span> <span class="o">+</span> <span class="s1">&#39;SCS Type 1 Design Storm</span><span class="se">\n</span><span class="s1">&#39;</span> 
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type1A&#39;</span><span class="p">:</span>
+    <span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Hyetograph Type: &#39;</span> <span class="o">+</span> <span class="s1">&#39;SCS Type 1A Design Storm</span><span class="se">\n</span><span class="s1">&#39;</span> 
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type2&#39;</span><span class="p">:</span>
+    <span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Hyetograph Type: &#39;</span> <span class="o">+</span> <span class="s1">&#39;SCS Type 2 Design Storm</span><span class="se">\n</span><span class="s1">&#39;</span> 
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;type3&#39;</span><span class="p">:</span>
+    <span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Hyetograph Type: &#39;</span> <span class="o">+</span> <span class="s1">&#39;SCS Type 3 Design Storm</span><span class="se">\n</span><span class="s1">&#39;</span> 
+<span class="k">elif</span> <span class="n">hyetType</span> <span class="o">==</span> <span class="s1">&#39;user&#39;</span><span class="p">:</span>
+    <span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Hyetograph Type: &#39;</span> <span class="o">+</span> <span class="s1">&#39;User Supplied Design Storm</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Hydrograph Type: &#39;</span> <span class="o">+</span> <span class="s1">&#39;Modified Rational</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Contributing Drainage Area: &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">area</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; acres</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Rainfall Storm Depth: &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">PT</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; inches</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Runoff Coefficient: &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">+</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Time of Concentration: &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="n">Tc</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39; minutes</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Peak Discharge: &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">peakQ</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; cfs</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Total Discharge (Area under red curve): &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">totalQ</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; acre-feet</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Total Excess Rain (Area under blue curve): &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">totalR</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; acre-feet</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="n">plottitle</span> <span class="o">=</span> <span class="n">plottitle</span> <span class="o">+</span> <span class="s1">&#39;Mass Balance Relative Error : &#39;</span> <span class="o">+</span> <span class="nb">repr</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span><span class="o">*</span><span class="n">massE</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span> <span class="o">+</span> <span class="s1">&#39; percent</span><span class="se">\n</span><span class="s1">&#39;</span>
+
+<span class="c1"># Create a figure and axis object</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="c1"># Create the first plot on the left y-axis</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">t24</span><span class="p">,</span> <span class="n">r24</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Intensity&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Time (minutes)&#39;</span><span class="p">)</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Intensity (in/hr)&#39;</span><span class="p">)</span>
+<span class="c1"># Create a second axis object for the right y-axis</span>
+<span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+<span class="c1"># Create the second plot on the right y-axis</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">t24</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Discharge&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Discharge (cfs)&#39;</span><span class="p">)</span>
+<span class="c1"># Add legend and show the plot</span>
+<span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">)</span>
+<span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="n">xlow</span><span class="p">,</span><span class="n">xhigh</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">plottitle</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/rationalmethod_5_0.png" src="../../_images/rationalmethod_5_0.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
+<ol class="simple">
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture09.pdf">Cleveland, T. G. (2017) <em>Engineering Hydrology Notes to Accompany CE 3354 (Rational Equation, HEC-HMS)</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/about-me-webroot/about-me/MyWebPapers/project_reports/0-5822-1/">Subdivision of Texas Watersheds for Hydrologic Modeling</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/z-MRM-Literature/kuichling89-c.pdf">Kuichling, E. (1889). “The relation between the rainfall and the discharge of sewers in populous areas.” Trans. ASCE, 20(1), 1–56.</a></p></li>
+<li><p>Gupta pp. 711-724</p></li>
+<li><p><a class="reference external" href="https://library.ctr.utexas.edu/hostedpdfs/techmrt_0-6070-1.pdf">Cleveland, T.G., Thompson, D.B., and Fang, X. 2011. “Use of the Rational and Modified Rational Method for Hydraulic Design.” Texas Department of Transportation, Research Report 0-6070-1.</a></p></li>
+<li><p><a class="reference external" href="https://www.researchgate.net/publication/271340560_Modified_rational_unit_hydrograph_method_and_applications">Dhakal, N., Fang, X., Cleveland, T.G., Thompson, D.B. 2014 “Modified Rational Unit Hydrograph Method and Applications” Institute of Civil Engineers, Journal of Water Management</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/about-me-webroot/about-me/MyWebPapers/journal_papers/ASCE-JHE-2013-2/asce-jhe-low-slope.pdf">Manoj KC., Fang, X., Yi, Y-J., Ming-Han Li, M-H., Thompson, D./B., Cleveland, T.G. 2013 “Improved Time of Concentration Estimation on Overland Flow Surfaces Including Low-Sloped Planes.” American Society of Civil Engineers, Journal of Hydrologic Engineering doi:10.1061/(ASCE)HE. 1943-5584.0000830 (April 10, 2013) ASCE_Hydrology_2013-2</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/about-me-webroot/about-me/MyWebPapers/journal_papers/ASCE-JID-2013-1/C(T)_2013.pdf">Dhakal, N., Fang, X., Asquith, W.H., Cleveland, T.G., Thompson, D.B. 2013. “Return Period Adjustment for Runoff Coefficients Based on Analysis in Undeveloped Texas Watersheds” American Society of Civil Engineers, Journal of Irrigation and Drainage Engineering, Vol. 139, No. 6, pp 476-482. ASCE_Irrigation_Drainage_2013-1</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/about-me-webroot/about-me/MyWebPapers/journal_papers/ASCE-JHE-1297/Rate-Based-C-Texas.pdf">Dhakal, N., Fang, X., Asquith, W.H., Cleveland, T.G., Thompson, D.B. 2012 “Rate-based Estimation of the Runoff Coefficients for Selected Watersheds in Texas.” American Society of Civil Engineers, Journal of Hydrologic Engineering doi:10.1061/(ASCE)HE. 1943-5584.0000753 (November 29, 2012) ASCE_Hydrology_1297</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/about-me-webroot/about-me/MyWebPapers/journal_papers/ASCE_Irrigation_Drainage_IR_2012-1/Volumetric_C_Nirajan2012.pdf">Dhakal, N., Fang, X., Cleveland, T.G., Thompson, D.B.; Asquith, W.H., Marzen, L.J. 2012 “Estimation of Volumetric Runoff Coefficients for Texas Watersheds Using Land- Use and Rainfall-Runoff Data” American Society of Civil Engineers, Journal of Irrigation and Drainage Engineering, Vol. 138, No 1, pp 43-54. ASCE_Irrigation_Drainage_IR_2012-1</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/about-me-webroot/about-me/MyWebPapers/journal_papers/ASCE_Irrigation_Drainage_IR_085146/fang_2008_1.pdf">Fang, X., Thompson, D.B., Cleveland, T.G., Pradhan, P., and R. Malla 2008 “Time of Concentration Estimated Using Watershed Parameters Determined by Automated and Manual Methods” American Society of Civil Engineers, Journal of Irrigation and Drainage Engineering, Vol. 134, No. 2, pp 202-211. ASCE_Irrigation_Drainage_IR_085146</a></p></li>
+<li><p><span class="xref myst">Aron, G., and Kibler, D.F. 1990. Pond sizing for rational formula hydrographs. American Water Resources Association Water Resources Bulletin, 26: 255-258.</span></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/z-MRM-Literature/HY-234.pdf">Poertner HG (1974) Practices in Detention of Urban Stormwater Runoff: An Investigation of Concepts, Techniques, Applications, Costs, Problems, Legislation, Legal Aspects and Opinions. No. 43, American Public Works Association, Chicago, IL, USA.</a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/z-MRM-Literature/Modified_rational_method_for_s.pdf">Akan, O. (2002) “Modified rational method for sizing infiltration structures” Canadian Journal of Civil Engineering; Ottawa Vol. 29, Iss. 4, pp. 539-542.</a></p></li>
+</ol>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./lessons/12.0rainfallrunoff"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            
+
+
+
+<div class='prev-next-bottom'>
+    
+    <div id="prev">
+        <a class="left-prev" href="rainfallrunoff.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">12. Rainfall-Runoff Modeling</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="linearreservoir.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">12.2 Linear Reservoir Model</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Theodore G. Cleveland, Ph.D., P.E., M.ASCE, F.EWRI<br/>
+        
+            &copy; Copyright 2024.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  
+  </body>
+</html>
