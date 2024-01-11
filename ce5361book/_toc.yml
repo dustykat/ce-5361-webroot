@@ -4,7 +4,7 @@
 format: jb-book
 root: intro
 chapters:
-- file: lessons/00syllabus/ce-5361-syllabus-2024-1
+#- file: lessons/00syllabus/ce-5361-syllabus-2024-1
 - file: lessons/01overview/overview # Course Overview and Objectives
 - file: lessons/02hydrocycle/hydrocycle # Hydrologic Cycle
 - file: lessons/03watersheds/watersheds # Watersheds
@@ -77,17 +77,17 @@ chapters:
 
 #- file: lessons/lesson08.1/lesson081 # canopy and depression storage
 
-- file: lessons/lesson09/lesson09 # unit hydrographs - analysis
+#- file: lessons/lesson09/lesson09 # unit hydrographs - analysis
 
 #- file: lessons/lesson10/lesson10 # unit hydrographs - synthesis
 
-- file: lessons/lesson11/lesson11 # hydrograph routing - 1
+#- file: lessons/lesson11/lesson11 # hydrograph routing - 1
 
-- file: lessons/lesson12/lesson12 # hydrograph routing - 2
+#- file: lessons/lesson12/lesson12 # hydrograph routing - 2
 
-- file: lessons/lesson13/lesson13 # level pool reservoir routing
+#- file: lessons/lesson13/lesson13 # level pool reservoir routing
 
-- file: lessons/lesson14/lesson14 # reservoir outlet works
+#- file: lessons/lesson14/lesson14 # reservoir outlet works
 
 - file: lessons/21watershedplanning/watershedplanning # reservoir outlet works
 
@@ -101,6 +101,6 @@ chapters:
 
 #- file: lessons/groundwater/groundwater5 # groundwater
 
-- file: lessons/workshops/workshop3 # groundwater
+#- file: lessons/workshops/workshop3 # groundwater
 #- file: markdown
 #- file: notebooks
