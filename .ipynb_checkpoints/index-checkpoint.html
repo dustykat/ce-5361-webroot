@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel = "stylesheet" type = "text/css" href = "styles.css" >
+    </head>
+    <body>
+        
+        <div class="topnav">
+            <a class="active" href="http://54.243.252.9">Server Home Page</a>
+            <!-- <a href="http://atomickitty.ddns.net/moodle/">Moodle@atomickitty.ddns.net</a> -->
+            <!--<a href="./0-Syllabus/syllabus.ce3372-2020-3.pdf">Syllabus</a>-->
+            <a href="./ce5361book/_build/html/"> Instructor Notebook (a JupyterBook deployment)</a> 
+            <a href="./0-Syllabus/ce-5361-syllabus-2024-1.html">Course Syllabus</a>
+            <a href="./1-Lectures-2017/">Lessons (non-indexed) 2017</a> -->
+            <a href="./2-Exercises/">Exercises (indexed)</a>
+            <a href="./3-Readings/">Readings (non-indexed)</a>
+            <a href="./5-Spreadsheets/">Spreadsheet Tools</a>
+            <a href="https://75.3.84.227:8000"> RasPi Development Server (login as senesi)</a>
+            <a href="http://54.243.252.9:8000"> AWS Deploy Server (login as senesi)</a>
+
+        </div>
+        
+        <div style="padding-left:16px">
+            <h2>CE 5361 Surface Water Hydrology</h2>
+            <p>Catalog Description</p>
+            <p><strong>CE 5361: Surface Water Hydrology (3:3:0)</strong>. 
+                Prerequisites: Graduate Student; ENGR 1330, CE 3305, and CE 3354 or equivalent(s)  <br>
+               Advanced study of hydrologic cycle: hydrologic abstractions, surface-runoff mechanics, hydrographs, baseflow seperation, data analysis, reservoir and channel routing, and an introduction to rainfall-runoff modeling 
+</p> 
+
+        </div>
+        
+        
+
+        <button class="accordion">Description</button>
+        <div class="panel">
+<p> Theory and application of hydrologic concepts; learn how to use predictive tools such as charts and computer programs, and apply these tools to the analysis and design of collection and drainage systems. Preparation of a professional report is a component of this course.<br> </br>
+
+
+Upon completion of this course, students shall have:<br>
+
+<li>Read, synthesized, and communicated ideas presented in current and historical technical literature.</li>
+<li>Delineate  watersheds  from  maps using Homebrew and GIS approaches,  and  determine  common  metrics  (area,  slope,  mainchannel length) using digital planimetry, and software tools.</li>
+<li>Perform hydrologic computations using JupyterLab, Excel, LibreOffice and other tools, as needed.</li>
+<li>Perform hydrologic simulation using HEC-HMS (both lumped conventional) and distributed HEC-HMS.</li>    
+<li>Perform integrated hydrologic and hydraulic simulationic analysis of a stormwater management system using SWMM.</li>
+
+	</p>
+        </div>
+        
+        <button class="accordion">Pre-Requesites</button>
+        <div class="panel">
+        <p> 
+	This graduate course requires sucessful completion of CE 3305 (Engineering Fluid Mechanics) or 
+equivalent, CE 3354 (Engineering Hydrology) or equivalent; Students will apply computational thinking skills from ENGR 1330 and EGR 1206/7.
+
+	</p>
+        </div>
+        
+<button class="accordion">Software</button>
+<div class="panel">
+<p>
+<a href="#"> qGIS </a> 
+</p>
+<p>
+<a href="#"> HEC-HMS </a>
+</p>
+<p>
+<a href="#"> SWMM </a>
+</p>
+</div>
+
+<button class="accordion">Archives</button>
+<div class="panel">
+<p> Content Archives <p>
+</div>
+
+<!--<button class="accordion">Past Semester Archives</button>
+<div class="panel">
+<p> Content Archives <p>
+<p>
+<a href="../ce-3372/spring-2019/"> CE 3372 Spring 2019 (Redacted) </a>
+</p>
+<p>
+<a href="../ce-3372/fall-2018/"> CE 3372 Fall 2018 (Redacted) </a>
+</p>
+<p>
+<a href="../ce-3372/spring-2018/"> CE 3372 Spring 2018 (Redacted) </a>
+</p>
+</div>-->
+
+<!-- JavaScripts for this page -->
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+    
+    for (i = 0; i < acc.length; i++) {
+        acc[i].onclick = function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+        }
+    }
+</script>
+
+    </body>
+</html>
