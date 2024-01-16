@@ -11,6 +11,7 @@ chapters:
   sections:
   - file: lessons/03watersheds/delineationbyhand # Watersheds
   - file: lessons/03watersheds/delineationbyDEM # Watersheds
+  - file: lessons/03.1qgis/qgis # Introduction to QGIS
   - file: lessons/03watersheds/delineationbyGIS # Watersheds
 - file: lessons/04precipitation/precipitation # precipitation
   sections:
