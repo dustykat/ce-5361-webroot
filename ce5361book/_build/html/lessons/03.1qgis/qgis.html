@@ -588,6 +588,16 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determine-watershed-area">
+     Determine Watershed Area
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#compare-to-by-hand">
+     Compare to by-hand
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#measuring-length-s">
      Measuring Length(s)
     </a>
@@ -879,9 +889,48 @@ Specify the output vector as shapefile (SHP)</p>
 <p>Here is the result after prettification.</p>
 <p><img alt="" src="../../_images/FLxyzrender.png" /></p>
 </div>
+<div class="section" id="determine-watershed-area">
+<h3>Determine Watershed Area<a class="headerlink" href="#determine-watershed-area" title="Permalink to this headline">¶</a></h3>
+<p>If we have the vector outline then use the attribute table and compute the polygon area of the only polygon.</p>
+<p><img alt="" src="../../_images/areabuild.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># compute area in acres</span>
+<span class="mf">7540147.046</span><span class="o">*</span><span class="p">(</span><span class="mf">3.28</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mf">3.28</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="mi">43560</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1862.2570702407345
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="compare-to-by-hand">
+<h3>Compare to by-hand<a class="headerlink" href="#compare-to-by-hand" title="Permalink to this headline">¶</a></h3>
+<p><img alt="" src="../../_images/byhand.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># count squares</span>
+<span class="n">howmany</span> <span class="o">=</span> <span class="mi">270</span>
+<span class="c1"># size</span>
+<span class="n">howbig</span> <span class="o">=</span> <span class="n">howmany</span><span class="o">*</span><span class="mi">525</span><span class="o">*</span><span class="mi">525</span><span class="o">/</span><span class="mi">43560</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">howbig</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1708.4194214876034
+</pre></div>
+</div>
+</div>
+</div>
+</div>
 <div class="section" id="measuring-length-s">
 <h3>Measuring Length(s)<a class="headerlink" href="#measuring-length-s" title="Permalink to this headline">¶</a></h3>
 <p>Similar to area, you can count cells along a path and multiply the count by the length of a cell side, or the cell diagonal (depends on how many diagonal moves you need to make) to obtain a length.  Or use software (Acrobat Pro, AutoCAD, Engauge, ArcGIS, QGIS, …. ) to make the measurements.</p>
+<p>This can be done directly in GIS using the measuring tool; depending on accuracy needs may do in pieces.</p>
 </div>
 <div class="section" id="estimating-slope-s">
 <h3>Estimating Slope(s)<a class="headerlink" href="#estimating-slope-s" title="Permalink to this headline">¶</a></h3>

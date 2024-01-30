@@ -296,9 +296,38 @@
 # 
 # ![](FLxyzrender.png)
 
+# ### Determine Watershed Area
+# 
+# If we have the vector outline then use the attribute table and compute the polygon area of the only polygon.
+# 
+# ![](areabuild.png)
+
+# In[1]:
+
+
+# compute area in acres
+7540147.046*(3.28)*(3.28)*(1/43560)
+
+
+# ### Compare to by-hand
+# 
+# ![](byhand.png)
+
+# In[2]:
+
+
+# count squares
+howmany = 270
+# size
+howbig = howmany*525*525/43560
+print(howbig)
+
+
 # ### Measuring Length(s) 
 # 
 # Similar to area, you can count cells along a path and multiply the count by the length of a cell side, or the cell diagonal (depends on how many diagonal moves you need to make) to obtain a length.  Or use software (Acrobat Pro, AutoCAD, Engauge, ArcGIS, QGIS, .... ) to make the measurements.
+# 
+# This can be done directly in GIS using the measuring tool; depending on accuracy needs may do in pieces.
 
 # ### Estimating Slope(s)
 # 
