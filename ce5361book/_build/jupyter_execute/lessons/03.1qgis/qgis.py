@@ -14,6 +14,7 @@
 # 
 # ## Readings
 # 
+# 1. [Baraka, M. 2024, Watershed Delineation in QGIS: A Summary Guide](http://54.243.252.9/ce-5361-webroot/3-Readings/Hydrology_GIS_part1.pdf)
 # 1. [Brutsaert, W., 2005, Hydrology: An Introduction. Cambridge University Press](https://www.amazon.com/Hydrology-Introduction-Wilfried-Brutsaert/dp/0521824796/ref=sr_1_1?crid=26239UVBUDNRC&keywords=hydrology+an+introduction+brusehart&qid=1697843874&sprefix=hydrology+an+introduction+brusehart%2Caps%2C84&sr=8-1)
 # 2. [Chow, V.T., Maidment, D.R., Mays, L.W., 1988, Applied Hydrology.  New York, McGraw-Hill. ](http://54.243.252.9/ce-5361-webroot/3-Readings/CMM1988/Applied%20Hydrology%20VT%20Chow%201988.pdf) 
 # 1. [Watersheds - McCuen](http://54.243.252.9/ce-3354-webroot/3-Readings/McCuen-Watersheds/McCuen-Watersheds.pdf)
@@ -162,7 +163,138 @@
 # 
 # There are a lot of other things available, but baby steps for now.
 
-# ### SRTM
+# ## Example (Florida Watershed) 
+# Here we do step-by-step example of the previous watershed(s).  The steps are those outlined in  [Baraka, M. 2024, Watershed Delineation in QGIS: A Summary Guide](http://54.243.252.9/ce-5361-webroot/3-Readings/Hydrology_GIS_part1.pdf)
+# 
+# The SAGANG package was manually installed using guidance from [How to manual install SAGA 9.1 (YouTube) ](https://www.youtube.com/watch?v=VKdaripCups). Other plug-ins are installed using the Plug-in manager menu.
+# 
+# First start with the Florida Topographic Map
+# 
+# ![](pourpoint.png)
+# 
+# Then we need to locate the area - it turns out that the Moore Pond feature is near Tallahassee Fl.  (Used Google to find that out!)
+# 
+# ![](moorepond1.png)
+# 
+# Then zoom out
+# 
+# ![](moorepond2.png)
+# 
+# The bridge we are interested is on the Miller's Landing feature - with that in mind, we can start QGIS, load OSM tiles, and look for the study area.
+# 
+# ![](qgisMoorePond.png)
+# 
+# We will shift the window to the right a bit and scale about the same as the original Topographic map clip.  Once we have desired area, then save a bookmark to easily return to the view area.
+
+# ### Get DEM
+# 
+# Now we will get a DEM coverage - we will use the SRTM from NASA (30 meter poixels) but one might need better resolution as project proceedes.
+# 
+# Using the Canvass area, download SRTM tile:
+# 
+# ![](FloridaSRTM.png)
+# 
+# Next we can play with transparency so can background the street maps.
+# 
+# ![](FloridaSRTM+overlay.png)
+
+# ### Contours (Optional, but useful)
+# 
+# We can make a elevation contour of the study area.
+# 
+# `Menu/Raster/Extraction/Contour`
+# 
+# The result (using 3.048 meter intervals $\approx$ 10 feet) is :
+# 
+# ![](FloridaContours.png)
+# 
+# It is probably more useful for fewer lines, so will repeat at 10 meter (32.8 foot) intervals - these will appear in later pictures.
+
+# ### Extract (Clip) DEM - Warp to a UTM Coordinate System
+# 
+# Here we will clip the viewing area, and then just process the clipped area - this will speed up our work a lot.
+# 
+# `Menu/Raster/Extraction/Clip Raster by Extent`
+# 
+# Here is the clipped area (zoomed out to verify)
+# 
+# ![](FloridaClippedArea.png)
+
+# ### Warp (reproject) the Clipped Area to UTM Zone
+# UTM gives a  nearly cartesian system, which is useful for other analyses, so lets do that now.
+# 
+# First need to know the UTM panel.  Use Google
+# 
+# ![](UTMFL.png)
+# 
+# Now we know the zone, so use 
+# 
+# `Menu/Raster/Projections/Warp (Reproject)`
+# 
+# Mostly used defaults, except chose Zone 16N (it was only CRS available in the software), and used cubic interpolation to smooth out the elevations a bit - we are after a watershed boundary, so the smoothing should help with goofy curvature.
+# 
+# ![](FloridaClippedUTM.png)
+
+# ### Sink Fill
+# 
+# This step is to fill in low spots, so there is always a path to lowest point (I sort of disagree with this step, but it is accepted GIS analysis step).  Here some trial-and-error is needed using the [System for Automated Geoscientific Analyses (SAGA)](http://www.saga-gis.org) tools.  The current SAGA version is 9.X while the only version I can access is 7.3 and there is no guidance on how to upgrade.  Based on internet search, most QGIS non-genius users are coimplaining that the SAGA project is failing to support the upgrades, and other techniques are offered.  If you are in Linux, you build from source anyway, so its not a problem.
+# 
+# I found that `SAGA NextGen/Terrain Analysis/Hydrology/Sink Fill (Wang & Liu)` indeed ran and produced non-empty output.
+# 
+# ![](SinkFill.png)
+
+# ### Channel Identification
+# 
+# If needed (sometimes can skip to next step):
+# 
+# - SAGA terrain analysis package (to extract straler order)
+# - Visualize Straler Order
+# - Filter small streams using raster calculator
+# - Adjust Strahler order
+
+# ### Channels and Drainage Basins
+# 
+# - `SAGA/TerrainAnalysis-Channels/Channel Network and Drainage Basins`
+# - Input Filled DEM and choose threshold based on Straler order (I did trial and error without saving files until I had a workable looking catchment then proceede to next step/
+# - Adjust symbology as necessary to interpret the results (repeat as needed unless it fails then no point)
+# 
+
+# ### Determine Catchment
+# 
+# - Use coordinate capture plug-in to find coordinates of pour point.
+# - Use Upslope Area in SAGA with the coordinates.
+
+# ### Polygonize the Watershed
+# 
+# `Raster/Polygonize(Raster to Vector)`
+# 
+# Choose delineated raster as the input.
+# Specify the output vector as shapefile (SHP)
+# 
+
+# ### Completed Delineation
+# 
+# Here we render the delineation - the vector polygon, which has use later on (and is the whole point of synthetic hydrograph generation).  
+# 
+# ![](FloridaGISDelineation.png)
+# 
+# **Compare to Manual Delineation**
+# 
+# ![](completed-delineation.png)
+
+# ### Export the DEM (Masked by Polygon)
+# 
+# Later in the class we will explore []() and will need the DEM of the watershed only!
+# 
+# The export is done using `Raster/Extraction/Clip by Mask Layer` and results in a final product for later use.
+# 
+# Here is the clip command (note the file type is .xyz to produce an ASCII grid)
+# 
+# ![](FloridaXYZ.png)
+# 
+# Here is the result after prettification.
+# 
+# ![](FLxyzrender.png)
 
 # ### Measuring Length(s) 
 # 
