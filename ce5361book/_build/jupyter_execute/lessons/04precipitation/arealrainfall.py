@@ -11,6 +11,10 @@
 # 
 # The factors influencing areal reduction include topography, land use, and other geographical features that affect how rainfall is distributed across an area. By applying ARFs, modelers can better capture the spatial patterns of precipitation, improving the accuracy of rainfall estimates for hydrological and environmental studies. This consideration is crucial for various applications, such as flood risk assessment, water resource management, and climate modeling.
 
+# ### Related References
+# 1. [Areal-Reduction Factors for the Precipitation
+# of the 1-Day Design Storm in Texas USGS WRI 99-4267](https://pubs.usgs.gov/wri/wri99-4267/pdf/wri99-4267.pdf)
+
 # ## Radar Precipitation Estimation
 # 
 # Radar rainfall estimates involve using weather radar systems to measure precipitation over a given area. These estimates are valuable for various applications, including weather forecasting, hydrological modeling, and flood management. Unlike point measurements from rain gauges, radar provides spatially continuous information about precipitation distribution.
