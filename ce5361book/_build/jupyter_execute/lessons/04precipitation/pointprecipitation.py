@@ -109,7 +109,7 @@
 
 # 
 
-# # Design Storms
+# ## Design Storms
 # 
 # A design storm is a theoretical or hypothetical weather event used by engineers, urban planners, and hydrologists as a standard to simulate and predict the potential impact of extreme weather conditions on a particular area. It is employed in the design and planning of various structures and systems to ensure they can withstand or manage the expected stresses caused by intense rainfall or other weather-related factors.
 # 
@@ -131,7 +131,7 @@
 # 
 # Design storms are statistical models of such temporal behavior and are used in hydrologic models when hydrographs need to be generated
 
-# ## Rainfall Distributions
+# ### Rainfall Distributions
 # 
 # - Rainfall distributions represent temporal patterns of a storm.
 # - A rainfall distribution is also called a hyetograph.
@@ -246,7 +246,7 @@ plt.show()
 # - Empirical Texas Hyetographs (TxHYETO-2015)
 # 
 
-# ## NRCS (SCS) Rainfall Type Curves
+# ### NRCS (SCS) Rainfall Type Curves
 # 
 # SCS(1973) analyzed DDF curves to develop dimensionless rainfall temporal patterns called type curves for four different regions in the US. SCS type curves are in the form of percentage mass (cumulative) curves based on 24-hr rainfall of the desired frequency. Intended for use with the SCS Curve Number runoff generation model!
 # 
@@ -320,7 +320,7 @@ plt.show()
 # 
 # If you need incremental values, differencing the rescaled mass curve can be used to develop the design hyetograph.
 
-# ## Texas Empirical Hyetograph-Based Design Storms
+# ### Texas Empirical Hyetograph-Based Design Storms
 # 
 # Alternative to SCS Type Curves for use in Texas are the [Texas Empirical Hyetographs](http://54.243.252.9/ce-3354-webroot/3-Readings/EmpiricalHyetographs/sir2004-5075.pdf)
 # - Based on Texas data.
@@ -371,6 +371,13 @@ plt.show()
 # - [Missing Rainfall Data Replacement Techniques](http://54.243.252.9/ce-5361-webroot/3-Readings/MissingRainfallData/MissingRainfallData.pdf)
 # - [Normal Ratio Method](http://54.243.252.9/ce-5361-webroot/3-Readings/NormalRatioMethod/mwr-080-08-0129.pdf)
 # :::
+# 
+# Once the request is built the NCDC will send a link to a file for you to download.  In secure systems, you have to edit the link by-hand to defeat the anti-Soviet intrusion software - again will demonstrate as needed.
+# 
+# The data file itself looks like (click on the link in class):
+# 
+# [3594221.csv](http://54.243.252.9/ce-5361-webroot/ce5361book/lessons/04precipitation/3594221.csv)
+# 
 
 # In[ ]:
 
