@@ -4,7 +4,7 @@
 # # 5. Hydrologic Abstractions
 # 
 # :::{admonition} Course Website
-# [link to webster](http://54.243.252.9/ce-5361-webroot/)
+# [ce-5361-webroot](http://54.243.252.9/ce-5361-webroot/)
 # :::
 # 
 # Hydrologic abstractions refer to the various processes through which water is removed from the precipitation signal (or land surface) and eventually returning to the atmosphere compartment. The difference between input and abstraction, is the runoff.
@@ -12,24 +12,42 @@
 # <hr>
 # 
 # ## Reading(s)
-# 1. [dummy](http::/dummy)
-# 2. [dummy](http::/dummy)
-# 3. [dummy](http::/dummy)
+# 1. [Brutsaert,  W.  2005.  Hydrology  :   An  Introduction  (8th  printing),  Cambridge  University Press. NewYork. pp. 318-362 (Infiltration and Related Saturated Flows](http://54.243.252.9/ce-5361-webroot/3-Readings/00HydrologyAnIntroduction/1096-1.pdf)
+# 3. [Polubarinova-Kochina, 1962. Theory of Groundwater Movement, (Translated from Russian by R. De Wiest), Princeton University Press, New Jersey.](http://54.243.252.9/ce-5361-webroot/3-Readings/Green-Ampt-PBK/Polubarinova-Kochina.pdf)
+# 3. [Karki, A (2007) *Parameters for the Green-Ampt Loss-Rate Function for Select Texas Watersheds*. Master's Thesis, Department of Civil Engineering, College of Engineering, Texas Tech University](http://54.243.252.9/ce-5361-webroot/3-Readings/Green-Ampt-Texas/Karki_Amit_Thesis.pdf) 
+# 
+# 2. [Brutsaert,  W.  2005.  Hydrology  :   An  Introduction  (8th  printing),  Cambridge  University Press. NewYork. pp. 130-170 (Evaporation)](http://54.243.252.9/ce-5361-webroot/3-Readings/00HydrologyAnIntroduction/1096-1.pdf)
+# 1. [Brutsaert,  W.  2005.  Hydrology  :   An  Introduction  (8th  printing),  Cambridge  University Press. NewYork. pp. 106-112 (Interception)](http://54.243.252.9/ce-5361-webroot/3-Readings/00HydrologyAnIntroduction/1096-1.pdf)
+# 
+# 1. [Cleveland, T. G. (2020) *Surface Water Hydrology Notes (Infiltration) to accompany CE-5361*, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.](http://54.243.252.9/ce-3354-webroot/1-Lectures-2020/lesson07/Lesson07.pdf)
+# 2. [Green-Ampt Spreadsheet (Excel)](http://54.243.252.9/ce-3354-webroot/1-Lectures-2020/lesson07/ce5361_green_ampt.xlsx) Right-Click "Save As..."
+# 
+# 3. Chow, V. T., 1964. Handbook of Applied Hydrology. McGraw Hill, New York. Sec. 14., 2pp.
+# 
+# 4. Fang, X., Asquith, W.H., Garcia , C.A., Cleveland, T.G., Thompson, D.B., Malla, R. 2004 Literature Review on Time Parameters for Hydrographs. Project Report 4696-1. Texas Department of Transportation.
+# 5. USDA National Engineering Handbook, Chapters 4,5, and 10.
+# 6. Wurbs and James, 2002. Water Resources Engineering. Prentice-Hall, New Jersey. Pp 462-483.
+# 8. [An Initial-Abstraction, Constant-Loss Model for Unit Hydrograph Modeling for Applicable Watersheds in Texas](http://54.243.252.9/ce-5361-webroot/3-Readings/USGS-Texas-IaCl/sir2007-5243.pdf)
 # 
 # <hr>
 # 
 # ## Videos
 # 
-# - video
-# - video
-# - video
+# - [Introduction to Infiltration](https://www.youtube.com/watch?v=alEEY5rr2Kk)
+# - [Horton's Infiltration Equation](https://www.youtube.com/watch?v=GMTWEqz-Osg)
+# - [Phi-Index Infiltration Model](https://www.youtube.com/watch?v=AtYvETHm_og)
+# - [Green-Ampt Infiltration Model](https://www.youtube.com/watch?v=IflajC5xz8o)
+# - [Infiltration: Green-Ampt Model](https://www.youtube.com/watch?v=A-7huDPfKkU)
+# - [Initial Abstraction Constant Rate Loss Model in HEC-HMS](https://www.youtube.com/watch?v=7AziPWlLCqU)
+# - [Estimating Evaporation](https://www.youtube.com/watch?v=QVhid4qHw38)
+# - [Evaporation (Aerodynamic Method)](https://www.youtube.com/watch?v=2rDt-fJvaNA)
+# 
 # 
 # ## Outline
 # 
-# - item
 # - Infiltration
 # - Evapotranspiration
-# - 
+# - Interception
 
 # Hydrologic abstractions refer to the various processes through which water is removed from the precipitation signal (or land surface) and eventually returning to the atmosphere compartment. These abstractions play a crucial role in the water cycle. 
 # 
@@ -47,56 +65,6 @@
 #   - Surface Water Storage: The temporary storage of water in depressions, ponds, lakes, and other surface water bodies before it is evaporated, infiltrated, or discharged (to the runoff component).
 # 
 # The remainder in the water balance between precipitation (the input) and abstractions (the losses) is watershed runoff (the output).  It typically represents the flow of water over the land surface when the rate of precipitation exceeds the rate of abstraction. It includes surface water runoff and subsurface flow. 
-
-# Introduction:
-# 
-# Explain the importance of hydrology in the study of surface water systems and the broader field of water resources management.
-# 
-# Hydrological Cycle:
-# 
-# - Hydrological Cycle Overview: Describe the hydrological cycle, emphasizing the continuous movement of water through various reservoirs, including oceans, atmosphere, land, and living organisms.
-# - Processes in the Hydrological Cycle: Detail the key processes within the cycle, such as evaporation, transpiration, condensation, precipitation, infiltration, runoff, and streamflow.
-# 
-# Hydrological Balance:
-# - Water Budgets: Introduce the concept of water budgets or hydrological budgets, which involve the calculation of inputs, outputs, and changes in storage within a specific area or watershed.
-# 
-# - Precipitation and Evaporation: Explain how precipitation, as an input, interacts with evaporation as an output to maintain a hydrological balance in a region.
-# 
-# Water Storage and Flow:
-# - Groundwater and Surface Water: Differentiate between groundwater and surface water, explaining their roles in the overall hydrological cycle and their interactions.
-# 
-# - Aquifers and Watersheds: Define aquifers and watersheds and describe their significance in storing and transmitting water within the hydrological cycle.
-# 
-# Hydrological Data and Measurement:
-# - Hydrological Data Sources: Discuss the various sources of hydrological data, including meteorological stations, stream gauges, and remote sensing technology.
-# 
-# - Measurement Techniques: Explore measurement techniques for key hydrological parameters, such as precipitation, evapotranspiration, streamflow, and groundwater levels.
-# 
-# Hydrological Variables and Equations:
-# - Key Hydrological Variables: Introduce fundamental hydrological variables, including discharge, infiltration capacity, and potential evapotranspiration.
-# 
-# - Hydrological Equations: Discuss important hydrological equations, such as the water balance equation, the continuity equation for streams, and the Penman-Monteith equation for evapotranspiration estimation.
-# 
-# Applications of Hydrology:
-# - Water Resources Management: Explain how hydrological principles are applied to manage water resources, including water supply, irrigation, and hydropower generation.
-# 
-# - Flood Prediction and Mitigation: Explore the role of hydrology in flood prediction, flood risk assessment, and flood mitigation strategies.
-# 
-# Climate Change and Hydrology:
-# - Climate Change Impacts: Discuss the potential impacts of climate change on the hydrological cycle, including altered precipitation patterns, increased evaporation rates, and changing streamflow regimes.
-# 
-# Challenges and Future Directions:
-# - Emerging Challenges: Highlight emerging challenges in hydrology, such as urbanization, water pollution, and increased water demand, and how these issues are shaping the field's future.
-# 
-# Conclusion:
-# 
-# Summarize the key concepts covered in the lesson and emphasize the foundational role of hydrology in surface water hydrology, environmental science, and water resource management.
-# 
-# This lesson provides students with a solid understanding of the fundamental principles of hydrology, enabling them to analyze and manage surface water systems effectively in the subsequent modules of the course. It also introduces students to the interdisciplinary nature of hydrology, which is crucial for addressing complex water-related issues.
-
-# ## References
-# 1. [dummy](http::/dummy)
-# 2. [dummy](http::/dummy)
 
 # In[ ]:
 

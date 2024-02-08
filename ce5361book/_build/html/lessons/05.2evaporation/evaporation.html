@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>5.2 Evaporatranspiration &#8212; Surface Water Hydrology</title>
+    <title>5.2 Evapotranspiration &#8212; Surface Water Hydrology</title>
     
   <link href="../../_static/css/theme.css" rel="stylesheet" />
   <link href="../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
@@ -51,7 +51,7 @@
     <script async="async" src="../../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="5.3 Interception and Depression Storage" href="../05.3interception/interception.html" />
+    <link rel="next" title="5.3 Interception/Depression Storage" href="../05.3interception/interception.html" />
     <link rel="prev" title="5.1 Infiltration" href="../05.1infiltration/infiltration.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en" />
@@ -95,11 +95,6 @@
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../00syllabus/ce-5361-syllabus-2024-1.html">
-   Syllabus
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../01overview/overview.html">
    1. Introduction
   </a>
@@ -127,6 +122,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../03watersheds/delineationbyDEM.html">
      Delineation (Homebrew DEM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.1qgis/qgis.html">
+     3.1 QGIS
     </a>
    </li>
    <li class="toctree-l2">
@@ -158,47 +158,150 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1">
+ <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../05.0abstractions/abstractions.html">
    5. Hydrologic Abstractions
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05.1infiltration/infiltration.html">
-   5.1 Infiltration
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   5.2 Evaporatranspiration
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05.3interception/interception.html">
-   5.3 Interception and Depression Storage
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../05data/data.html">
-   Data
-  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.1infiltration/infiltration.html">
+     5.1 Infiltration
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     5.2 Evapotranspiration
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../05.3interception/interception.html">
+     5.3 Interception/Depression Storage
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../11streamflow/streamflow.html">
-   Streamflow
+  <a class="reference internal" href="../06streamflow/streamflow.html">
+   6. Streamflow
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
-  <label for="toctree-checkbox-3">
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
    <i class="fas fa-chevron-down">
    </i>
   </label>
   <ul>
    <li class="toctree-l2">
-    <a class="reference internal" href="../11streamflow/streamflowdata.html">
+    <a class="reference internal" href="../06streamflow/streamflowdata.html">
      Streamflow Data Modeling
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07runoffmechanisms/runoffmechanisms.html">
+   7. Surface-Runoff Mechanics
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../08hydrographs/hydrographs.html">
+   8. Hydrographs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08hydrographs/1.baseflow.html">
+     8.1 Baseflow Separation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../08hydrographs/2.unithydrographs.html">
+     8.2 Unit Hydrographs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../10data/data.html">
+   10. Data Analysis
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../11.0hydrologicrouting/hydrologicrouting.html">
+   11. Hydrologic Routing
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.1pulsrouting/pulsrouting.html">
+     11.1 Channel Routing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.2reservoirrouting/reservoirrouting.html">
+     11.2 Level Pool Routing
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../11.3outletworks/outletworks.html">
+     11.3 Outlet Control(s)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../12.0rainfallrunoff/rainfallrunoff.html">
+   12. Rainfall-Runoff Modeling
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+  <label for="toctree-checkbox-7">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12.0rainfallrunoff/rationalmethod.html">
+     12.1 Rational Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12.0rainfallrunoff/linearreservoir.html">
+     12.2 Linear Reservoir Model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12.0rainfallrunoff/CNmethod.html">
+     12.3 NRCS CN model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../12.0rainfallrunoff/nonlinreservoir.html">
+     12.4 Nonlinear Reservoir Model
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../13hechms/HMSintro.html">
+   13. HEC-HMS Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14swmm/swmm-intro.html">
+   14. Introduction to SWMM
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../12morphology/morphology.html">
@@ -209,8 +312,8 @@
   <a class="reference internal" href="../99Exams/exams.html">
    24. Exams
   </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
-  <label for="toctree-checkbox-4">
+  <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+  <label for="toctree-checkbox-8">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -259,76 +362,9 @@
    </li>
   </ul>
  </li>
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../lesson06/lesson06.html">
-   Hydrologic Process Modeling
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
-  <label for="toctree-checkbox-5">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lesson06/rationalmethod.html">
-     Rational Equation (Rainfall-Runoff) Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lesson06/linearreservoir.html">
-     Linear Reservoir Model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lesson06/CNmethod.html">
-     NRCS CN model
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../lesson06/nonlinreservoir.html">
-     Nonlinear Reservoir Model
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lesson06.1/HMSintro.html">
-   HEC-HMS Introduction
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lesson09/lesson09.html">
-   Unit Hydrographs - I (Analysis)
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lesson11/lesson11.html">
-   Hydrograph Routing - I
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lesson12/lesson12.html">
-   Hydrograph Routing - II
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lesson13/lesson13.html">
-   Reservoir-Storage Routing
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../lesson14/lesson14.html">
-   Reservoir Outlet Works
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../21watershedplanning/watershedplanning.html">
    Watershed Planning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../workshops/workshop3.html">
-   Workshop #3
   </a>
  </li>
 </ul>
@@ -436,11 +472,6 @@
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hec-hms-et-models">
-   HEC-HMS ET Models
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#references">
    References
   </a>
@@ -456,44 +487,13 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="evaporatranspiration">
-<h1>5.2 Evaporatranspiration<a class="headerlink" href="#evaporatranspiration" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="evapotranspiration">
+<h1>5.2 Evapotranspiration<a class="headerlink" href="#evapotranspiration" title="Permalink to this headline">¶</a></h1>
 <p>Review of evaporation processes and common models in</p>
 <p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2020/lesson06/Lesson06.pdf">Cleveland, T. G. (2020) <em>Surface Water Hydrology Notes (Evaporation) to accompany CE-3354</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p>
-<div class="section" id="hec-hms-et-models">
-<h2>HEC-HMS ET Models<a class="headerlink" href="#hec-hms-et-models" title="Permalink to this headline">¶</a></h2>
-<p>A fully provisioned Windows Implementation of HEC-HMS is located at:</p>
-<ul class="simple">
-<li><p>server_name: <strong><a class="reference external" href="http://kittyinthewindow.ddns.net">kittyinthewindow.ddns.net</a></strong></p></li>
-<li><p>user_name: <strong>texas-skew</strong></p></li>
-<li><p>passwd: <strong>peakfq73$hare</strong></p></li>
-</ul>
-<p>Users must access using Remote Desktop Protocol (Built into Windows, Apple Store has a free Mac application).</p>
-<p>Use the Hardin Creek Project to explore evaporation models.</p>
-<p>Evapotranspiration is the second of the three components of a <strong>meteorologic</strong> model.
-It is the combination of evaporation from the ground surface and transpiration by
-vegetation.</p>
-<blockquote>
-<div><p>If a continuous simulation loss rate method is used and no
-evapotranspiration is specified in the meteorologic model, then zero
-evapotranspiration is used in the subbasins. However, evapotranspiration is often
-responsible for returning 50 or even 60% of precipitation back to the atmosphere. In
-general there should be a selected evapotranspiration method for continuous
-simulation. In all cases, the meteorologic model is computing the potential
-evapotranspiration and subbasins will calculate actual evapotranspiration based on
-soil water limitations.</p>
-</div></blockquote>
-<p>Changes to Hardin Creek for ET exploration.</p>
-<ul class="simple">
-<li><p>Change loss method to deficit-constant</p></li>
-<li><p>Choose ET method in Meterological Model Manager</p></li>
-</ul>
-<p>Demonstrate effect</p>
-</div>
 <div class="section" id="references">
 <h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
 <ol class="simple">
-<li><p>Gupta pp 65-92.</p></li>
 <li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2020/lesson06/Lesson06.pdf">Cleveland, T. G. (2020) <em>Surface Water Hydrology Notes (Evaporation) to accompany CE-3354</em>, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.</a></p></li>
 <li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2020/lesson06/BlaneyCriddle.xlsx">Blaney-Criddle Spreadsheet (Excel)</a> Right-Click “Save As…”</p></li>
 <li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2020/lesson06/Thornwaithe.xls">Thornwaithe Spreadsheet (Excel)</a> Right-Click “Save As…”</p></li>
@@ -543,7 +543,7 @@ soil water limitations.</p>
         <a class="right-next" href="../05.3interception/interception.html" title="next page">
             <div class="prevnext-info">
                 <p class="prevnext-label">next</p>
-                <p class="prevnext-title">5.3 Interception and Depression Storage</p>
+                <p class="prevnext-title">5.3 Interception/Depression Storage</p>
             </div>
             <i class="prevnext-label fas fa-angle-right"></i>
         </a>
