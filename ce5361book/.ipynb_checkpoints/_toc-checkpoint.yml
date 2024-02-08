@@ -21,6 +21,7 @@ chapters:
 - file: lessons/05.0abstractions/abstractions # abstractions
   sections:
   - file: lessons/05.1infiltration/infiltration # infiltration
+  - file: lessons/05.1infiltration/gis-soils # infiltration
   - file: lessons/05.2evaporation/evaporation # evapotranspiration 
   - file: lessons/05.3interception/interception # interception 
 
