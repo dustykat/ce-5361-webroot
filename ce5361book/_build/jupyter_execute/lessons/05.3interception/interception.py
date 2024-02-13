@@ -9,7 +9,7 @@
 # 
 # [Cleveland, T. G. (2020) *Surface Water Hydrology Notes (Depression and Canopy Storage) to accompany CE-3354*, Department of Civil, Environmental, and Construction Engineering, Whitacre College of Engineering.](http://54.243.252.9/ce-3354-webroot/ce3354book/lessons/lesson08.1/Lesson08ug.pdf)
 # 
-# ## HEC-HMS Storage Models
+# ## Typical HEC-HMS Model Constructs
 # 
 # >A sub**basin** element conceptually represents infiltration, surface runoff, and
 # subsurface processes interacting together, the actual infiltration calculations are
@@ -24,22 +24,6 @@
 # "Subbasin" editor. If the kinematic wave transform method is selected, there may be
 # two loss editors, one for each runoff plane. The information shown on the loss editor
 # will depend on which method is currently selected
-# 
-# A fully provisioned Windows Implementation of HEC-HMS is located at:
-# 
-# - server_name: **kittyinthewindow.ddns.net**
-# - user_name: **texas-skew**
-# - passwd: **peakfq73$hare**
-# 
-# Users must access using Remote Desktop Protocol (Built into Windows, Apple Store has a free Mac application).
-# 
-# - Use the Hardin Creek Project to explore different loss models.
-# 
-# Recomended Loss models for semester project are CN model or Green-Ampt.  These are easiest to parameterize from available data sources for the project and should be adequate for the problem statement.
-
-# 
-
-# 
 
 # ## References
 # 
@@ -51,9 +35,3 @@
 # 6. Wurbs and James, 2002. Water Resources Engineering. Prentice-Hall, New Jersey. Pp 462-483.
 # 7. Polubarinova-Kochina, 1962. Theory of Groundwater Movement, (Translated from Russian by R. De Wiest), Princeton University Press, New Jersey.
 # 8. [An Initial-Abstraction, Constant-Loss Model for Unit Hydrograph Modeling for Applicable Watersheds in Texas](http://54.243.252.9/ce-3354-webroot/3-Readings/USGS-Texas-IaCl/sir2007-5243.pdf)
-
-# In[ ]:
-
-
-
-

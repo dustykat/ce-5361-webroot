@@ -60,6 +60,10 @@ print("Capillary Rise ",round(capillary_rise,3)," m")
 # There is a soil survey geographic database at [USDA Soils Data Gateway](https://gdg.sc.egov.usda.gov/)
 # 
 # You can also access from WSS in the navigation column [USDA Web Soil Survey](https://websoilsurvey.nrcs.usda.gov/app/)
+# 
+# An alternative is to use CN Generator Plug-In
+# 
+# 
 
 # In[ ]:
 
