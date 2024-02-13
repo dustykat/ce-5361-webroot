@@ -63,7 +63,13 @@ print("Capillary Rise ",round(capillary_rise,3)," m")
 # 
 # An alternative is to use CN Generator Plug-In
 # 
+# ![](SA-001.png)
 # 
+# ![](SA-002.png)
+# 
+# ![](SA-003.png)
+# 
+# ![](SA-004.png)
 
 # In[ ]:
 
