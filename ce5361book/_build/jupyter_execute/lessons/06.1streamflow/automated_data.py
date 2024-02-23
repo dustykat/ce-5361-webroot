@@ -144,7 +144,7 @@ def retrieve_and_save_data(url, filename):
                 # Assume 1.2 seconds download time if total_size is zero
                 elapsed_time = time.time() - start_time
                 progress = min(100, elapsed_time / 1.2 * 100)
-            print(f"Estimated downloading progress: {progress:.1f}%\r", end='')
+#            print(f"Estimated downloading progress: {progress:.1f}%\r", end='') 
     print("\nData saved to:", filename)
     return filename
 
@@ -165,25 +165,29 @@ save_directory = './' # suppress and actiovate above for interactive
 # :::{note}
 # Here is the interactive part (activate for interactive)
 # :::
-#--------------------------------------------------------------------------
-#                          Define the inputs
-#--------------------------------------------------------------------------
-print(" ------------------------------------------",
-        "\n Please provide the following information:",
-        "\n ------------------------------------------")
 
+# ```
+# #--------------------------------------------------------------------------
+# #                          Define the inputs
+# #--------------------------------------------------------------------------
+# print(" ------------------------------------------",
+#         "\n Please provide the following information:",
+#         "\n ------------------------------------------")
+# 
+# 
+# # activate code below and suppress above 3 lines for interactive
+# #station_code = input('- USGS station ID: ')
+# #start_date = get_date_input('- Start Date (yyyy-mm-dd): ')
+# #end_date = get_date_input('- End Date (yyyy-mm-dd): ')
+# 
+# 
+# 
+# #--------- !!! Define the directory where the data will be saved !!! -----------
+# default_directory = r"C:\Users\mbaraka\OneDrive - Texas Tech University\Thesis file"  # To be defined!
+# 
+# save_directory = get_save_directory_input(default_directory)
+# ```
 
-# activate code below and suppress above 3 lines for interactive
-#station_code = input('- USGS station ID: ')
-#start_date = get_date_input('- Start Date (yyyy-mm-dd): ')
-#end_date = get_date_input('- End Date (yyyy-mm-dd): ')
-
-
-
-#--------- !!! Define the directory where the data will be saved !!! -----------
-default_directory = r"C:\Users\mbaraka\OneDrive - Texas Tech University\Thesis file"  # To be defined!
-
-save_directory = get_save_directory_input(default_directory)
 # :::{note}
 # Here get the file from the remote
 # :::
@@ -200,8 +204,4 @@ url1 = build_url1(station_code, start_date, end_date)
 filename1 = retrieve_and_save_data(url1, os.path.join(save_directory, f'USGS_Data_for_{station_code}.txt'))
 
 
-# In[ ]:
-
-
-
-
+# **BUILD IN PROGRESS**
