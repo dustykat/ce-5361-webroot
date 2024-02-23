@@ -35,18 +35,18 @@
 # 
 # Several data sources useful for hydrologic analysis and modeling are listed in the following subsections. Many databases are compiled and managed by agencies of the Federal Government. In addition, many States and localities maintain websites that include similar or identical data to that from the Federal sites. Some include additional State or local data, such as high-resolution urban aerial imagery, high-resolution LiDAR (Light Detection and Ranging) elevation data, or LiDAR-based digital elevation models (DEMs).
 
-# #### Streamflow and Flood Data
+# ### Streamflow and Flood Data
 # 
 # The U.S. Geological Survey (USGS) collects and documents streamflow data and is the major source of this information. Their database holds mean daily-discharge data for tens of thousands of locations. USGS compiles and publishes these data in both print publications and on the USGS website. The database contains a peak flow data retrieval capability that provides pertinent characteristics of the station and drainage area and a listing of both peak annual and secondary floods by water year (October through September).
 # The U.S. Army Corps of engineering hydrologists (USACE), the U.S. Bureau of Reclamation (USBR), and the International Boundary and Water Commission also collect streamflow data. Along with the USGS, these agencies account for about 90 percent of the streamflow data available in the United States. Other sources of this data are local governments, utility companies, water-intensive industries, and academic or research institutions.
 # Historical records or accounts are another source of flood data. Floods are noteworthy events and, very often, after a flood occurs, specific information such as high water elevations are recorded. Other sources of such information include newspapers, magazines, State historical societies or universities, and publications by any of several Federal agencies. Previous storms or flood events of historic proportion have been very thoroughly documented by the USGS, the USACE, and the National Weather Service (NWS). USGS reports documenting historic floods are summarized by Thomas (1987).
 
-# #### Precipitation Data
+# ### Precipitation Data
 # The major source of precipitation data is the NWS which is part of the National Oceanic and Atmospheric Administration (NOAA). Precipitation and other measurements are taken at approximately 20,000 locations each day. The measurements are fed through the Weather Service Forecast Offices (WSFOs), which serve each of the 50 States and Puerto Rico. Each WSFO uses these data and information obtained via satellite and other means to forecast the weather for its area of responsibility. In addition to the WSFOs, the NWS maintains a network of River Forecast Centers that prepare river and flood forecasts for about 2,500 communities. The data collected by the NWS and other organizations within NOAA are sent to the National Climatic Data Center (NCDC), which is responsible for collecting, processing, and disseminating environmental data. Online data sources include, but are not limited to:
 # 1. NOAA Atlas 14. Precipitation depth-duration-frequency (DDF) information.
 # 2. NCDC. Historical climatic data.
 
-# #### Land Use/Land Cover and Soils Data
+# ### Land Use/Land Cover and Soils Data
 # Land use data are available in different forms such as topographic maps, aerial photographs such as those available from the National Agricultural Imagery Program (NAIP), zoning maps, and Landsat images. These different forms of data are available, usually online, from many different sources such as State, regional, or municipal planning organizations, the USGS, and the Natural Resource Economic Division, Water Branch, of the Department of Agriculture.
 # The Multi-Resolution Land Characteristics (MRLC) consortium developed and maintains the National Land Cover Database (NLCD), which is a collection of datasets of land cover types. The MRLC is a group of Federal agencies who coordinate and generate consistent and relevant land cover information at the national scale for a wide variety of environmental, land management, and modeling applications.
 # Specific online soils datasets from the Natural Resource Conservation Service (NRCS) include:
@@ -54,7 +54,7 @@
 # 2. gSSURGO. A toolbox for ArcGIS that facilitates the detailed geographic information systems (GIS) mapping of many soil properties (e.g., saturated hydraulic conductivity, hydrologic soil group, detailed textural description) on a State-by-State basis.
 # 3. STATSGO: a general soil map of the United States, less detailed than SSURGO.
 
-# #### Topographic, Stream Hydrography, and Watershed Boundaries
+# ### Topographic, Stream Hydrography, and Watershed Boundaries
 # The USGS National Geospatial Program provides a general geospatial data management program that includes data sources of interest to engineering hydrologists and hydrologists:
 # 1. National Elevation Dataset (NED). A DEM raster representing the ground surface at a minimum resolution of 1 arc-second of latitude/longitude (approximately 30 meters) of the entire United States.
 # 2. USGS 3D Elevation Program- Nationwide LiDAR high-resolution elevation data collection program/
@@ -62,20 +62,20 @@
 # 4. National Hydrography Dataset (NHD). A GIS database of streams and stream data.
 # 5. Watershed Boundary Dataset. Delineated major and minor stream watersheds as GIS polygons.
 
-# #### Aerial Images
+# ### Aerial Images
 # Aerial images provide information on historical and current land cover and land use. Sources include:
 # 1. NAIP. Georeferenced high-resolution digital aerial imagery acquired periodically (currently on a three-year cycle) from the U.S. Department of Agriculture (USDA) Farm Service Agency.
 # 2. Historical Aerial Imagery from the Aerial Photography Field Office. Aerial photos with some available back into the 1950s.
 # 3. NOAA satellite imagery.
 # 4. NASA Landsat Thematic Mapper. Satellite imagery beginning in 1972 to the present. Used for land use/land cover and other data through remote sensing analysis.
 
-# #### Environmental Resources
+# ### Environmental Resources
 # Hydrologic analysis objectives may include assessment of the impacts on environmental resources such as wetlands, habitat, and others. Online data sources include:
 # 1. National Wetlands Inventory from the U.S. Fish and Wildlife Service (USFWS).
 # 2. Critical Habitat for endangered species from the USFWS.
 # 3. U.S. Environmental Protection Agency (USEPA) Environmental Dataset Gateway.
 
-# #### Drainage Complaints and Maintenance Records
+# ### Drainage Complaints and Maintenance Records
 # Another potential source of information for hydrologic analysis are drainage complaints and maintenance records. These records provide observational information about flood experiences of citizens and landowners as well as records of maintenance types and frequencies. Drainage complaints result from real or perceived deficiencies of stormwater management and flooding that can provide designers with insight into the performance of existing facilities.
 # 
 # >State and local Departments of Transportation (DOTs) address drainage complaints in a timely and professional manner both to maintain collaborative relationships with stakeholder and to ensure that accurate information is recorded. Complaints may come in the form of a telephone call, email, letter, or personal visit. Drainage complaints lodged by members of the general public are often not well documented by the complainant and may not be well described. It is helpful to have instructions in place for ensuring that the complaint is directed to an appropriate office in a timely manner.
@@ -84,7 +84,7 @@
 # >
 # >The investigator may review design plans, as-built plans, and maintenance records for comparison with the site characteristics, as well as adjacent land development and use information. Depending on the characteristics of the situation, the investigator documents findings in a memorandum or report.
 
-# ### Site Reconnaissance and Field Data Collection
+# ## Site Reconnaissance and Field Data Collection
 # 
 # Every engineering hydrologisting problem is unique, and relying on rote application of standardized procedures, without due appreciation of the characteristics of the site, is risky at best. Field surveys or site investigations provide valuable information, even for the most preliminary analysis or simplest designs. Designers use site reconnaissance as a primary source of site data and to gain firsthand experience with the site. Under all circumstances, safety of both the investigating person and the public is of paramount importance; standard safety protocols for site investigations may be developed by an agency if needed.
 # 

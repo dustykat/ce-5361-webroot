@@ -16,7 +16,7 @@
 # 
 # 1. [Baraka, M. 2024, Watershed Delineation in QGIS: A Summary Guide](http://54.243.252.9/ce-5361-webroot/3-Readings/Hydrology_GIS_part1.pdf)
 # 1. [Brutsaert, W., 2005, Hydrology: An Introduction. Cambridge University Press](https://www.amazon.com/Hydrology-Introduction-Wilfried-Brutsaert/dp/0521824796/ref=sr_1_1?crid=26239UVBUDNRC&keywords=hydrology+an+introduction+brusehart&qid=1697843874&sprefix=hydrology+an+introduction+brusehart%2Caps%2C84&sr=8-1)
-# 2. [Chow, V.T., Maidment, D.R., Mays, L.W., 1988, Applied Hydrology.  New York, McGraw-Hill. ](http://54.243.252.9/ce-5361-webroot/3-Readings/CMM1988/Applied%20Hydrology%20VT%20Chow%201988.pdf) 
+# 2. [Chow, V.T., Maidment, D.R., Mays, L.W., 1988, Applied Hydrology.  New York, McGraw-Hill. ](http://54.243.252.9/ce-5361-webroot/3-Readings/01CMM1988/Applied%20Hydrology%20VT%20Chow%201988.pdf) 
 # 1. [Watersheds - McCuen](http://54.243.252.9/ce-3354-webroot/3-Readings/McCuen-Watersheds/McCuen-Watersheds.pdf)
 # 2. [How to Delineate a Watershed](http://54.243.252.9/ce-3354-webroot/3-Readings/NewHampshire-Watersheds/Topowatershed.pdf)
 # 3. [How To Measure Path](http://54.243.252.9/ce-3354-webroot/3-Readings/HowToMeasurePath/HowToMeasurePath.pdf)

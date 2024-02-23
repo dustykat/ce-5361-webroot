@@ -127,6 +127,11 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../03.1qgis/qgis.html">
+     3.1 QGIS
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../03watersheds/delineationbyGIS.html">
      Delineation (using GIS)
     </a>
@@ -171,8 +176,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../05.1infiltration/gis-soils.html">
+     GIS Soils Properties
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../05.2evaporation/evaporation.html">
-     5.2 Evaporatranspiration
+     5.2 Evapotranspiration
     </a>
    </li>
    <li class="toctree-l2">
@@ -195,6 +205,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../06streamflow/streamflowdata.html">
      Streamflow Data Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06.1streamflow/automated_data.html">
+     Automated Data Retreival
     </a>
    </li>
   </ul>
@@ -643,7 +658,7 @@ The subsurface system is the part that is below this plane.</p>
 <p>Expressed as a simple system diagram it would be depicted in the figure below</p>
 <p><img alt="" src="../../_images/system_diagram1.png" /></p>
 <blockquote>
-<div><p>The water cycle, also called the <em>hydrologic cycle</em>, refers to the pathway of water in nature, as it moves in its different phases through the atmosphere, down over and through the land, to the ocean and back up to the atmosphere. When atmospheric water vapor condenses and precipitates over land, initially it moistens the surface and some amount of it is stored as <em>interception</em>, which later evaporates. As <em>precipitation</em> (and in a similar way snowmelt) continues, part of it may flow over the surface in the form of <em>overland flow</em> or <em>surface runoff</em>, and part of it may enter into the soil as <em>infiltration</em>. This surface runoff soon tends to collect locally, either in puddles or small ponds as <em>depression storage</em>, or in gullies or larger channels where it continues as <em>streamflow</em>, which ultimately ends up in a larger water body, such as a lake or the ocean. Streamflow is normally described by a <em>hydrograph</em>, that is the rate of flow at a gaging station as a function of time. The infiltrated water may flow rapidly through the near-surface soil layers to exit into springs or adjacent streams, or it may percolate more slowly through the profile to join the <em>groundwater</em>, which sooner or later seeps out into the natural river system, lakes and other open water bodies; part of the infiltrated water is retained in the soil profile by capillarity and other factors, where it is available for uptake by the roots of vegetation. <br><br>Soil layers and other geologic formations, whose pores and interstices can transmit water, are called <em>aquifers</em>. When an aquifer is in direct contact with the land surface, it is referred to as <em>unconfined</em>. The locus of points in an unconfined aquifer, where the water pressure is atmospheric, is called the <em>water table</em>. Although the water table is not a true free surface separating a saturated zone from a dry zone, it is sometimes assumed to be the upper boundary of the groundwater in an unconfined aquifer. The partly saturated zone in an unconfined aquifer, between the water table and the ground surface, is sometimes referred to as the <em>vadose zone</em>. In an unconfined aquifer, the term <em>groundwater</em> refers usually to the water found below the water table; <em>soil water</em> or <em>soil moisture</em> refers to the water above the water table. A water bearing geologic formation, that is separated from the surface by an impermeable layer, is referred to as a <em>confined aquifer</em>. Streamflow is fed both by surface runoff and by subsurface flow from riparian (i.e. located along the banks) aquifers. The streamflow, resulting from groundwater outflow is often called <em>base flow</em>; in the absence of <em>storm flow</em> or <em>storm runoff</em> caused by precipitation, base flow is also referred to as <em>drought flow</em> or fair weather flow.<br><br> Finally, the hydrologic cycle is closed by <em>evaporation</em>, which returns the water, while in transit in the different flow paths and stages of storage along the way, back into the atmosphere. When evaporation takes place through the stomates of vegetation, it can be referred to as <em>transpiration</em>. Direct evaporation from open water or soil surfaces and transpiration of biological water from plants are not easy to separate; therefore the combined process is sometimes called <em>evapotranspiration</em>. Evaporation of ice is commonly referred to as <em>sublimation</em>. While these distinctions are useful at times, the term evaporation is usually adequate to describe all processes of vaporization. <br><br> <span class="xref myst">Brutsaert, Wilfried. Hydrology . Cambridge University Press. Kindle Edition.</span></p>
+<div><p>The water cycle, also called the <em>hydrologic cycle</em>, refers to the pathway of water in nature, as it moves in its different phases through the atmosphere, down over and through the land, to the ocean and back up to the atmosphere. When atmospheric water vapor condenses and precipitates over land, initially it moistens the surface and some amount of it is stored as <em>interception</em>, which later evaporates. As <em>precipitation</em> (and in a similar way snowmelt) continues, part of it may flow over the surface in the form of <em>overland flow</em> or <em>surface runoff</em>, and part of it may enter into the soil as <em>infiltration</em>. This surface runoff soon tends to collect locally, either in puddles or small ponds as <em>depression storage</em>, or in gullies or larger channels where it continues as <em>streamflow</em>, which ultimately ends up in a larger water body, such as a lake or the ocean. Streamflow is normally described by a <em>hydrograph</em>, that is the rate of flow at a gaging station as a function of time. The infiltrated water may flow rapidly through the near-surface soil layers to exit into springs or adjacent streams, or it may percolate more slowly through the profile to join the <em>groundwater</em>, which sooner or later seeps out into the natural river system, lakes and other open water bodies; part of the infiltrated water is retained in the soil profile by capillarity and other factors, where it is available for uptake by the roots of vegetation. <br><br>Soil layers and other geologic formations, whose pores and interstices can transmit water, are called <em>aquifers</em>. When an aquifer is in direct contact with the land surface, it is referred to as <em>unconfined</em>. The locus of points in an unconfined aquifer, where the water pressure is atmospheric, is called the <em>water table</em>. Although the water table is not a true free surface separating a saturated zone from a dry zone, it is sometimes assumed to be the upper boundary of the groundwater in an unconfined aquifer. The partly saturated zone in an unconfined aquifer, between the water table and the ground surface, is sometimes referred to as the <em>vadose zone</em>. In an unconfined aquifer, the term <em>groundwater</em> refers usually to the water found below the water table; <em>soil water</em> or <em>soil moisture</em> refers to the water above the water table. A water bearing geologic formation, that is separated from the surface by an impermeable layer, is referred to as a <em>confined aquifer</em>. Streamflow is fed both by surface runoff and by subsurface flow from riparian (i.e. located along the banks) aquifers. The streamflow, resulting from groundwater outflow is often called <em>base flow</em>; in the absence of <em>storm flow</em> or <em>storm runoff</em> caused by precipitation, base flow is also referred to as <em>drought flow</em> or fair weather flow.<br><br> Finally, the hydrologic cycle is closed by <em>evaporation</em>, which returns the water, while in transit in the different flow paths and stages of storage along the way, back into the atmosphere. When evaporation takes place through the stomates of vegetation, it can be referred to as <em>transpiration</em>. Direct evaporation from open water or soil surfaces and transpiration of biological water from plants are not easy to separate; therefore the combined process is sometimes called <em>evapotranspiration</em>. Evaporation of ice is commonly referred to as <em>sublimation</em>. While these distinctions are useful at times, the term evaporation is usually adequate to describe all processes of vaporization. <br><br></p>
 </div></blockquote>
 <hr><div class="section" id="hydrologic-balance">
 <h2>Hydrologic Balance:<a class="headerlink" href="#hydrologic-balance" title="Permalink to this headline">¶</a></h2>
@@ -935,7 +950,7 @@ Storage at End Time 33.56  acre-feet
 <li><p><a class="reference external" href="https://www.waveland.com/browse.php?t=384">Gupta, R.S., 2017. Hydrology and Hydraulic Systems, pp 39-46</a></p></li>
 <li><p><a class="reference external" href="https://www.usgs.gov/special-topics/water-science-school/science/fundamentals-water-cycle">Hydrologic cycle (USGS)</a>.</p></li>
 <li><p><a class="reference external" href="https://www.youtube.com/watch?v=al-do-HGuIk">Hydrologic Cycle (NSF) - YouTube Video</a></p></li>
-<li><p><a class="reference external" href="http://54/243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture02.pdf">Cleveland, T.G. (2017) Engineering Hydrology <em>Lecture Notes from 2017</em></a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/1-Lectures-2017/Lecture02.pdf">Cleveland, T.G. (2017) Engineering Hydrology <em>Lecture Notes from 2017</em></a></p></li>
 </ol>
 </div>
 <div class="section" id="self-study-tasks">

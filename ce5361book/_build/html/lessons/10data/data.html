@@ -95,11 +95,6 @@
 </ul>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../00syllabus/ce-5361-syllabus-2024-1.html">
-   Syllabus
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../01overview/overview.html">
    1. Introduction
   </a>
@@ -127,6 +122,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../03watersheds/delineationbyDEM.html">
      Delineation (Homebrew DEM)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../03.1qgis/qgis.html">
+     3.1 QGIS
     </a>
    </li>
    <li class="toctree-l2">
@@ -174,8 +174,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../05.1infiltration/gis-soils.html">
+     GIS Soils Properties
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../05.2evaporation/evaporation.html">
-     5.2 Evaporatranspiration
+     5.2 Evapotranspiration
     </a>
    </li>
    <li class="toctree-l2">
@@ -200,7 +205,17 @@
      Streamflow Data Modeling
     </a>
    </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06.1streamflow/automated_data.html">
+     Automated Data Retreival
+    </a>
+   </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../07runoffmechanisms/runoffmechanisms.html">
+   7. Surface-Runoff Mechanics
+  </a>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../08hydrographs/hydrographs.html">
@@ -289,6 +304,16 @@
   </ul>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../13hechms/HMSintro.html">
+   13. HEC-HMS Introduction
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../14swmm/swmm-intro.html">
+   14. Introduction to SWMM
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../12morphology/morphology.html">
    River Morphology and Channel Dynamics
   </a>
@@ -348,18 +373,8 @@
   </ul>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../lesson06.1/HMSintro.html">
-   HEC-HMS Introduction
-  </a>
- </li>
- <li class="toctree-l1">
   <a class="reference internal" href="../21watershedplanning/watershedplanning.html">
    Watershed Planning
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../workshops/workshop3.html">
-   Workshop #3
   </a>
  </li>
 </ul>
@@ -526,12 +541,12 @@
      Drainage Complaints and Maintenance Records
     </a>
    </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#site-reconnaissance-and-field-data-collection">
-     Site Reconnaissance and Field Data Collection
-    </a>
-   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#site-reconnaissance-and-field-data-collection">
+   Site Reconnaissance and Field Data Collection
+  </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#data-evaluation-and-documentation">
@@ -676,8 +691,9 @@ Specific online soils datasets from the Natural Resource Conservation Service (N
 <p>The investigator may review design plans, as-built plans, and maintenance records for comparison with the site characteristics, as well as adjacent land development and use information. Depending on the characteristics of the situation, the investigator documents findings in a memorandum or report.</p>
 </div></blockquote>
 </div>
+</div>
 <div class="section" id="site-reconnaissance-and-field-data-collection">
-<h3>Site Reconnaissance and Field Data Collection<a class="headerlink" href="#site-reconnaissance-and-field-data-collection" title="Permalink to this headline">¶</a></h3>
+<h2>Site Reconnaissance and Field Data Collection<a class="headerlink" href="#site-reconnaissance-and-field-data-collection" title="Permalink to this headline">¶</a></h2>
 <p>Every engineering hydrologisting problem is unique, and relying on rote application of standardized procedures, without due appreciation of the characteristics of the site, is risky at best. Field surveys or site investigations provide valuable information, even for the most preliminary analysis or simplest designs. Designers use site reconnaissance as a primary source of site data and to gain firsthand experience with the site. Under all circumstances, safety of both the investigating person and the public is of paramount importance; standard safety protocols for site investigations may be developed by an agency if needed.</p>
 <p>Before the site visit, a desktop search of the data sources introduced in the previous section typically results in acquiring maps, imagery, elevation and topographic information, information on vegetative cover, potential biological issues including protected animals and plants. With such information, the engineering hydrologist plans the site visit with less likelihood of surprises on arriving at the site. During a site visit, the designer identifies, observes, and documents hydrology-related factors including:</p>
 <ul class="simple">
@@ -708,7 +724,6 @@ To maximize the usefulness of field site survey data, suggested procedures might
 <li><p>When possible, having those responsible for the design attend the site visit.
 Though the site visit is important, the engineering hydrologist will wish to augment it with additional information from other reliable sources through desktop analyses before and after the site visit.</p></li>
 </ul>
-</div>
 </div>
 <div class="section" id="data-evaluation-and-documentation">
 <h2>Data Evaluation and Documentation<a class="headerlink" href="#data-evaluation-and-documentation" title="Permalink to this headline">¶</a></h2>

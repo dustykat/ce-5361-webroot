@@ -29,6 +29,7 @@ chapters:
 - file: lessons/06streamflow/streamflow # streamflow
   sections:
   - file: lessons/06streamflow/streamflowdata
+  - file: lessons/06.1streamflow/automated_data
 
 - file: lessons/07runoffmechanisms/runoffmechanisms # streamflow
 ################################################################

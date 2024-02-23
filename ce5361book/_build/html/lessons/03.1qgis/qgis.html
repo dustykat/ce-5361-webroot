@@ -176,8 +176,13 @@
     </a>
    </li>
    <li class="toctree-l2">
+    <a class="reference internal" href="../05.1infiltration/gis-soils.html">
+     GIS Soils Properties
+    </a>
+   </li>
+   <li class="toctree-l2">
     <a class="reference internal" href="../05.2evaporation/evaporation.html">
-     5.2 Evaporatranspiration
+     5.2 Evapotranspiration
     </a>
    </li>
    <li class="toctree-l2">
@@ -200,6 +205,11 @@
    <li class="toctree-l2">
     <a class="reference internal" href="../06streamflow/streamflowdata.html">
      Streamflow Data Modeling
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../06.1streamflow/automated_data.html">
+     Automated Data Retreival
     </a>
    </li>
   </ul>
@@ -648,7 +658,7 @@
 <ol class="simple">
 <li><p><a class="reference external" href="http://54.243.252.9/ce-5361-webroot/3-Readings/Hydrology_GIS_part1.pdf">Baraka, M. 2024, Watershed Delineation in QGIS: A Summary Guide</a></p></li>
 <li><p><a class="reference external" href="https://www.amazon.com/Hydrology-Introduction-Wilfried-Brutsaert/dp/0521824796/ref=sr_1_1?crid=26239UVBUDNRC&amp;keywords=hydrology+an+introduction+brusehart&amp;qid=1697843874&amp;sprefix=hydrology+an+introduction+brusehart%2Caps%2C84&amp;sr=8-1">Brutsaert, W., 2005, Hydrology: An Introduction. Cambridge University Press</a></p></li>
-<li><p><a class="reference external" href="http://54.243.252.9/ce-5361-webroot/3-Readings/CMM1988/Applied%20Hydrology%20VT%20Chow%201988.pdf">Chow, V.T., Maidment, D.R., Mays, L.W., 1988, Applied Hydrology.  New York, McGraw-Hill. </a></p></li>
+<li><p><a class="reference external" href="http://54.243.252.9/ce-5361-webroot/3-Readings/01CMM1988/Applied%20Hydrology%20VT%20Chow%201988.pdf">Chow, V.T., Maidment, D.R., Mays, L.W., 1988, Applied Hydrology.  New York, McGraw-Hill. </a></p></li>
 <li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/McCuen-Watersheds/McCuen-Watersheds.pdf">Watersheds - McCuen</a></p></li>
 <li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/NewHampshire-Watersheds/Topowatershed.pdf">How to Delineate a Watershed</a></p></li>
 <li><p><a class="reference external" href="http://54.243.252.9/ce-3354-webroot/3-Readings/HowToMeasurePath/HowToMeasurePath.pdf">How To Measure Path</a></p></li>
@@ -795,7 +805,7 @@ Now to see if the install is complete enough work through the <a class="referenc
 <p>Here we do step-by-step example of the previous watershed(s).  The steps are those outlined in  <a class="reference external" href="http://54.243.252.9/ce-5361-webroot/3-Readings/Hydrology_GIS_part1.pdf">Baraka, M. 2024, Watershed Delineation in QGIS: A Summary Guide</a></p>
 <p>The SAGANG package was manually installed using guidance from <a class="reference external" href="https://www.youtube.com/watch?v=VKdaripCups">How to manual install SAGA 9.1 (YouTube) </a>. Other plug-ins are installed using the Plug-in manager menu.</p>
 <p>First start with the Florida Topographic Map</p>
-<p><img alt="" src="../../_images/pourpoint1.png" /></p>
+<p><img alt="" src="../../_images/pourpoint.png" /></p>
 <p>Then we need to locate the area - it turns out that the Moore Pond feature is near Tallahassee Fl.  (Used Google to find that out!)</p>
 <p><img alt="" src="../../_images/moorepond1.png" /></p>
 <p>Then zoom out</p>
@@ -878,7 +888,7 @@ Specify the output vector as shapefile (SHP)</p>
 <p>Here we render the delineation - the vector polygon, which has use later on (and is the whole point of synthetic hydrograph generation).</p>
 <p><img alt="" src="../../_images/FloridaGISDelineation.png" /></p>
 <p><strong>Compare to Manual Delineation</strong></p>
-<p><img alt="" src="../../_images/completed-delineation1.png" /></p>
+<p><img alt="" src="../../_images/completed-delineation.png" /></p>
 </div>
 <div class="section" id="export-the-dem-masked-by-polygon">
 <h3>Export the DEM (Masked by Polygon)<a class="headerlink" href="#export-the-dem-masked-by-polygon" title="Permalink to this headline">¶</a></h3>

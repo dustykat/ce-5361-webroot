@@ -5,14 +5,14 @@
 # 
 # Baseflow separation is a first step in analysis – several methods
 # 
-# ### Constant discharge method
+# ## Constant discharge method
 # 
 # ![](constantdischarge.png)
 # 
 # - When rising limb starts – declare that value to constant rate during the event, rejoin as recession limb.
 # - All flow above the value is declared storm flow
 # 
-# ### Constant slope method
+# ## Constant slope method
 # 
 # ![](constantslope.png)
 # 
@@ -21,7 +21,7 @@
 # declared storm flow
 # - Hard to implement for multiple peak hydrographs (real hydrographs may exhibit many peaks)
 # 
-# ### Concave method
+# ## Concave method
 # 
 # ![](concave.png)
 # 
@@ -33,12 +33,7 @@
 # There are a few more ways to accomplish baseflow separation
 # - The master-depletion curve method is outlined in the readings
 # - For many practical cases with multiple peaked hydrographs the constant discharge method is probably the most straightforward to apply (or use continuous simulation techniques – outside scope this course)
-# 
-# 
-# 
 
-# 
-# 
 # ## Summary concepts
 # 
 # - Base-flow separation isolates the total discharge from the storm-induced discharge
