@@ -11,7 +11,7 @@
 # Automated-retrieval info: https://help.waterdata.usgs.gov/faq/automated-retrievals
 #
 # Contact:   gs-w_waterdata_support@usgs.gov
-# retrieved: 2024-02-22 19:29:23 EST       (nadww01)
+# retrieved: 2024-02-23 14:54:03 EST       (nadww01)
 #
 # Data for the following 1 site(s) are contained in this file
 #    USGS 07297910 Pr Dog Twn Fk Red Rv nr Wayside, TX

@@ -204,4 +204,259 @@ url1 = build_url1(station_code, start_date, end_date)
 filename1 = retrieve_and_save_data(url1, os.path.join(save_directory, f'USGS_Data_for_{station_code}.txt'))
 
 
-# **BUILD IN PROGRESS**
+# ## STATISTICS, HISTOGRAM AND FLOW DURATION CURVE
+# 
+# - **Data Processing:**
+# 
+# To begin with, the script processes text data saved previously, creating a DataFrame. It extracts relevant information such as agency code, site number, datetime, flow rate, and flag.
+# 
+# - **Statistical Analysis:**
+#   
+# The script performs statistical analysis on the flow rate data, calculating various metrics like median, mean, standard deviation, variance, minimum, maximum, quartiles, and interquartile range. It identifies and counts outliers based on the interquartile range method.
+# 
+# - **Plotting:**
+# 
+# The script plots two types of graphs:
+#  1. Flow Frequency Histogram with KDE (Kernel Density Estimation):
+# 
+# Plots the distribution of flow rates against frequency. Uses Kernel Density Estimation (KDE) for smooth estimation of the probability density function.
+# 
+# $$ P(x) = \frac{1}{n h} \sum_{i=1}^{n} K\left(\frac{x-x_i}{h}\right) $$
+# 
+# where $P(x)$ is the density estimate at point $x$, $n$ is the number of data points, $h$ is the bandwidth, $x_i$ are the data points, and $K$ is the kernel function.
+#     
+#  2. Flow Duration Curve (FDC) with Weibull formula and legend:
+# 
+# Plots the flow rate against the probability of exceedance or equality. Computes the cumulative probability using the Gringorten method, a generalized version of the Weibull formula, defined as follows:
+# $$ P(X \geq x) = \left(1 - \left(\frac{i-0.4}{n+0.2}\right)\right) \times 100 $$
+# 
+# where $P(X \geq x)$ is the cumulative probability of exceeding or equaling $x$, $i$ is the rank of the data point, and $n$ is the total number of data points.
+# 
+# 
+# *Note: Both plots are customized with appropriate labels, titles, gridlines, and legends.*
+# 
+# - **Outputs:**
+#   
+# The script generates CSV files containing processed data and statistical analysis results. It also saves PNG images of the flow frequency histogram and flow duration curve.
+# 
+# - **Libraries Used:**
+#   
+#     1. pandas: For data manipulation and analysis.
+#     2. numpy: For mathematical operations.
+#     3. matplotlib.pyplot: For plotting graphs.
+#     4. seaborn: For enhanced data visualization.
+#     5. io: For handling file I/O operations.
+
+# :::{note}
+# Load the modules (libraries)
+# :::
+
+# In[8]:
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+import io
+
+
+# :::{note}
+# Function to process the download data and build a pandas dataframe.
+# :::
+
+# In[9]:
+
+
+#------------------------------------------------------------------------
+# Process data from a text file and return a cleaned DataFrame for Website 1
+def process_website1_data(filename, station_code):
+    data = []
+    with open(filename, 'r') as file:
+        for line in file:
+            if line.startswith("USGS"):
+                parts = line.split("\t")
+                agency_cd, site_no, datetime, flow_rate, flag = parts[:5]
+                data.append([agency_cd, site_no, datetime, flow_rate, flag])
+
+    df = pd.DataFrame(data, columns=['agency_cd', 'site_no', 'datetime', 'flow_rate', 'flag'])
+    df['datetime'] = pd.to_datetime(df['datetime'], errors='coerce')
+    df['flow_rate'] = pd.to_numeric(df['flow_rate'], errors='coerce')
+    df.set_index('datetime', inplace=True)
+    
+    # Filter and keep rows where 'flag' is not equal to "P"
+    df = df[df['flag'] != 'P\n']
+    
+    df.dropna(subset=['flow_rate'], inplace=True)
+
+    csv_filename1 = os.path.join(save_directory, f'{station_code}_flow_data.csv')
+    df.to_csv(csv_filename1)
+    
+    return df
+
+
+# :::{note}
+# Function to analyze the pandas dataframe, report relevant statistics, and save the results to a CSV file
+# :::
+
+# In[10]:
+
+
+#------------------------------------------------------------------------
+def analyze_data(df):
+    """
+    Performs statistical analysis on the flow rate data and saves the results to a CSV file.
+
+    Parameters:
+    df (DataFrame): DataFrame containing flow rate data.
+    """
+    sample_size = len(df)
+    median = df['flow_rate'].median()
+    mean = df['flow_rate'].mean()
+    std = df['flow_rate'].std()
+    variance = df['flow_rate'].var()
+    minimum = df['flow_rate'].min()
+    maximum = df['flow_rate'].max()
+    first_quartile = df['flow_rate'].quantile(0.25)
+    third_quartile = df['flow_rate'].quantile(0.75)
+    interquartile_range = third_quartile - first_quartile
+    
+    # Calculate number of outliers
+    outliers = df[(df['flow_rate'] < first_quartile - 1.5 * interquartile_range) | (df['flow_rate'] > third_quartile + 1.5 * interquartile_range)]
+    num_outliers = len(outliers)
+
+    # Display statistics
+    print("--------- Statistics: ----------\n")
+    print(f"-  Sample Size: {sample_size}")
+    print(f"-  Median: {median:.2f}")
+    print(f"-  Mean: {mean:.2f}")
+    print(f"-  Standard Deviation: {std:.2f}")
+    print(f"-  Variance: {variance:.2f}")
+    print(f"-  Minimum: {minimum:.2f}")
+    print(f"-  Maximum: {maximum:.2f}")
+    print(f"-  First Quartile: {first_quartile:.2f}")
+    print(f"-  Third Quartile: {third_quartile:.2f}")
+    print(f"-  Interquartile Range: {interquartile_range:.2f}")
+    print(f"-  Number of Outliers: {num_outliers}")
+    print()
+    
+    # Create DataFrame for statistics
+    statistics_df = pd.DataFrame({
+        'Statistic': ['Sample Size', 'Median', 'Mean', 'Standard Deviation', 'Variance', 'Minimum', 'Maximum', 'First Quartile', 'Third Quartile', 'Interquartile Range', 'Number of Outliers'],
+        'Value': [sample_size, median, mean, std, variance, minimum, maximum, first_quartile, third_quartile, interquartile_range, num_outliers]
+    })
+
+    # Save statistics to CSV file
+    statistics_filename = os.path.join(save_directory, f'{station_code}_statistics.csv')
+    statistics_df.to_csv(statistics_filename, index=False)
+
+
+# :::{note}
+# Function to plot a flow frequency diagram from the dataframe.
+# :::
+
+# In[11]:
+
+
+#------------------------------------------------------------------------
+def plot_flow_frequency_histogram(df):
+    """
+    Plots the flow frequency histogram with a fitted KDE based on the flow rates in the DataFrame.
+
+    Parameters:
+    df (DataFrame): DataFrame containing flow rate data.
+    """
+    plt.figure(figsize=(9, 6))
+    ax = sns.histplot(df['flow_rate'], bins=80, kde=True, edgecolor='black')
+    kde_color = 'red'
+    kde_alpha = 0.5
+    ax.get_lines()[0].set_color(kde_color)
+    ax.get_lines()[0].set_alpha(kde_alpha)
+    ax.set_title('Flow Frequency Histogram', fontsize=16)
+    ax.set_xlabel('Flow Rate (cfs)', fontsize=14)
+    ax.set_ylabel('Frequency', fontsize=14)
+    ax.grid(True, which='both', linestyle='--', linewidth=0.5)
+    plt.xticks(fontsize=12)
+    plt.yticks(fontsize=12)
+    plt.tight_layout()  # Ensure tight layout to prevent cropping of labels
+    plt.savefig(os.path.join(save_directory, f'{station_code}_flow_frequency_histogram.png'))
+    plt.show()
+
+
+# :::{note}
+# Function to plot a flow duration curve from the dataframe.
+# :::
+
+# In[12]:
+
+
+#------------------------------------------------------------------------
+def plot_flow_duration_curve(df):
+    """
+    Plots the flow duration curve (FDC).
+
+    Parameters:
+    df (DataFrame): DataFrame containing flow rate data.
+    """
+    # Sort the flow rates in descending order
+    df_sorted = df.sort_values('flow_rate', ascending=False)
+
+    # Compute the cumulative probability
+    # The generalized form proposed by Gringorten (1963) a = 0.4
+    df_sorted['cumulative_probability'] = ((np.arange(len(df_sorted))+0.6) / (len(df_sorted)+1.2)) * 100
+
+    # Plot the flow duration curve
+    fig, ax = plt.subplots(figsize=(9, 6))
+    ax.semilogy(df_sorted['cumulative_probability'], df_sorted['flow_rate'])
+    ax.set_title('Flow Duration Curve', fontsize=18)
+    ax.set_xlabel('Probability of exceedance or equality (\%)', fontsize=16)
+    ax.set_ylabel('Flow Rate ($ft^3/s$)', fontsize=16)
+    ax.grid(which='both')
+
+    # Add legend with the Weibull formula
+    equation = r'$P(X \geq x) = \left(1 - \left(\frac{i-0.4}{n+0.2}\right)\right) \times 100$'
+    #ax.legend(['Flow Duration Curve', f'Weibull Fit: {equation}'], bbox_to_anchor=(0.35, .95), loc='upper left', fontsize=16)
+
+    # Add text box with the Weibull formula
+    ax.text(0.25, 0.8, f'Weilbull formula: {equation}', transform=ax.transAxes, fontsize=16, verticalalignment='top', bbox=dict(facecolor='white', alpha=1))
+
+    plt.tight_layout()  # Ensure tight layout to prevent cropping of labels
+    
+    plt.savefig(os.path.join(save_directory, f'{station_code}_fdc.png'))
+    plt.show()
+
+
+# :::{note}
+# Pocess the download data, build a pandas dataframe; then plot the flood frequency histogram, report summary statistics, and plot the flow duration curve.
+# :::
+
+# In[13]:
+
+
+#--------------------------------------------------------------------------
+#      Preprocess the Retrieved Data and Display the Head Part of it 
+#--------------------------------------------------------------------------
+df1 = process_website1_data(filename1, station_code)
+
+# Display the first few rows of data from Website 1
+print("Data from Website 1:")
+print(df1.head())
+
+#--------------------------------------------------------------------------
+#                                 Plotting 
+#--------------------------------------------------------------------------
+# Plot the flow frequency histogram with a fitted KDE
+plot_flow_frequency_histogram(df1)
+
+# Statistical analysis
+analyze_data(df1)
+
+# Flow duration curve
+plot_flow_duration_curve(df1)
+
+
+# In[ ]:
+
+
+
+
