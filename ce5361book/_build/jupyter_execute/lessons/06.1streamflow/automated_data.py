@@ -455,6 +455,389 @@ analyze_data(df1)
 plot_flow_duration_curve(df1)
 
 
+# ## TEMPORAL PATTERN
+# 
+# **Data Processing:**
+# 
+# After plotting the rating curve, a script is written to process flow rate data stored in the DataFrame generated from the previous step. It calculates yearly means with standard deviations. It also performs linear regression to fit trend lines to the data.
+# 
+# **Plotting:**
+# 
+# Two types of plots are generated:
+#    1. Yearly Moving Averages: Plots the yearly moving averages of flow rate data with error bars representing standard deviations.
+# 
+#    2. A Trend Line (Linear Regression): Fits a trend line to the yearly means using linear regression. The equation of the trend line is of the form: $$ y = mx + c $$
+# 
+# where $m$ is the slope (coefficient), $x$ is the year, and $c$ is the intercept.
+# 
+#    3. Confidence Intervals: Calculates the 95% confidence interval for the trend line using the t-distribution. The formula for the margin of error is: $$ E = t \times \frac{s}{\sqrt{n}} $$
+# 
+# where $E$ is the margin of error, $t$ is the critical t-value, $s$ is the standard deviation of the sample means, and $n$ is the sample size.
+# 
+# **Outputs:**
+# 
+# The script generates two plots: daily flow rates and yearly means with trend lines and confidence intervals. Then the script saves the plot of yearly means as a PNG image.
+# 
+# **Libraries Used:**
+#   1. numpy: For mathematical operations.
+#   2. matplotlib.pyplot: For plotting graphs.
+#   3. scipy.stats.t: For computing t-values for confidence intervals.
+#   4. sklearn.linear_model.LinearRegression: For performing linear regression.
+#  linear regression.
+# 
+
+# In[14]:
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.stats import t
+from sklearn.linear_model import LinearRegression
+
+#------------------------------------------------------------------------
+def plot_yearly_moving_average(df):
+    """
+    Plots the yearly moving averages of flow rate data along with a trend line.
+
+    Parameters:
+    df (DataFrame): DataFrame containing flow rate data.
+    """
+    # Compute yearly moving averages
+    yearly_ma = df['flow_rate'].rolling(window=365, min_periods=1).mean()
+    
+    # Plot data and moving averages
+    plt.figure(figsize=(12, 6))
+    plt.plot(df.index, df['flow_rate'], label='Flow Rate', color='blue', alpha=0.5)
+    plt.plot(yearly_ma.index, yearly_ma, label='Yearly Moving Average', color='red')
+    
+    # Fit a trend line
+    trend_coef = np.polyfit(df.index.to_julian_date(), df['flow_rate'], 1)
+    trend_line = np.poly1d(trend_coef)
+    plt.plot(df.index, trend_line(df.index.to_julian_date()), label='Trend Line', linestyle='--', color='green')
+
+    plt.title('Yearly Moving Averages of Flow Rate with Trend Line')
+    plt.xlabel('Date (years)')
+    plt.ylabel('Flow Rate ($ft^3/s$)')
+    plt.legend()
+    plt.grid(True)
+    plt.show()
+
+#------------------------------------------------------------------------
+def plot_yearly_means_with_trend(df):
+    """
+    Plots the yearly means of flow rate data with error bars (std) and a trend line with shaded confidence intervals.
+    NaN values in flow rate are replaced by the mean of all non-NaN flow rates,
+    and NaN values in standard deviation are replaced by the mean of all non-NaN standard deviations.
+
+    Parameters:
+    df (DataFrame): DataFrame containing flow rate data.
+    """
+    # Compute yearly means and standard deviations
+    yearly_means = df['flow_rate'].resample('Y').mean()
+    yearly_std = df['flow_rate'].resample('Y').std()
+
+    # Replace NaN values in flow rate with the mean of all non-NaN flow rates
+    yearly_means.fillna(yearly_means.mean(), inplace=True)
+    
+    # Replace NaN values in std with the mean of all non-NaN std
+    yearly_std.fillna(yearly_std.mean(), inplace=True)
+    
+    # Prepare data for linear regression
+    X = yearly_means.index.year.values.reshape(-1, 1)
+    y = yearly_means.values
+    
+    # Fit linear regression model
+    model = LinearRegression()
+    model.fit(X, y)
+    
+    # Compute trend line values
+    trend_values = model.predict(X)
+    
+    # Compute overall mean and standard deviation of yearly means
+    overall_mean = yearly_means.mean()
+    overall_std = yearly_means.std()
+    
+    # Compute t-value for a 95% confidence interval with n-1 degrees of freedom
+    t_value = t.ppf(0.975, len(yearly_means) - 1)
+    
+    # Compute margin of error
+    margin_of_error = t_value * overall_std / np.sqrt(len(yearly_means))
+    
+    # Compute upper and lower bounds of the confidence interval for the overall mean
+    upper_bound = trend_values + margin_of_error
+    lower_bound = trend_values - margin_of_error
+    
+    # Plot yearly means with error bars
+    plt.figure(figsize=(10, 6))
+    plt.errorbar(yearly_means.index, yearly_means, yerr=yearly_std, fmt='o', markersize=5, capsize=5, label='Yearly Means ± Std')
+    
+    # Plot trend line
+    plt.plot(yearly_means.index, trend_values, label=f'Trend Line: $y = {model.coef_[0]:.2f}x + ({model.intercept_:.2f})$', linestyle='-', color='green')
+    
+    # Shade confidence interval
+    plt.fill_between(yearly_means.index, lower_bound, upper_bound, color='orange', alpha=0.3, label='95\% Confidence Interval')
+    
+    plt.title('Yearly Means of Flow Rate with Trend Line and Confidence Intervals', fontsize=16)
+    plt.xlabel('Date $(yrs)$', fontsize=16)
+    plt.ylabel('Flow Rate $(ft^3/s)$', fontsize=16)
+    plt.legend(fontsize=14)
+    plt.grid(True)
+    plt.tight_layout()  # Ensure tight layout to prevent cropping of labels
+    plt.savefig(os.path.join(save_directory, f'{station_code}_yearly_mean.png'))
+    plt.show()
+    return #yearly_means
+
+#------------------------------------------------------------------------
+#                         Moving average 
+#------------------------------------------------------------------------
+plot_yearly_moving_average(df1)
+plot_yearly_means_with_trend(df1)
+
+
+# ---
+# 
+# ## Rating Curve
+# 
+# Based on the station code, the script retrieves rating curve data from the USGS website using the station code provided as input. It then fits a rating curve equation of the form $H(Q) = a \cdot Q^b + \frac{1}{c}$ to the data, where $H$ is gage height and $Q$ is discharge. The fitting is performed by minimizing the residuals between the observed and predicted gage heights. The R-squared value is computed as a measure of goodness-of-fit.
+# 
+# ### Outputs:
+# - Plot of the original rating curve data.
+# - Plot of the fitted rating curve along with the equation and R-squared value.
+# - If successful, the script also saves the fitted curve plot as a PNG file.
+# 
+# ### Functions:
+# 1. retrieve_rating_curve_data(station_code): Retrieves and cleans rating curve data from the USGS website.
+# 2. plot_original_data(df_rating): Plots the original rating curve data.
+# 3. objective_function(params, df_rating, equation_func): Objective function to minimize residuals and maximize R-squared.
+# 4. fit_rating_curve(df_rating): Fits the rating curve equation to the data using optimization.
+# 5. plot_fitted_curve(df_rating, params, r_squared): Plots the fitted rating curve along with the equation and R-squared value.
+# 6. main(station_code): Main function to execute the entire process.
+# 
+# ### Libraries Used:
+# - numpy: For mathematical operations.
+# - pandas: For data manipulation.
+# - matplotlib.pyplot: For plotting graphs.
+# - scipy.optimize.minimize: For optimization to fit the curve.
+# - sklearn.metrics.r2_score: For computing the R-squared value.
+# - requests: For retrieving data from the USGS website.
+# om the USGS website.
+# 
+
+# :::{note}
+# Import Libaries
+# :::
+
+# In[15]:
+
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize
+from sklearn.metrics import r2_score
+import requests 
+
+
+# :::{note}
+# Rating equation structure is a power-law model; fitted values are $a$,$b$, and $c$
+# :::
+
+# In[16]:
+
+
+# Define the equation a * Q^b + c
+def rating_equation(Q, a, b, c):
+    return a * np.power(Q, b) + 1/c
+
+
+# :::{note}
+# Retreive rating curve from original database - not are downloading again, so still need the mighty Internet to work!
+# :::
+
+# In[17]:
+
+
+# Retrieve rating curve data
+def retrieve_rating_curve_data(station_code):
+    url = f"https://waterdata.usgs.gov/nwisweb/get_ratings?file_type=exsa&site_no={station_code}"
+    response = requests.get(url)
+    if response.status_code != 200:
+        raise Exception(f"Failed to retrieve data for station code {station_code}.")
+    df = pd.read_csv(response.url, skiprows=29, delimiter="\t", names=["INDEP", "SHIFT", "DEP", "STOR"])
+    df = df[["INDEP", "DEP"]]
+    df.columns = ["Gage Height", "Discharge"]
+    df["Gage Height"] = pd.to_numeric(df["Gage Height"], errors="coerce")
+    df["Discharge"] = pd.to_numeric(df["Discharge"], errors="coerce")
+    df = df.dropna()
+    df = df.sort_values(by="Discharge")
+    return df
+
+
+# :::{note}
+# Plot the rating cruve
+# :::
+
+# In[18]:
+
+
+# Plot the original rating curve data
+def plot_original_data(df_rating):
+    plt.figure(figsize=(10, 6))
+    plt.scatter(df_rating['Discharge'], df_rating['Gage Height'], label='Original data', color='steelblue')
+    plt.xlabel('Discharge $(ft^3/s)$', fontsize=14)
+    plt.ylabel('Gage Height $(ft)$', fontsize=14)
+    plt.title('Original Rating Curve Data', fontsize=16)
+    plt.grid(True)
+    plt.legend(fontsize=16)
+    plt.tight_layout()
+    plt.show()
+
+
+# :::{note}
+# An obective function to be minimized to recover $a$,$b$, and $c$ in rating equation.  Will probably work in log-space so the optimization is OLS.
+# :::
+
+# In[19]:
+
+
+# Objective function to minimize R-squared
+def objective_function(params, df_rating, equation_func):
+    predicted_gage_height = equation_func(df_rating['Discharge'], *params)
+    ss_residuals = np.sum((df_rating['Gage Height'] - predicted_gage_height)**2)
+    ss_total = np.sum((df_rating['Gage Height'] - np.mean(df_rating['Gage Height']))**2)
+    
+    # Check if ss_total is close to zero
+    if ss_total < 1e-10:  # Adjust threshold as needed
+        return -1e10      # Return a large negative value to discourage such solutions
+    
+    r_squared = 1 - (ss_residuals / ss_total)
+    return -r_squared      # Minimize negative R-squared
+
+
+# :::{note}
+# The fitting method - in this case Nelder-Mead downhill simplex method.
+# :::
+
+# In[20]:
+
+
+#------------------------------------------------------------------------
+# Fit the equation using minimization of residuals
+def fit_rating_curve(df_rating):
+    x0 = np.ones(3)  # Initial guess for parameters [a, b, c]
+    res = minimize(objective_function, x0, args=(df_rating, rating_equation), method='Nelder-Mead')
+    if res.success:
+        # Calculate predicted gage heights
+        predicted_gage_heights = rating_equation(df_rating['Discharge'], *res.x)
+        
+        # Calculate R-squared
+        r_squared = r2_score(df_rating['Gage Height'], predicted_gage_heights)
+        
+        return res.x, r_squared
+    else:
+        print("Fitting failed:", res.message)  # Print out the error message
+        return None, None
+
+
+# :::{note}
+# Plotting the fitted curve
+# :::
+
+# In[21]:
+
+
+# Plot the fitting rating curve
+def plot_fitted_curve(df_rating, params, r_squared):
+    # Define colors for scatter and curve
+    scatter_color = 'steelblue'
+    curve_color = 'darkorange'
+
+    # Create figure and axis objects
+    fig, ax = plt.subplots(figsize=(10, 6))
+    
+    # Plot original data as scatter points
+    ax.scatter(df_rating['Discharge'], df_rating['Gage Height'], label='Original data', color=scatter_color, alpha=0.7)
+
+    # Generate fitted curve
+    Q_fit = np.linspace(df_rating['Discharge'].min(), df_rating['Discharge'].max(), 100)
+    fitted_curve = rating_equation(Q_fit, *params)
+    
+    # Plot fitted curve
+    ax.plot(Q_fit, fitted_curve, label=f'Fitted curve: $H(Q) = a \cdot Q^b + \\frac{{1}}{{c}}$', color=curve_color, linewidth=3)
+
+    # Add equation and R-squared value as text box
+    equation_text = f"$H(Q) = {params[0]:.3f} \cdot Q^{{{params[1]:.3f}}} + \\frac{{1}}{{{params[2]:.3f}}}$"
+    r_squared_text = f"$R^2 = {r_squared:.4f}$"
+    text_box_content = f"{equation_text}\n\n{r_squared_text}"
+    ax.text(0.55, 0.35, text_box_content, transform=ax.transAxes, fontsize=16, verticalalignment='top', bbox=dict(facecolor='white', alpha=0.8))
+
+    # Set labels and title
+    ax.set_xlabel('Discharge $(ft^3/s)$', fontsize=14)
+    ax.set_ylabel('Gage Height $(ft)$', fontsize=14)
+    ax.set_title('Fitted Rating Curve', fontsize=16)
+    
+    # Add grid
+    ax.grid(True)
+
+    # Add legend
+    ax.legend(fontsize=16)
+
+    # Adjust layout
+    plt.tight_layout()
+
+    # Save plot as PNG file
+    plt.savefig(f'{station_code}fitted_rating_curve.png')
+
+    # Show plot
+    plt.show()
+
+
+# :::{note}
+# The supervisory script (aka Learn Dammit!)
+# :::
+
+# In[22]:
+
+
+#Main function to operate the script
+def main(station_code):
+    # Step 1: Retrieve and clean data
+    df_rating = retrieve_rating_curve_data(station_code)
+    
+    # Step 2: Plot original data
+    plot_original_data(df_rating)
+    
+    # Step 3: Fit the curve
+    params, r_squared = fit_rating_curve(df_rating)
+    
+    # Step 4: Plot the fitted curve
+    if params is not None:
+        plot_fitted_curve(df_rating, params, r_squared)
+    else:
+        print("Fitting failed. Unable to plot the fitted curve.")
+
+#--------------------------------------------------------------------------
+#           Call the main function by the station code
+#--------------------------------------------------------------------------
+main(station_code)
+
+
+# ### References
+# 
+# - U.S. Geological Survey. (1996). *Data from Selected U.S. Geological Survey National Stream Water-Quality Monitoring Networks (WQN) on CD-ROM*. Retrieved from [https://pubs.usgs.gov/dds/wqn96cd/](https://pubs.usgs.gov/dds/wqn96cd/) on 11/29/2023.
+# 
+# - Vogel, R. M., & Fennessey, N. M. (1995). Flow duration curves II: a review of applications in water resources planning. *JAWRA Journal of the American Water Resources Association*, 31(6), 1029-1039.
+# 
+# - Bedient, P. B. (2002). *Hydrologic and Floodplain Analysis*. Prentice Hall, Upper Saddle River, New Jersey 07458.
+# 
+# - HydroMohsen. (2022). *Download and Visualize Daily Streamflow Data from USGS Using Python*. Retrieved from [https://www.youtube.com/watch?v=fs5BOUn8zvw](https://www.youtube.com/watch?v=fs5BOUn8zvw) on 2023-03-15.
+# 
+# - Mohsen Tahmasebi Nasab. (2022). *Download and Visualize Daily Streamflow Data from USGS Using Python*. Retrieved from [https://colab.research.google.com/drive/1OqjB1UbUH8KwJEIG6qMCfdfJtLev5kph?usp=sharing](https://colab.research.google.com/drive/1OqjB1UbUH8KwJEIG6qMCfdfJtLev5kph?usp=sharing) on 2023-03-15.
+# 
+# - OpenAI. (2022). *ChatGPT: Conversational AI Model*. Version 3.5. Retrieved from [https://openai.com/chatgpt](https://openai.com/chatgpt) on February 21, 2024.
+# 03-15.
+# 
+
 # In[ ]:
 
 

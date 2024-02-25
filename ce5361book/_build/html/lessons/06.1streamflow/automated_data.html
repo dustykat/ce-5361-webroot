@@ -500,6 +500,38 @@
    STATISTICS, HISTOGRAM AND FLOW DURATION CURVE
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#temporal-pattern">
+   TEMPORAL PATTERN
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#rating-curve">
+   Rating Curve
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#outputs">
+     Outputs:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#functions">
+     Functions:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#libraries-used">
+     Libraries Used:
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#references">
+     References
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 
             </nav>
@@ -1012,6 +1044,404 @@ datetime
 </div>
 <img alt="../../_images/automated_data_31_3.png" src="../../_images/automated_data_31_3.png" />
 </div>
+</div>
+</div>
+<div class="section" id="temporal-pattern">
+<h2>TEMPORAL PATTERN<a class="headerlink" href="#temporal-pattern" title="Permalink to this headline">¶</a></h2>
+<p><strong>Data Processing:</strong></p>
+<p>After plotting the rating curve, a script is written to process flow rate data stored in the DataFrame generated from the previous step. It calculates yearly means with standard deviations. It also performs linear regression to fit trend lines to the data.</p>
+<p><strong>Plotting:</strong></p>
+<p>Two types of plots are generated:</p>
+<ol class="simple">
+<li><p>Yearly Moving Averages: Plots the yearly moving averages of flow rate data with error bars representing standard deviations.</p></li>
+<li><p>A Trend Line (Linear Regression): Fits a trend line to the yearly means using linear regression. The equation of the trend line is of the form: $<span class="math notranslate nohighlight">\( y = mx + c \)</span>$</p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(m\)</span> is the slope (coefficient), <span class="math notranslate nohighlight">\(x\)</span> is the year, and <span class="math notranslate nohighlight">\(c\)</span> is the intercept.</p>
+<ol class="simple">
+<li><p>Confidence Intervals: Calculates the 95% confidence interval for the trend line using the t-distribution. The formula for the margin of error is: $<span class="math notranslate nohighlight">\( E = t \times \frac{s}{\sqrt{n}} \)</span>$</p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(E\)</span> is the margin of error, <span class="math notranslate nohighlight">\(t\)</span> is the critical t-value, <span class="math notranslate nohighlight">\(s\)</span> is the standard deviation of the sample means, and <span class="math notranslate nohighlight">\(n\)</span> is the sample size.</p>
+<p><strong>Outputs:</strong></p>
+<p>The script generates two plots: daily flow rates and yearly means with trend lines and confidence intervals. Then the script saves the plot of yearly means as a PNG image.</p>
+<p><strong>Libraries Used:</strong></p>
+<ol class="simple">
+<li><p>numpy: For mathematical operations.</p></li>
+<li><p>matplotlib.pyplot: For plotting graphs.</p></li>
+<li><p>scipy.stats.t: For computing t-values for confidence intervals.</p></li>
+<li><p>sklearn.linear_model.LinearRegression: For performing linear regression.
+linear regression.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="kn">import</span> <span class="n">t</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+
+<span class="c1">#------------------------------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">plot_yearly_moving_average</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the yearly moving averages of flow rate data along with a trend line.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    df (DataFrame): DataFrame containing flow rate data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Compute yearly moving averages</span>
+    <span class="n">yearly_ma</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;flow_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">rolling</span><span class="p">(</span><span class="n">window</span><span class="o">=</span><span class="mi">365</span><span class="p">,</span> <span class="n">min_periods</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    
+    <span class="c1"># Plot data and moving averages</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;flow_rate&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Flow Rate&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yearly_ma</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">yearly_ma</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Yearly Moving Average&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Fit a trend line</span>
+    <span class="n">trend_coef</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_julian_date</span><span class="p">(),</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;flow_rate&#39;</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">trend_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">poly1d</span><span class="p">(</span><span class="n">trend_coef</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">trend_line</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_julian_date</span><span class="p">()),</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Trend Line&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Yearly Moving Averages of Flow Rate with Trend Line&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date (years)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Flow Rate ($ft^3/s$)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">#------------------------------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">plot_yearly_means_with_trend</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plots the yearly means of flow rate data with error bars (std) and a trend line with shaded confidence intervals.</span>
+<span class="sd">    NaN values in flow rate are replaced by the mean of all non-NaN flow rates,</span>
+<span class="sd">    and NaN values in standard deviation are replaced by the mean of all non-NaN standard deviations.</span>
+
+<span class="sd">    Parameters:</span>
+<span class="sd">    df (DataFrame): DataFrame containing flow rate data.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Compute yearly means and standard deviations</span>
+    <span class="n">yearly_means</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;flow_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">yearly_std</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;flow_rate&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">resample</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+
+    <span class="c1"># Replace NaN values in flow rate with the mean of all non-NaN flow rates</span>
+    <span class="n">yearly_means</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">yearly_means</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Replace NaN values in std with the mean of all non-NaN std</span>
+    <span class="n">yearly_std</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">yearly_std</span><span class="o">.</span><span class="n">mean</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="c1"># Prepare data for linear regression</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">yearly_means</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">year</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">yearly_means</span><span class="o">.</span><span class="n">values</span>
+    
+    <span class="c1"># Fit linear regression model</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    
+    <span class="c1"># Compute trend line values</span>
+    <span class="n">trend_values</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    
+    <span class="c1"># Compute overall mean and standard deviation of yearly means</span>
+    <span class="n">overall_mean</span> <span class="o">=</span> <span class="n">yearly_means</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+    <span class="n">overall_std</span> <span class="o">=</span> <span class="n">yearly_means</span><span class="o">.</span><span class="n">std</span><span class="p">()</span>
+    
+    <span class="c1"># Compute t-value for a 95% confidence interval with n-1 degrees of freedom</span>
+    <span class="n">t_value</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">ppf</span><span class="p">(</span><span class="mf">0.975</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">yearly_means</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Compute margin of error</span>
+    <span class="n">margin_of_error</span> <span class="o">=</span> <span class="n">t_value</span> <span class="o">*</span> <span class="n">overall_std</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">yearly_means</span><span class="p">))</span>
+    
+    <span class="c1"># Compute upper and lower bounds of the confidence interval for the overall mean</span>
+    <span class="n">upper_bound</span> <span class="o">=</span> <span class="n">trend_values</span> <span class="o">+</span> <span class="n">margin_of_error</span>
+    <span class="n">lower_bound</span> <span class="o">=</span> <span class="n">trend_values</span> <span class="o">-</span> <span class="n">margin_of_error</span>
+    
+    <span class="c1"># Plot yearly means with error bars</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">errorbar</span><span class="p">(</span><span class="n">yearly_means</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">yearly_means</span><span class="p">,</span> <span class="n">yerr</span><span class="o">=</span><span class="n">yearly_std</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">capsize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Yearly Means ± Std&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Plot trend line</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">yearly_means</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">trend_values</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Trend Line: $y = </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">x + (</span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)$&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+    
+    <span class="c1"># Shade confidence interval</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">yearly_means</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">lower_bound</span><span class="p">,</span> <span class="n">upper_bound</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;orange&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;95\% Confidence Interval&#39;</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Yearly Means of Flow Rate with Trend Line and Confidence Intervals&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Date $(yrs)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Flow Rate $(ft^3/s)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># Ensure tight layout to prevent cropping of labels</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">save_directory</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">station_code</span><span class="si">}</span><span class="s1">_yearly_mean.png&#39;</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="k">return</span> <span class="c1">#yearly_means</span>
+
+<span class="c1">#------------------------------------------------------------------------</span>
+<span class="c1">#                         Moving average </span>
+<span class="c1">#------------------------------------------------------------------------</span>
+<span class="n">plot_yearly_moving_average</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+<span class="n">plot_yearly_means_with_trend</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/automated_data_33_0.png" src="../../_images/automated_data_33_0.png" />
+<img alt="../../_images/automated_data_33_1.png" src="../../_images/automated_data_33_1.png" />
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="rating-curve">
+<h2>Rating Curve<a class="headerlink" href="#rating-curve" title="Permalink to this headline">¶</a></h2>
+<p>Based on the station code, the script retrieves rating curve data from the USGS website using the station code provided as input. It then fits a rating curve equation of the form <span class="math notranslate nohighlight">\(H(Q) = a \cdot Q^b + \frac{1}{c}\)</span> to the data, where <span class="math notranslate nohighlight">\(H\)</span> is gage height and <span class="math notranslate nohighlight">\(Q\)</span> is discharge. The fitting is performed by minimizing the residuals between the observed and predicted gage heights. The R-squared value is computed as a measure of goodness-of-fit.</p>
+<div class="section" id="outputs">
+<h3>Outputs:<a class="headerlink" href="#outputs" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Plot of the original rating curve data.</p></li>
+<li><p>Plot of the fitted rating curve along with the equation and R-squared value.</p></li>
+<li><p>If successful, the script also saves the fitted curve plot as a PNG file.</p></li>
+</ul>
+</div>
+<div class="section" id="functions">
+<h3>Functions:<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<ol class="simple">
+<li><p>retrieve_rating_curve_data(station_code): Retrieves and cleans rating curve data from the USGS website.</p></li>
+<li><p>plot_original_data(df_rating): Plots the original rating curve data.</p></li>
+<li><p>objective_function(params, df_rating, equation_func): Objective function to minimize residuals and maximize R-squared.</p></li>
+<li><p>fit_rating_curve(df_rating): Fits the rating curve equation to the data using optimization.</p></li>
+<li><p>plot_fitted_curve(df_rating, params, r_squared): Plots the fitted rating curve along with the equation and R-squared value.</p></li>
+<li><p>main(station_code): Main function to execute the entire process.</p></li>
+</ol>
+</div>
+<div class="section" id="libraries-used">
+<h3>Libraries Used:<a class="headerlink" href="#libraries-used" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>numpy: For mathematical operations.</p></li>
+<li><p>pandas: For data manipulation.</p></li>
+<li><p>matplotlib.pyplot: For plotting graphs.</p></li>
+<li><p>scipy.optimize.minimize: For optimization to fit the curve.</p></li>
+<li><p>sklearn.metrics.r2_score: For computing the R-squared value.</p></li>
+<li><p>requests: For retrieving data from the USGS website.
+om the USGS website.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Import Libaries</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">r2_score</span>
+<span class="kn">import</span> <span class="nn">requests</span> 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Rating equation structure is a power-law model; fitted values are <span class="math notranslate nohighlight">\(a\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(c\)</span></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the equation a * Q^b + c</span>
+<span class="k">def</span> <span class="nf">rating_equation</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">c</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Retreive rating curve from original database - not are downloading again, so still need the mighty Internet to work!</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Retrieve rating curve data</span>
+<span class="k">def</span> <span class="nf">retrieve_rating_curve_data</span><span class="p">(</span><span class="n">station_code</span><span class="p">):</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;https://waterdata.usgs.gov/nwisweb/get_ratings?file_type=exsa&amp;site_no=</span><span class="si">{</span><span class="n">station_code</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">response</span><span class="o">.</span><span class="n">status_code</span> <span class="o">!=</span> <span class="mi">200</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to retrieve data for station code </span><span class="si">{</span><span class="n">station_code</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">url</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="mi">29</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;INDEP&quot;</span><span class="p">,</span> <span class="s2">&quot;SHIFT&quot;</span><span class="p">,</span> <span class="s2">&quot;DEP&quot;</span><span class="p">,</span> <span class="s2">&quot;STOR&quot;</span><span class="p">])</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s2">&quot;INDEP&quot;</span><span class="p">,</span> <span class="s2">&quot;DEP&quot;</span><span class="p">]]</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Gage Height&quot;</span><span class="p">,</span> <span class="s2">&quot;Discharge&quot;</span><span class="p">]</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Gage Height&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Gage Height&quot;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+    <span class="n">df</span><span class="p">[</span><span class="s2">&quot;Discharge&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_numeric</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;Discharge&quot;</span><span class="p">],</span> <span class="n">errors</span><span class="o">=</span><span class="s2">&quot;coerce&quot;</span><span class="p">)</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;Discharge&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plot the rating cruve</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the original rating curve data</span>
+<span class="k">def</span> <span class="nf">plot_original_data</span><span class="p">(</span><span class="n">df_rating</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Discharge&#39;</span><span class="p">],</span> <span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Gage Height&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;steelblue&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Discharge $(ft^3/s)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Gage Height $(ft)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Original Rating Curve Data&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An obective function to be minimized to recover <span class="math notranslate nohighlight">\(a\)</span>,<span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(c\)</span> in rating equation.  Will probably work in log-space so the optimization is OLS.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Objective function to minimize R-squared</span>
+<span class="k">def</span> <span class="nf">objective_function</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">df_rating</span><span class="p">,</span> <span class="n">equation_func</span><span class="p">):</span>
+    <span class="n">predicted_gage_height</span> <span class="o">=</span> <span class="n">equation_func</span><span class="p">(</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Discharge&#39;</span><span class="p">],</span> <span class="o">*</span><span class="n">params</span><span class="p">)</span>
+    <span class="n">ss_residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Gage Height&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">predicted_gage_height</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ss_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Gage Height&#39;</span><span class="p">]</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Gage Height&#39;</span><span class="p">]))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Check if ss_total is close to zero</span>
+    <span class="k">if</span> <span class="n">ss_total</span> <span class="o">&lt;</span> <span class="mf">1e-10</span><span class="p">:</span>  <span class="c1"># Adjust threshold as needed</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mf">1e10</span>      <span class="c1"># Return a large negative value to discourage such solutions</span>
+    
+    <span class="n">r_squared</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">ss_residuals</span> <span class="o">/</span> <span class="n">ss_total</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">-</span><span class="n">r_squared</span>      <span class="c1"># Minimize negative R-squared</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The fitting method - in this case Nelder-Mead downhill simplex method.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#------------------------------------------------------------------------</span>
+<span class="c1"># Fit the equation using minimization of residuals</span>
+<span class="k">def</span> <span class="nf">fit_rating_curve</span><span class="p">(</span><span class="n">df_rating</span><span class="p">):</span>
+    <span class="n">x0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># Initial guess for parameters [a, b, c]</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span><span class="n">objective_function</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">df_rating</span><span class="p">,</span> <span class="n">rating_equation</span><span class="p">),</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;Nelder-Mead&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">res</span><span class="o">.</span><span class="n">success</span><span class="p">:</span>
+        <span class="c1"># Calculate predicted gage heights</span>
+        <span class="n">predicted_gage_heights</span> <span class="o">=</span> <span class="n">rating_equation</span><span class="p">(</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Discharge&#39;</span><span class="p">],</span> <span class="o">*</span><span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># Calculate R-squared</span>
+        <span class="n">r_squared</span> <span class="o">=</span> <span class="n">r2_score</span><span class="p">(</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Gage Height&#39;</span><span class="p">],</span> <span class="n">predicted_gage_heights</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">r_squared</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting failed:&quot;</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">message</span><span class="p">)</span>  <span class="c1"># Print out the error message</span>
+        <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Plotting the fitted curve</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the fitting rating curve</span>
+<span class="k">def</span> <span class="nf">plot_fitted_curve</span><span class="p">(</span><span class="n">df_rating</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">r_squared</span><span class="p">):</span>
+    <span class="c1"># Define colors for scatter and curve</span>
+    <span class="n">scatter_color</span> <span class="o">=</span> <span class="s1">&#39;steelblue&#39;</span>
+    <span class="n">curve_color</span> <span class="o">=</span> <span class="s1">&#39;darkorange&#39;</span>
+
+    <span class="c1"># Create figure and axis objects</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    
+    <span class="c1"># Plot original data as scatter points</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Discharge&#39;</span><span class="p">],</span> <span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Gage Height&#39;</span><span class="p">],</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original data&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">scatter_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+
+    <span class="c1"># Generate fitted curve</span>
+    <span class="n">Q_fit</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Discharge&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">df_rating</span><span class="p">[</span><span class="s1">&#39;Discharge&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">fitted_curve</span> <span class="o">=</span> <span class="n">rating_equation</span><span class="p">(</span><span class="n">Q_fit</span><span class="p">,</span> <span class="o">*</span><span class="n">params</span><span class="p">)</span>
+    
+    <span class="c1"># Plot fitted curve</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Q_fit</span><span class="p">,</span> <span class="n">fitted_curve</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;Fitted curve: $H(Q) = a \cdot Q^b + </span><span class="se">\\</span><span class="s1">frac</span><span class="se">{{</span><span class="s1">1</span><span class="se">}}{{</span><span class="s1">c</span><span class="se">}}</span><span class="s1">$&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">curve_color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+    <span class="c1"># Add equation and R-squared value as text box</span>
+    <span class="n">equation_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$H(Q) = </span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> \cdot Q^</span><span class="se">{{</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="se">}}</span><span class="si">}</span><span class="s2"> + </span><span class="se">\\</span><span class="s2">frac</span><span class="se">{{</span><span class="s2">1</span><span class="se">}}{{</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.3f</span><span class="se">}}</span><span class="si">}</span><span class="s2">$&quot;</span>
+    <span class="n">r_squared_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;$R^2 = </span><span class="si">{</span><span class="n">r_squared</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">$&quot;</span>
+    <span class="n">text_box_content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">equation_text</span><span class="si">}</span><span class="se">\n\n</span><span class="si">{</span><span class="n">r_squared_text</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">,</span> <span class="n">text_box_content</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">transAxes</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">))</span>
+
+    <span class="c1"># Set labels and title</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Discharge $(ft^3/s)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Gage Height $(ft)$&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Fitted Rating Curve&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    
+    <span class="c1"># Add grid</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Add legend</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+
+    <span class="c1"># Adjust layout</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="c1"># Save plot as PNG file</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">station_code</span><span class="si">}</span><span class="s1">fitted_rating_curve.png&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Show plot</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The supervisory script (aka Learn Dammit!)</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Main function to operate the script</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">station_code</span><span class="p">):</span>
+    <span class="c1"># Step 1: Retrieve and clean data</span>
+    <span class="n">df_rating</span> <span class="o">=</span> <span class="n">retrieve_rating_curve_data</span><span class="p">(</span><span class="n">station_code</span><span class="p">)</span>
+    
+    <span class="c1"># Step 2: Plot original data</span>
+    <span class="n">plot_original_data</span><span class="p">(</span><span class="n">df_rating</span><span class="p">)</span>
+    
+    <span class="c1"># Step 3: Fit the curve</span>
+    <span class="n">params</span><span class="p">,</span> <span class="n">r_squared</span> <span class="o">=</span> <span class="n">fit_rating_curve</span><span class="p">(</span><span class="n">df_rating</span><span class="p">)</span>
+    
+    <span class="c1"># Step 4: Plot the fitted curve</span>
+    <span class="k">if</span> <span class="n">params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">plot_fitted_curve</span><span class="p">(</span><span class="n">df_rating</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="n">r_squared</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fitting failed. Unable to plot the fitted curve.&quot;</span><span class="p">)</span>
+
+<span class="c1">#--------------------------------------------------------------------------</span>
+<span class="c1">#           Call the main function by the station code</span>
+<span class="c1">#--------------------------------------------------------------------------</span>
+<span class="n">main</span><span class="p">(</span><span class="n">station_code</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/automated_data_50_0.png" src="../../_images/automated_data_50_0.png" />
+<img alt="../../_images/automated_data_50_1.png" src="../../_images/automated_data_50_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="references">
+<h3>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>U.S. Geological Survey. (1996). <em>Data from Selected U.S. Geological Survey National Stream Water-Quality Monitoring Networks (WQN) on CD-ROM</em>. Retrieved from <a class="reference external" href="https://pubs.usgs.gov/dds/wqn96cd/">https://pubs.usgs.gov/dds/wqn96cd/</a> on 11/29/2023.</p></li>
+<li><p>Vogel, R. M., &amp; Fennessey, N. M. (1995). Flow duration curves II: a review of applications in water resources planning. <em>JAWRA Journal of the American Water Resources Association</em>, 31(6), 1029-1039.</p></li>
+<li><p>Bedient, P. B. (2002). <em>Hydrologic and Floodplain Analysis</em>. Prentice Hall, Upper Saddle River, New Jersey 07458.</p></li>
+<li><p>HydroMohsen. (2022). <em>Download and Visualize Daily Streamflow Data from USGS Using Python</em>. Retrieved from <a class="reference external" href="https://www.youtube.com/watch?v=fs5BOUn8zvw">https://www.youtube.com/watch?v=fs5BOUn8zvw</a> on 2023-03-15.</p></li>
+<li><p>Mohsen Tahmasebi Nasab. (2022). <em>Download and Visualize Daily Streamflow Data from USGS Using Python</em>. Retrieved from <a class="reference external" href="https://colab.research.google.com/drive/1OqjB1UbUH8KwJEIG6qMCfdfJtLev5kph?usp=sharing">https://colab.research.google.com/drive/1OqjB1UbUH8KwJEIG6qMCfdfJtLev5kph?usp=sharing</a> on 2023-03-15.</p></li>
+<li><p>OpenAI. (2022). <em>ChatGPT: Conversational AI Model</em>. Version 3.5. Retrieved from <a class="reference external" href="https://openai.com/chatgpt">https://openai.com/chatgpt</a> on February 21, 2024.
+03-15.</p></li>
+</ul>
 </div>
 </div>
 </div>
