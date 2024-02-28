@@ -1,0 +1,23 @@
+# HYETOGRAPH FILE
+# Filename=rain_sta08055700_1976_0618.dat
+# site=08055700 Bachman Branch at Dallas, Texas
+# latitude=32()51'37"  Location 5
+# longitude=96()50'13"  Location 5
+# drainage_area(mi2)=10.0
+# DATE_TIME=date and time in MM/DD/YYYY@HH:MM
+# PRECIP1=Gage 1-B raw recorded precipitation in inches
+# recorded as cum. Weighted calculated by UH team
+DATE_TIME    HOURS_PASSED    PRECIP1    ACCUM_WTD_PRECIP
+06/18/1976@06:00:00    0.0000    0.0000    0.0000
+06/18/1976@08:00:00    2.0000    0.0300    0.0300
+06/18/1976@08:15:00    2.2500    0.3000    0.3000
+06/18/1976@08:30:00    2.5000    1.2000    1.2000
+06/18/1976@08:45:00    2.7500    1.4100    1.4100
+06/18/1976@09:00:00    3.0000    1.5900    1.5900
+06/18/1976@09:15:00    3.2500    1.6500    1.6500
+06/18/1976@09:30:00    3.5000    1.6700    1.6700
+06/18/1976@09:45:00    3.7500    1.7000    1.7000
+06/18/1976@10:00:00    4.0000    1.7000    1.7000
+06/18/1976@10:30:00    4.5000    1.7100    1.7100
+06/18/1976@11:00:00    5.0000    1.7100    1.7100
+06/18/1976@11:30:00    5.5000    1.8000    1.8000
