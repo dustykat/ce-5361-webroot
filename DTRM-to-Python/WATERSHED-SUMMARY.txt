@@ -1,0 +1,5 @@
+Total Particles =  31775
+Alive Particles =  15721
+Runoff Coefficient =  0.494760031471282
+Mean Arrival Time Total = 88.9213233301862
+Mean Arrival Time Lossy = 87.0327939539469

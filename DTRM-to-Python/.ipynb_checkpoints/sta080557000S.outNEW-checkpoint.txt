@@ -1,0 +1,4 @@
+ max. elev    0.0000000000000000     
+ min elev    0.0000000000000000     
+ max. elev. after read    717.20000000000005     
+ min elev after read    0.0000000000000000     
