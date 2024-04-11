@@ -100,9 +100,12 @@ C
 C—disable read BDF      READ(*,*)BDF
 C
       READ(*,*)NROWS,NCOLS
+CC      WRITE(*,*)NROWS,NCOLS
 C
       DO 100 IROW=1,NROWS
          READ(*,*)(HEAD(IROW,JCOL),JCOL=1,NCOLS)
+CC         write(*,*)' read row OK: ',IROW
+CC         write(*,*)(HEAD(IROW,JCOL),JCOL=1,NCOLS)
  100  CONTINUE
       temp=valmax2d(head,nrmax,ncmax,nrmax,ncmax)
       write(*,*)'max. elev. after read ',temp
